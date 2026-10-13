@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HDIMS — Health Data Information Management System</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  /* Landing Page Specific Polishing */
+  .landing-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: color var(--dur-fast) var(--ease);
+  }
+  .nav-links a:hover {
+    color: var(--text);
+  }
+
+  .hero-section {
+    position: relative;
+    padding: 72px 0 80px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: -10% -10% auto -10%;
+    height: 700px;
+    z-index: -1;
+    background:
+      radial-gradient(700px 420px at 80% 10%, rgba(22, 119, 255, 0.12), transparent 70%),
+      radial-gradient(600px 380px at 15% 30%, rgba(13, 148, 136, 0.08), transparent 65%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg) 100%);
+  }
+  [data-theme="dark"] .hero-bg {
+    background:
+      radial-gradient(700px 420px at 80% 10%, rgba(22, 119, 255, 0.15), transparent 70%),
+      radial-gradient(600px 380px at 15% 30%, rgba(13, 148, 136, 0.1), transparent 65%),
+      linear-gradient(180deg, #070C16 0%, #070C16 100%);
+  }
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.45;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 65% 55% at 55% 25%, black 40%, transparent 80%);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-family: var(--font-head);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    box-shadow: var(--shadow-xs);
+    margin-bottom: 20px;
+  }
+  .eyebrow-pill .pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 8px var(--success);
+  }
+
+  .hero-heading {
+    font-size: 3.3rem;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    margin-bottom: 20px;
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #0284C7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-lede {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 48ch;
+    margin-bottom: 32px;
+  }
+
+  .hero-ctas {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* Layered Hero Visual */
+  .visual-card-wrap {
+    position: relative;
+    padding: 24px;
+  }
+  .hero-mockup-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    padding: 26px;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-stat-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .hero-stat-row:last-child {
+    border-bottom: none;
+  }
+  .hero-bar-track {
+    height: 7px;
+    background: var(--border-subtle);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    flex: 1;
+    margin: 0 16px;
+  }
+  .hero-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-blue), #38BDF8);
+    border-radius: var(--radius-full);
+  }
+
+  .floating-badge {
+    position: absolute;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 12px 16px;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-head);
+    font-size: 0.85rem;
+    font-weight: 600;
+    animation: floatAnim 6s ease-in-out infinite;
+  }
+  .badge-chip-top {
+    top: -12px;
+    right: -10px;
+  }
+  .badge-chip-bottom {
+    bottom: -10px;
+    left: -12px;
+    animation-delay: -3s;
+  }
+  @keyframes floatAnim {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* Trust Bar */
+  .trust-bar {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    padding: 30px 0;
+    margin: 20px 0 60px;
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+  .trust-num {
+    font-family: var(--font-head);
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .trust-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  /* Feature Grid */
+  .section-pad {
+    padding: 64px 0;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .feature-card {
+    padding: 28px;
+    border-radius: var(--radius-lg);
+  }
+  .feature-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--light-blue);
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  /* Workflow Steps */
+  .workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 40px;
+    position: relative;
+  }
+  .workflow-card {
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+  .step-number-tag {
+    font-family: var(--font-head);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+    opacity: 0.25;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  /* Security Banner */
+  .security-band {
+    background: linear-gradient(145deg, #0B1220 0%, #102A43 70%, #0E3655 100%);
+    border-radius: var(--radius-xl);
+    padding: 56px;
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+    margin: 50px 0 80px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .security-band::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 500px; height: 100%;
+    background: radial-gradient(circle at 80% 30%, rgba(22, 119, 255, 0.28), transparent 70%);
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 36px 0;
+  }
+
+  @media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-heading { font-size: 2.5rem; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .workflow-grid { grid-template-columns: 1fr; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .nav-links { display: none; }
+    .security-band { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="hero-bg"></div>
+<div class="grid-overlay"></div>
+
+<header class="container">
+  <nav class="landing-nav">
+    <a href="index.html" class="brand">
+      <div class="brand-emblem">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v20M2 12h20"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <b>HDIMS</b>
+        <span>Health Data Platform</span>
+      </div>
+    </a>
+
+    <div class="nav-links">
+      <a href="#features">Platform</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#security">Security</a>
+      <a href="login-doctor.html">For Clinicians</a>
+    </div>
+
+    <div class="flex items-center gap-12">
+      <select class="lang-select" data-lang-select>
+        <option value="en">EN</option>
+        <option value="hi">हिंदी</option>
+        <option value="mr">मराठी</option>
+      </select>
+      <button class="toggle-pill" data-theme-toggle title="Toggle Dark/Light Mode">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <span class="t-label">Light</span>
+      </button>
+      <a href="login-patient.html" class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="register-patient.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section class="hero-section container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow-pill">
+          <span class="pulse-dot"></span>
+          <span>Next-Gen Healthcare Platform · ABHA Ready</span>
+        </div>
+        <h1 class="hero-heading">
+          Your Health.<br>
+          Organized. Secure.<br>
+          <span class="gradient-text">Accessible.</span>
+        </h1>
+        <p class="hero-lede">
+          Manage medical records, family health information, appointments and healthcare interactions in one simple digital platform. Give doctors time-limited access, only when you approve it.
+        </p>
+        <div class="hero-ctas">
+          <a href="register-patient.html" class="btn btn-primary btn-lg">
+            Create Free Account
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="login-patient.html" class="btn btn-secondary btn-lg">Patient Login</a>
+        </div>
+        <div class="flex items-center gap-16" style="margin-top:28px;">
+          <span class="text-sm text-soft">✓ 100% Patient-Controlled</span>
+          <span class="text-sm text-soft">✓ 6-Digit OTP Verification</span>
+          <span class="text-sm text-soft">✓ Free for Families</span>
+        </div>
+      </div>
+
+      <!-- Layered 3D SaaS Mockup -->
+      <div class="visual-card-wrap">
+        <!-- Floating Active Access Chip -->
+        <div class="floating-badge badge-chip-top">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 8px var(--success);"></span>
+          <div>
+            <div style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;">Active Doctor Access</div>
+            <div style="color:var(--text);font-size:0.86rem;font-weight:700;">Dr. Rahul Sharma · <span style="color:var(--primary-blue);">47:32 left</span></div>
+          </div>
+        </div>
+
+        <div class="hero-mockup-panel glass">
+          <div class="flex justify-between items-center" style="margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border);">
+            <div class="flex items-center gap-14">
+              <span class="avatar" style="width:36px;height:36px;font-size:0.8rem;margin-right:4px;flex-shrink:0;">AS</span>
+              <div>
+                <b style="font-size:0.92rem;display:block;">Amit Sharma</b>
+                <span style="font-size:0.75rem;color:var(--text-muted);">PAT-2026-000123</span>
+              </div>
+            </div>
+            <span class="badge badge-active">Live Vault</span>
+          </div>
+
+          <div class="hero-stat-row">
+            <span class="text-sm text-soft">Blood Pressure</span>
+            <div class="hero-bar-track"><div class="hero-bar-fill" style="width:68%;"></div></div>
+            <b class="text-sm">120/80 mmHg</b>
+          </div>
+          <div class="hero-stat-row">
+            <span class="text-sm text-soft">Blood Glucose</span>
+            <div class="hero-bar-track"><div class="hero-bar-fill" style="width:52%;background:linear-gradient(90deg, #10B981, #34D399);"></div></div>
+            <b class="text-sm">96 mg/dL</b>
+          </div>
+          <div class="hero-stat-row">
+            <span class="text-sm text-soft">Records Synced</span>
+            <div class="hero-bar-track"><div class="hero-bar-fill" style="width:90%;"></div></div>
+            <b class="text-sm">14 Reports</b>
+          </div>
+          <div class="hero-stat-row">
+            <span class="text-sm text-soft">Latest Diagnostic</span>
+            <div class="hero-bar-track"><div class="hero-bar-fill" style="width:100%;background:linear-gradient(90deg, #6366F1, #818CF8);"></div></div>
+            <b class="text-sm">CBC Report · Normal</b>
+          </div>
+        </div>
+
+        <!-- Floating Family Chip -->
+        <div class="floating-badge badge-chip-bottom">
+          <div class="avatar" style="width:34px;height:34px;background:linear-gradient(135deg,#0D9488,#14B8A6);font-size:0.75rem;margin-right:4px;flex-shrink:0;">FAM</div>
+          <div>
+            <div style="font-size:0.75rem;color:var(--text-muted);">Family Vault</div>
+            <div style="color:var(--text);font-size:0.86rem;font-weight:700;">4 Profiles Connected</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Metrics Bar -->
+  <section class="trust-bar">
+    <div class="container trust-grid">
+      <div>
+        <div class="trust-num">120,000+</div>
+        <div class="trust-desc">Medical Records Vaulted</div>
+      </div>
+      <div>
+        <div class="trust-num">4,500+</div>
+        <div class="trust-desc">Verified Clinicians & Doctors</div>
+      </div>
+      <div>
+        <div class="trust-num">100%</div>
+        <div class="trust-desc">Patient Consent-Driven</div>
+      </div>
+      <div>
+        <div class="trust-num">256-bit</div>
+        <div class="trust-desc">AES Bank-Grade Encryption</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section-pad container" id="how-it-works">
+    <div style="text-align:center;max-width:680px;margin:0 auto;">
+      <span class="badge badge-info" style="margin-bottom:12px;">Intuitive Workflow</span>
+      <h2>How HDIMS Keeps You in Control</h2>
+      <p>Healthcare data shouldn't be scattered across WhatsApp, paper files, and hospital portals. Here's how HDIMS organizes your journey.</p>
+    </div>
+
+    <div class="workflow-grid">
+      <div class="workflow-card card-hover">
+        <div class="step-number-tag">01</div>
+        <h3>Unified Digital Vault</h3>
+        <p class="text-sm">Upload past reports, prescriptions, scans, and discharge summaries for yourself and your entire family. Easily search by condition, year, or family member.</p>
+      </div>
+
+      <div class="workflow-card card-hover">
+        <div class="step-number-tag">02</div>
+        <h3>Time-Boxed Consent</h3>
+        <p class="text-sm">When consulting a doctor, choose exactly which records to share and for how long (e.g. 1 hour). Authorize via a secure 6-digit OTP that auto-expires.</p>
+      </div>
+
+      <div class="workflow-card card-hover">
+        <div class="step-number-tag">03</div>
+        <h3>AI Health Summaries</h3>
+        <p class="text-sm">HDIMS synthesizes multi-year lab reports into a concise, plain-language health timeline — helping you and your physician review history in 60 seconds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Features Section -->
+  <section class="section-pad container" id="features">
+    <div style="text-align:center;max-width:680px;margin:0 auto;">
+      <span class="badge badge-info" style="margin-bottom:12px;">Enterprise Capability</span>
+      <h2>Designed for Indian Healthcare Realities</h2>
+      <p>Built for how families manage care across hospitals, multiple generations, specialist referrals, and emergency walk-ins.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="card feature-card card-hover">
+        <div class="feature-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Family Health Vault</h3>
+        <p class="text-sm">Organize records for children, spouses, parents, and elderly grandparents under a single login. Switch profiles in one click.</p>
+      </div>
+
+      <div class="card feature-card card-hover">
+        <div class="feature-icon-box" style="background:var(--success-light);color:var(--success-dark);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>Granular Shared Access</h3>
+        <p class="text-sm">Never give open-ended record access. Grant specific doctors access to selected records with live countdown timers and instant revocation.</p>
+      </div>
+
+      <div class="card feature-card card-hover">
+        <div class="feature-icon-box" style="background:var(--violet-light);color:var(--violet);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 5.2L20 9l-5.6 1.8L12 16l-2.4-5.2L4 9l5.6-1.8z"/><path d="M19 15l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9z"/></svg>
+        </div>
+        <h3>AI Clinical Insights</h3>
+        <p class="text-sm">Complex medical jargon turned into chronological clinical timelines, highlighting allergies, past surgeries, and recurring diagnostics.</p>
+      </div>
+
+      <div class="card feature-card card-hover">
+        <div class="feature-icon-box" style="background:var(--warning-light);color:var(--warning-dark);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Walk-In Emergency OTP</h3>
+        <p class="text-sm">Visiting a clinic without prior appointment? Generate an instant 6-digit access code from your phone so the clinician can unlock records immediately.</p>
+      </div>
+
+      <div class="card feature-card card-hover">
+        <div class="feature-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <h3>Seamless Appointments</h3>
+        <p class="text-sm">Browse verified specialist directories, select available morning or afternoon slots, and get real-time status updates.</p>
+      </div>
+
+      <div class="card feature-card card-hover">
+        <div class="feature-icon-box" style="background:var(--teal-light);color:var(--teal);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Digital Prescriptions</h3>
+        <p class="text-sm">Access every issued prescription with exact dosage schedules, refill alerts, and doctor remarks in high-resolution digital format.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Security Banner -->
+  <section class="container" id="security">
+    <div class="security-band">
+      <div style="position:relative;z-index:2;max-width:640px;">
+        <span class="badge" style="background:rgba(255,255,255,0.15);color:#FFFFFF;margin-bottom:16px;">Bank-Grade Compliance</span>
+        <h2 style="color:#FFFFFF;font-size:2.2rem;margin-bottom:14px;">Your data is encrypted. Your permission is final.</h2>
+        <p style="color:#CBD5E1;font-size:1.02rem;line-height:1.6;margin-bottom:28px;">
+          HDIMS operates on zero-knowledge patient consent. No hospital, doctor, or third party can view medical data without explicit, time-boxed authorization verified through your secure phone OTP.
+        </p>
+        <div class="flex gap-16" style="flex-wrap:wrap;">
+          <a href="register-patient.html" class="btn btn-primary btn-lg">Create Free Family Vault</a>
+          <a href="login-doctor.html" class="btn btn-secondary btn-lg" style="background:rgba(255,255,255,0.1);color:#FFFFFF;border-color:rgba(255,255,255,0.25);">Clinician Portal</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="container">
+  <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:20px;">
+    <div class="flex items-center gap-12">
+      <div class="brand-emblem" style="width:28px;height:28px;border-radius:8px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4"><path d="M12 2v20M2 12h20"/></svg>
+      </div>
+      <div>
+        <b style="font-family:var(--font-head);font-size:0.95rem;">HDIMS</b>
+        <span class="text-soft text-xs" style="display:block;">© 2026 Health Data Information Management System</span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-20">
+      <a href="login-patient.html" class="text-sm text-soft">Patient Portal</a>
+      <a href="login-doctor.html" class="text-sm text-soft">Clinician Portal</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-stack"></div>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

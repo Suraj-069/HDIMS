@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patient Registration — HDIMS</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .step-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--primary-subtle);
+    color: var(--primary);
+    margin-bottom: 12px;
+  }
+  .grid-form-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 640px) {
+    .grid-form-2 {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+  .section-divider-title {
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--text-soft);
+    margin: 18px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-divider-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+</style>
+</head>
+<body>
+<div style="position:fixed;top:18px;right:22px;z-index:99;display:flex;align-items:center;gap:10px;">
+  <select class="lang-select" data-lang-select>
+    <option value="en">EN</option><option value="hi">हिं</option><option value="mr">मरा</option>
+  </select>
+  <button class="toggle-pill" data-theme-toggle>
+    <span class="t-label">Light</span>
+  </button>
+</div>
+
+<div class="auth-shell">
+  <aside class="auth-side">
+    <div class="brand-mark flex items-center gap-12">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="10" fill="url(#g1)"/><path d="M17 8v18M8 17h18" stroke="white" stroke-width="2.6" stroke-linecap="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#102A43"/><stop offset="1" stop-color="#1D6FE0"/></linearGradient></defs></svg>
+      <div><b>HDIMS</b><span>Health Data Information Management</span></div>
+    </div>
+    <div class="auth-quote">
+      <h2>Your health records, organized and securely accessible.</h2>
+      <p>Create your unified medical profile, link family members, and control doctor record access with granular time-based consent.</p>
+      <div class="auth-illustration" style="margin-top:24px;">
+        <div class="card" style="padding:16px;">
+          <div class="flex items-center gap-12 mb-8">
+            <div style="width:36px;height:36px;border-radius:10px;background:rgba(28,154,108,0.18);display:flex;align-items:center;justify-content:center;color:#10b981;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <b style="color:#fff;font-size:13px;display:block;">ABHA &amp; EHR Compliant</b>
+              <span class="text-xs" style="color:#94a3b8;">End-to-end encrypted storage</span>
+            </div>
+          </div>
+          <div class="mini-row"><span class="text-sm" style="color:#B9C6DA">Family record sharing</span><span class="text-sm" style="color:#fff;">Unlimited</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="auth-foot">Your clinical data is private and never shared without explicit consent.</p>
+  </aside>
+
+  <main class="auth-main" style="max-width:580px;">
+    <div class="auth-card fade-in-page" style="padding:32px 34px;">
+
+      <!-- Registration Form Step -->
+      <div id="stepForm">
+        <div class="auth-head" style="margin-bottom:18px;">
+          <span class="step-pill">Patient Onboarding</span>
+          <h2>Create Your Patient Account</h2>
+          <p>Register your personal and emergency health profile.</p>
+        </div>
+
+        <form id="regForm">
+          <!-- 1. Identity & Demographics -->
+          <div class="section-divider-title">1. Personal Demographics</div>
+          <div class="field">
+            <label>Full Name</label>
+            <input class="input" id="regName" placeholder="e.g. Rohan Verma" required>
+          </div>
+
+          <div class="grid-form-2">
+            <div class="field">
+              <label>Date of Birth</label>
+              <input class="input" type="date" id="regDob" required>
+            </div>
+            <div class="field">
+              <label>Biological Gender</label>
+              <select class="input" id="regGender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-form-2">
+            <div class="field">
+              <label>Blood Group</label>
+              <select class="input" id="regBlood" required>
+                <option value="O+">O positive (O+)</option>
+                <option value="O-">O negative (O-)</option>
+                <option value="A+">A positive (A+)</option>
+                <option value="A-">A negative (A-)</option>
+                <option value="B+">B positive (B+)</option>
+                <option value="B-">B negative (B-)</option>
+                <option value="AB+">AB positive (AB+)</option>
+                <option value="AB-">AB negative (AB-)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>14-Digit ABHA ID <span class="text-xs text-soft">(Optional)</span></label>
+              <input class="input" id="regAbha" placeholder="e.g. 91-4821-9920-1412" maxlength="17">
+            </div>
+          </div>
+
+          <!-- 2. Contact & Location -->
+          <div class="section-divider-title">2. Contact &amp; Location</div>
+          <div class="grid-form-2">
+            <div class="field">
+              <label>10-Digit Mobile Number</label>
+              <input class="input" type="tel" id="regPhone" placeholder="9876543210" required>
+            </div>
+            <div class="field">
+              <label>Email Address</label>
+              <input class="input" type="email" id="regEmail" placeholder="rohan.verma@email.com" required>
+            </div>
+          </div>
+
+          <div class="grid-form-2">
+            <div class="field">
+              <label>City / Town</label>
+              <input class="input" id="regCity" placeholder="e.g. Pune" required>
+            </div>
+            <div class="field">
+              <label>PIN Code</label>
+              <input class="input" id="regPin" placeholder="411001" maxlength="6" required>
+            </div>
+          </div>
+
+          <!-- 3. Emergency Contact (Mandatory Safety Field) -->
+          <div class="section-divider-title">3. Emergency Contact</div>
+          <div class="grid-form-2">
+            <div class="field">
+              <label>Emergency Contact Person</label>
+              <input class="input" id="regEmergName" placeholder="e.g. Sunita Verma" required>
+            </div>
+            <div class="field">
+              <label>Relationship</label>
+              <select class="input" id="regEmergRel" required>
+                <option value="Spouse">Spouse</option>
+                <option value="Parent">Parent</option>
+                <option value="Child">Child</option>
+                <option value="Sibling">Sibling</option>
+                <option value="Guardian">Guardian</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Emergency Phone Number</label>
+            <input class="input" type="tel" id="regEmergPhone" placeholder="+91 98230 45678" required>
+          </div>
+
+          <!-- 4. Medical Baseline & Password -->
+          <div class="section-divider-title">4. Health Baseline &amp; Security</div>
+          <div class="grid-form-2">
+            <div class="field">
+              <label>Known Drug / Food Allergies</label>
+              <input class="input" id="regAllergies" placeholder="e.g. Penicillin, Peanuts, None" value="None">
+            </div>
+            <div class="field">
+              <label>Chronic Medical Conditions</label>
+              <input class="input" id="regConditions" placeholder="e.g. Diabetes, BP, None" value="None">
+            </div>
+          </div>
+
+          <div class="grid-form-2">
+            <div class="field">
+              <label>Create Password</label>
+              <input class="input" type="password" id="regPassword" placeholder="Minimum 8 characters" required>
+            </div>
+            <div class="field">
+              <label>Confirm Password</label>
+              <input class="input" type="password" id="regConfirmPw" placeholder="Re-enter password" required>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-block" type="submit" id="continueBtn" style="margin-top:20px;">
+            <span class="spinner"></span>
+            <span class="btn-label">Continue to Phone Verification</span>
+          </button>
+        </form>
+
+        <p class="auth-foot-link" style="margin-top:16px;">Already have an account? <a href="login-patient.html">Log in</a></p>
+      </div>
+
+      <!-- OTP Verification Step -->
+      <div id="stepOtp" style="display:none;">
+        <div class="auth-head" style="text-align:center;">
+          <div style="width:54px;height:54px;border-radius:50%;background:var(--primary-subtle);color:var(--primary);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h2>Verify Mobile Number</h2>
+          <p style="margin:0 auto;">Enter the 6-digit authentication code sent to <b style="color:var(--text)" id="otpPhoneDisplay">+91 98765 43210</b></p>
+        </div>
+
+        <div class="otp-row" id="regOtpRow" style="margin:24px 0 14px;">
+          <input class="otp-box" maxlength="1" inputmode="numeric" autofocus>
+          <input class="otp-box" maxlength="1" inputmode="numeric">
+          <input class="otp-box" maxlength="1" inputmode="numeric">
+          <input class="otp-box" maxlength="1" inputmode="numeric">
+          <input class="otp-box" maxlength="1" inputmode="numeric">
+          <input class="otp-box" maxlength="1" inputmode="numeric">
+        </div>
+
+        <div style="background:var(--bg-subtle);border:1px solid var(--border);border-radius:8px;padding:8px 14px;text-align:center;margin-bottom:18px;">
+          <span class="text-xs text-soft">Demo Code: <b style="color:var(--primary);cursor:pointer;text-decoration:underline;" id="autoFillOtp" title="Click to autofill">123456</b> (Click to autofill all 6 boxes)</span>
+        </div>
+
+        <div class="flex justify-between items-center text-sm" style="margin-bottom:20px;">
+          <span class="text-soft">Expires in <b style="color:var(--text)" id="otpTimer">05:00</b></span>
+          <a href="#" id="resendLink">Resend OTP</a>
+        </div>
+
+        <button class="btn btn-primary btn-block" id="verifyBtn">
+          <span class="spinner"></span>
+          <span class="btn-label">Verify &amp; Create Account</span>
+        </button>
+
+        <p class="auth-foot-link"><a href="#" id="backToEditLink">← Edit Registration Details</a></p>
+      </div>
+
+      <!-- Registration Completed Step -->
+      <div id="stepDone" style="display:none; text-align:center;">
+        <div style="width:68px;height:68px;border-radius:50%;background:rgba(28,154,108,.14);color:#10b981;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2 id="doneTitle" style="margin-bottom:6px;">Account Created Successfully</h2>
+        <p id="doneDesc" class="text-soft text-sm" style="margin:0 auto 20px;max-width:400px;line-height:1.5;">
+          Your digital health profile has been registered in the HDIMS network.
+        </p>
+
+        <div style="background:var(--bg-subtle);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:left;margin-bottom:24px;">
+          <div class="flex justify-between items-center mb-8">
+            <span class="text-xs text-soft">Patient Name:</span>
+            <b id="sumPatientName" style="color:var(--text);font-size:13px;">Rohan Verma</b>
+          </div>
+          <div class="flex justify-between items-center mb-8">
+            <span class="text-xs text-soft">Assigned Patient ID:</span>
+            <b id="sumPatientId" style="color:var(--primary);font-size:13px;letter-spacing:0.02em;">PAT-2026-948123</b>
+          </div>
+          <div class="flex justify-between items-center mb-8">
+            <span class="text-xs text-soft">Blood Group:</span>
+            <span id="sumBlood" class="text-sm">O+</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-xs text-soft">Registered Phone:</span>
+            <span id="sumPhone" class="text-sm">+91 98765 43210</span>
+          </div>
+        </div>
+
+        <a href="patient/dashboard.html" class="btn btn-primary btn-block">Enter Patient Dashboard</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div id="toast-stack"></div>
+<script src="assets/js/app.js"></script>
+<script>
+  let registeredData = {};
+  const regForm = document.getElementById('regForm');
+  const stepForm = document.getElementById('stepForm');
+  const stepOtp = document.getElementById('stepOtp');
+  const stepDone = document.getElementById('stepDone');
+  const otpPhoneDisplay = document.getElementById('otpPhoneDisplay');
+  const autoFillOtp = document.getElementById('autoFillOtp');
+
+  regForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const pw = document.getElementById('regPassword').value;
+    const confirmPw = document.getElementById('regConfirmPw').value;
+
+    if(pw !== confirmPw){
+      HDIMS.toast('Passwords do not match. Please verify.', 'danger');
+      return;
+    }
+
+    registeredData = {
+      name: document.getElementById('regName').value.trim(),
+      dob: document.getElementById('regDob').value,
+      gender: document.getElementById('regGender').value,
+      bloodGroup: document.getElementById('regBlood').value,
+      abhaId: document.getElementById('regAbha').value.trim(),
+      phone: document.getElementById('regPhone').value.trim(),
+      email: document.getElementById('regEmail').value.trim(),
+      city: document.getElementById('regCity').value.trim(),
+      pinCode: document.getElementById('regPin').value.trim(),
+      emergencyName: document.getElementById('regEmergName').value.trim(),
+      emergencyRel: document.getElementById('regEmergRel').value,
+      emergencyPhone: document.getElementById('regEmergPhone').value.trim(),
+      allergies: document.getElementById('regAllergies').value.trim(),
+      conditions: document.getElementById('regConditions').value.trim(),
+      password: pw
+    };
+
+    otpPhoneDisplay.textContent = registeredData.phone.startsWith('+91') ? registeredData.phone : ('+91 ' + registeredData.phone);
+
+    const btn = document.getElementById('continueBtn');
+    btn.classList.add('loading');
+    btn.disabled = true;
+
+    setTimeout(() => {
+      btn.classList.remove('loading');
+      btn.disabled = false;
+      stepForm.style.display = 'none';
+      stepOtp.style.display = 'block';
+      stepOtp.classList.add('fade-in');
+      HDIMS.startCountdown(document.getElementById('otpTimer'), 300);
+      HDIMS.toast('Authentication OTP sent to ' + registeredData.phone + ': 123456', 'info');
+      const firstBox = stepOtp.querySelector('.otp-box');
+      if(firstBox) firstBox.focus();
+    }, 600);
+  });
+
+  document.getElementById('backToEditLink').addEventListener('click', function(e){
+    e.preventDefault();
+    stepOtp.style.display = 'none';
+    stepForm.style.display = 'block';
+  });
+
+  if(autoFillOtp){
+    autoFillOtp.addEventListener('click', () => {
+      const boxes = Array.from(document.querySelectorAll('#regOtpRow .otp-box'));
+      '123456'.split('').forEach((d, i) => {
+        if(boxes[i]){
+          boxes[i].value = d;
+          boxes[i].classList.add('filled');
+        }
+      });
+      document.getElementById('verifyBtn').focus();
+      HDIMS.toast('Demo OTP 123456 filled across all 6 boxes', 'success');
+    });
+  }
+
+  document.getElementById('verifyBtn').addEventListener('click', function(){
+    this.classList.add('loading');
+    this.disabled = true;
+
+    setTimeout(() => {
+      const user = HDIMS.auth.registerUser(registeredData);
+
+      stepOtp.style.display = 'none';
+      stepDone.style.display = 'block';
+      stepDone.classList.add('fade-in');
+
+      document.getElementById('doneTitle').textContent = 'Welcome, ' + user.name + '!';
+      document.getElementById('sumPatientName').textContent = user.name;
+      document.getElementById('sumPatientId').textContent = user.id;
+      document.getElementById('sumBlood').textContent = user.bloodGroup;
+      document.getElementById('sumPhone').textContent = user.phone;
+
+      HDIMS.toast('Patient account (' + user.id + ') registered successfully!', 'success');
+    }, 700);
+  });
+
+  document.getElementById('resendLink').addEventListener('click', function(e){
+    e.preventDefault();
+    HDIMS.toast('A new OTP (123456) has been dispatched to ' + (registeredData.phone || 'your phone'), 'success');
+  });
+</script>
+</body>
+</html>

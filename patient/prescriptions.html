@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Prescriptions — HDIMS</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .rx-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .rx-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 24px rgba(22, 119, 255, 0.08);
+  }
+  .pill-tracker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-subtle);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 11.5px;
+    margin-top: 10px;
+  }
+  .dose-btn {
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .dose-btn.taken {
+    background: #dcfce7;
+    color: #16a34a;
+    border-color: #86efac;
+  }
+
+  @media print {
+    body * { visibility: hidden; }
+    #patientRxLetterhead, #patientRxLetterhead * { visibility: visible; }
+    #patientRxLetterhead { position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; background: #fff !important; }
+    .no-print { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="../index.html" class="brand" style="text-decoration:none;">
+      <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="10" fill="url(#g1)"/><path d="M17 8v18M8 17h18" stroke="white" stroke-width="2.6" stroke-linecap="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#0B1220"/><stop offset="1" stop-color="#1677FF"/></linearGradient></defs></svg>
+      <div class="brand-text"><b>HDIMS</b><span>Health Data Mgmt.</span></div>
+    </a>
+    <nav class="nav-group">
+      <a class="nav-item" href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Dashboard</span></a>
+      <a class="nav-item" href="family.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="8" r="2.4"/><path d="M2 21v-1a6 6 0 0112 0v1"/><path d="M14.5 21v-1a4.5 4.5 0 016 0"/></svg><span>My Family</span></a>
+      <a class="nav-item" href="records.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg><span>Medical Records</span></a>
+      <a class="nav-item" href="doctors.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span>Doctors</span></a>
+      <a class="nav-item" href="appointments.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg><span>Appointments</span></a>
+      <a class="nav-item" href="access.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><span>Shared Access</span></a>
+      <a class="nav-item active" href="prescriptions.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 5H8z"/><path d="M8 8v9a3 3 0 003 3h2a3 3 0 003-3V8"/><path d="M9 14h6"/></svg><span>Prescriptions</span></a>
+      <a class="nav-item" href="ai-health.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.2L20 9l-5.6 1.8L12 16l-2.4-5.2L4 9l5.6-1.8z"/><path d="M19 15l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9z"/></svg><span>AI Health</span></a>
+      <a class="nav-item" href="notifications.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg><span>Notifications</span></a>
+      <a class="nav-item" href="settings.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg><span>Settings</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="nav-item" href="settings.html">
+        <span class="avatar" style="width:28px;height:28px;font-size:11px;border-radius:8px;">AS</span>
+        <span style="display:flex;flex-direction:column;line-height:1.25;">
+          <span style="color:#fff;font-size:13px;font-weight:600;">Amit Sharma</span>
+          <span style="font-size:11px;color:#6E80A0;">Patient · PAT-2026-000123</span>
+        </span>
+      </a>
+      <a class="nav-item" href="../login-patient.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><span>Logout</span></a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="flex items-center gap-12">
+        <button class="hamburger" data-sidebar-toggle>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div>
+          <h2 style="margin:0;">My Prescriptions</h2>
+          <p class="text-soft text-sm mb-0" style="margin-top:2px;">Digital Health Locker &amp; Active Medications</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-12">
+        <select class="lang-select" data-lang-select>
+          <option value="en">EN</option><option value="hi">हिं</option><option value="mr">मरा</option>
+        </select>
+        <button class="toggle-pill" data-theme-toggle>
+          <span class="t-label">Light</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="content fade-in-page">
+      <div class="section-head" style="margin-bottom:24px;">
+        <div>
+          <h1 style="font-size:1.85rem;margin:0 0 4px;">Medication Locker</h1>
+          <p style="margin:0;color:var(--text-soft);font-size:14px;">Authorized e-prescriptions issued by verified doctors, complete with daily dose tracking.</p>
+        </div>
+        <button class="btn btn-secondary" onclick="HDIMS.toast('Refill requests sent to registered pharmacy', 'success')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Request Pharmacy Refill
+        </button>
+      </div>
+
+      <!-- Active Prescriptions Grid -->
+      <div id="patientRxGrid" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:20px;margin-bottom:30px;">
+        <!-- Injected dynamically from HDIMS.rx.get() -->
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Printable Official Rx Letterhead View -->
+<div class="modal-overlay" id="patientRxLetterhead">
+  <div class="modal" style="max-width:720px;padding:0;background:#ffffff;color:#172033;overflow:hidden;border-radius:14px;">
+    
+    <div id="patientPrintSheet" style="padding:32px 36px;font-family:'Inter',sans-serif;">
+      <!-- Letterhead Header -->
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #0B1220;padding-bottom:16px;margin-bottom:16px;">
+        <div>
+          <h2 style="margin:0 0 2px;color:#0B1220;font-size:1.4rem;" id="patDocName">Dr. Rahul Sharma</h2>
+          <div style="font-size:12.5px;color:#475569;" id="patDocDegree">MBBS, MD · General Physician</div>
+          <div style="font-size:12px;color:#1677FF;font-weight:600;margin-top:2px;" id="patDocReg">Council Reg No: MCI-2024-88421</div>
+          <div style="font-size:11.5px;color:#64748B;" id="patDocHosp">City Care Superspeciality Hospital</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="background:#eaf4ff;color:#1677FF;padding:4px 10px;border-radius:6px;font-weight:700;font-size:11.5px;display:inline-block;">
+            VERIFIED DIGITAL RX
+          </div>
+          <div style="font-family:monospace;font-size:12px;font-weight:600;color:#0B1220;margin-top:6px;" id="patRxId">RX-2026-00912</div>
+          <div style="font-size:11.5px;color:#64748B;" id="patRxDate">Date: 25 Sep 2026</div>
+        </div>
+      </div>
+
+      <!-- Patient Banner -->
+      <div style="background:#F6F9FC;border-radius:10px;padding:12px 16px;margin-bottom:18px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:10px;font-size:12px;border:1px solid #E2E8F0;">
+        <div><span style="color:#64748B;display:block;font-size:10.5px;">Patient:</span><b style="color:#0B1220;" id="patPatientName">Amit Sharma</b></div>
+        <div><span style="color:#64748B;display:block;font-size:10.5px;">Demographics:</span><span id="patPatientDemo">32 Y / M</span></div>
+        <div><span style="color:#64748B;display:block;font-size:10.5px;">Patient ID:</span><span style="font-family:monospace;font-weight:600;" id="patPatientId">PAT-2026-000123</span></div>
+        <div><span style="color:#64748B;display:block;font-size:10.5px;">Condition:</span><b style="color:#1677FF;" id="patDiagnosis">Acute Bronchitis</b></div>
+      </div>
+
+      <!-- Medications Table -->
+      <div style="margin-bottom:18px;">
+        <div style="font-size:1.5rem;font-weight:900;color:#1677FF;font-family:'Times New Roman',serif;margin-bottom:6px;">℞</div>
+        <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
+          <thead>
+            <tr style="border-bottom:1.5px solid #CBD5E1;text-align:left;color:#475569;font-size:11px;">
+              <th style="padding:6px 0;width:40%;">Medicine &amp; Strength</th>
+              <th style="padding:6px 0;width:25%;">Dosage Pattern</th>
+              <th style="padding:6px 0;width:20%;">Timing</th>
+              <th style="padding:6px 0;width:15%;text-align:right;">Duration</th>
+            </tr>
+          </thead>
+          <tbody id="patMedTableBody">
+            <!-- Injected dynamically -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Advice -->
+      <div style="border-top:1px dashed #CBD5E1;padding-top:10px;margin-bottom:16px;">
+        <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;color:#64748B;">Clinical Advice:</div>
+        <p style="margin:2px 0 0;font-size:12px;color:#1e293b;line-height:1.4;" id="patAdvice">Follow medication strictly.</p>
+      </div>
+
+      <!-- Signoff -->
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #E2E8F0;padding-top:12px;">
+        <div>
+          <span style="font-size:10.5px;color:#64748B;display:block;">Follow-up Consultation:</span>
+          <b style="font-size:12.5px;color:#0B1220;" id="patFollowUp">After 7 Days</b>
+        </div>
+        <div style="text-align:right;">
+          <div style="display:inline-block;border:1px solid #1677FF;border-radius:6px;padding:4px 10px;background:#f0f7ff;text-align:center;">
+            <div style="font-size:9.5px;color:#1677FF;font-weight:700;">DIGITALLY VALIDATED</div>
+            <div style="font-size:12px;font-weight:700;color:#0B1220;" id="patSignDoc">Dr. Rahul Sharma</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="no-print" style="background:#F8FAFC;border-top:1px solid #E2E8F0;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;">
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('patientRxLetterhead').classList.remove('open')">Close</button>
+      <button class="btn btn-primary btn-sm" onclick="window.print()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print / Download PDF
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<div id="toast-stack"></div>
+<script src="../assets/js/app.js"></script>
+
+<script>
+  function renderPatientPrescriptions(){
+    const list = HDIMS.rx.get();
+    const container = document.getElementById('patientRxGrid');
+    if(!container) return;
+    container.innerHTML = '';
+
+    if(list.length === 0){
+      container.innerHTML = '<div class="card" style="padding:32px;text-align:center;grid-column:1/-1;"><p class="text-soft mb-0">No active prescriptions issued yet.</p></div>';
+      return;
+    }
+
+    list.forEach(rx => {
+      const card = document.createElement('div');
+      card.className = 'rx-card fade-in';
+
+      let medRowsHtml = '';
+      (rx.medicines || []).forEach(m => {
+        medRowsHtml += `
+          <div style="padding:8px 0;border-bottom:1px dashed var(--border);">
+            <div class="flex justify-between items-center">
+              <b style="font-size:13.5px;color:var(--text);">${m.name}</b>
+              <span class="badge badge-active" style="font-size:10px;">${m.duration}</span>
+            </div>
+            <div class="text-soft text-xs" style="margin-top:2px;">${m.dosage} · ${m.timing}</div>
+          </div>
+        `;
+      });
+
+      card.innerHTML = `
+        <div>
+          <div class="flex justify-between items-start mb-12">
+            <div>
+              <span class="badge badge-neutral" style="font-size:11px;font-family:monospace;letter-spacing:0.02em;">${rx.id}</span>
+              <h3 style="margin:6px 0 2px;font-size:1.15rem;">${rx.diagnosis || 'Clinical Prescription'}</h3>
+              <span class="text-soft text-xs">${rx.doctorName} · ${rx.date}</span>
+            </div>
+            <span class="badge ${rx.status==='Active'?'badge-success':'badge-neutral'}">${rx.status}</span>
+          </div>
+
+          <div style="margin:12px 0;">
+            ${medRowsHtml}
+          </div>
+
+          ${rx.advice ? `<p class="text-xs text-soft" style="margin:8px 0 12px;background:var(--bg-subtle);padding:8px 10px;border-radius:8px;">💡 <b>Advice:</b> ${rx.advice}</p>` : ''}
+
+          <!-- Daily Dose Tracker -->
+          <div class="pill-tracker">
+            <span style="font-weight:600;color:var(--text);">Today's Doses:</span>
+            <button class="dose-btn" onclick="this.classList.toggle('taken')">Morning</button>
+            <button class="dose-btn" onclick="this.classList.toggle('taken')">Afternoon</button>
+            <button class="dose-btn" onclick="this.classList.toggle('taken')">Night</button>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+          <span class="text-xs text-soft">Review: <b>${rx.followUp || 'As needed'}</b></span>
+          <button class="btn btn-secondary btn-sm" onclick="openPatientRxView('${rx.id}')">
+            View Official Rx
+          </button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  function openPatientRxView(rxId){
+    const list = HDIMS.rx.get();
+    const rx = list.find(r => r.id === rxId);
+    if(!rx) return;
+
+    document.getElementById('patDocName').textContent = rx.doctorName;
+    document.getElementById('patDocDegree').textContent = (rx.doctorSpec || 'Doctor') + ' · Verified Clinician';
+    document.getElementById('patDocReg').textContent = 'Council Reg No: ' + (rx.doctorRegId || 'MCI-2024-88421');
+    document.getElementById('patDocHosp').textContent = rx.doctorHospital || 'City Care Hospital';
+    document.getElementById('patRxId').textContent = rx.id;
+    document.getElementById('patRxDate').textContent = 'Date: ' + rx.date;
+
+    document.getElementById('patPatientName').textContent = rx.patientName;
+    document.getElementById('patPatientDemo').textContent = `${rx.patientAge || '32'} Y / ${rx.patientGender || 'Male'}`;
+    document.getElementById('patPatientId').textContent = rx.patientId;
+    document.getElementById('patDiagnosis').textContent = rx.diagnosis;
+
+    const tbody = document.getElementById('patMedTableBody');
+    tbody.innerHTML = '';
+    (rx.medicines || []).forEach(m => {
+      const tr = document.createElement('tr');
+      tr.style.borderBottom = '1px solid #E2E8F0';
+      tr.innerHTML = `
+        <td style="padding:6px 0;font-weight:600;color:#0F172A;">${m.name}</td>
+        <td style="padding:6px 0;color:#334155;">${m.dosage}</td>
+        <td style="padding:6px 0;color:#64748B;">${m.timing}</td>
+        <td style="padding:6px 0;text-align:right;font-weight:600;color:#0F172A;">${m.duration}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById('patAdvice').textContent = rx.advice || 'Follow medication schedule strictly.';
+    document.getElementById('patFollowUp').textContent = rx.followUp || 'As needed';
+    document.getElementById('patSignDoc').textContent = rx.doctorName;
+
+    document.getElementById('patientRxLetterhead').classList.add('open');
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    renderPatientPrescriptions();
+  });
+</script>
+</body>
+</html>

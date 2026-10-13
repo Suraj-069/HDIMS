@@ -1,0 +1,153 @@
+# -*- coding: utf-8 -*-
+# Generates every dashboard-shell page (patient / doctor / admin) from one
+# shared sidebar + topbar template so the layout stays perfectly consistent.
+import os
+
+ICONS = {
+ 'dashboard': '<rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/>',
+ 'family': '<circle cx="9" cy="7" r="3"/><circle cx="17" cy="8" r="2.4"/><path d="M2 21v-1a6 6 0 0112 0v1"/><path d="M14.5 21v-1a4.5 4.5 0 016 0"/>',
+ 'records': '<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/>',
+ 'doctors': '<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>',
+ 'appointments': '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 15l2 2 4-4"/>',
+ 'access': '<rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>',
+ 'prescriptions': '<path d="M9 3h6l1 5H8z"/><path d="M8 8v9a3 3 0 003 3h2a3 3 0 003-3V8"/><path d="M9 14h6"/>',
+ 'ai': '<path d="M12 2l2.4 5.2L20 9l-5.6 1.8L12 16l-2.4-5.2L4 9l5.6-1.8z"/><path d="M19 15l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9z"/>',
+ 'notifications': '<path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/>',
+ 'settings': '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/>',
+ 'logout': '<path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/>',
+ 'patients': '<circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M17 9l1.5 1.5L21.5 7"/>',
+ 'verify': '<path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/>',
+ 'analytics': '<path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>',
+ 'shield': '<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/>',
+ 'chevron': '<path d="M9 18l6-6-6-6"/>',
+}
+
+def icon(name, size=18):
+    return '<svg width="{0}" height="{0}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{1}</svg>'.format(size, ICONS[name])
+
+NAV = {
+ 'patient': [
+   ('dashboard','Dashboard','dashboard.html'),
+   ('family','My Family','family.html'),
+   ('records','Medical Records','records.html'),
+   ('doctors','Doctors','doctors.html'),
+   ('appointments','Appointments','appointments.html'),
+   ('access','Shared Access','access.html'),
+   ('prescriptions','Prescriptions','prescriptions.html'),
+   ('ai','AI Health','ai-health.html'),
+   ('notifications','Notifications','notifications.html'),
+   ('settings','Settings','settings.html'),
+ ],
+ 'doctor': [
+   ('dashboard','Dashboard','dashboard.html'),
+   ('patients','My Patients','patients.html'),
+   ('access','Access Requests','access.html'),
+   ('appointments','Appointments','appointments.html'),
+   ('prescriptions','Prescriptions','prescriptions.html'),
+   ('notifications','Notifications','notifications.html'),
+   ('settings','Settings','settings.html'),
+ ],
+ 'admin': [
+   ('dashboard','Overview','dashboard.html'),
+   ('verify','Doctor Verification','verify.html'),
+   ('patients','Patients','patients.html'),
+   ('access','Access Sessions','access.html'),
+   ('analytics','Analytics','analytics.html'),
+   ('settings','Settings','settings.html'),
+ ],
+}
+
+PROFILE = {
+ 'patient': ('Amit Sharma', 'Patient · PAT-2026-000123'),
+ 'doctor': ('Dr. Rahul Sharma', 'General Physician · DOC-2024-0091'),
+ 'admin': ('Admin Console', 'Super Admin'),
+}
+
+def sidebar(role, active):
+    items = NAV[role]
+    lis = []
+    for key, label, href in items:
+        cls = 'nav-item active' if href == active else 'nav-item'
+        lis.append('<a class="{0}" href="{1}">{2}<span>{3}</span></a>'.format(cls, href, icon(key), label))
+    name, sub = PROFILE[role]
+    initials = ''.join([p[0] for p in name.split()[:2]]).upper()
+    root = '../'
+    return '''<aside class="sidebar">
+    <a href="{root}index.html" class="brand" style="text-decoration:none;">
+      <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="10" fill="url(#g1)"/><path d="M17 8v18M8 17h18" stroke="white" stroke-width="2.6" stroke-linecap="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#102A43"/><stop offset="1" stop-color="#1D6FE0"/></linearGradient></defs></svg>
+      <div class="brand-text"><b>HDIMS</b><span>Health Data Mgmt.</span></div>
+    </a>
+    <nav class="nav-group">
+      {items}
+    </nav>
+    <div class="sidebar-foot">
+      <a class="nav-item" href="settings.html">
+        <span class="avatar" style="width:28px;height:28px;font-size:11px;border-radius:8px;">{initials}</span>
+        <span style="display:flex;flex-direction:column;line-height:1.25;">
+          <span style="color:#fff;font-size:13px;font-weight:600;">{name}</span>
+          <span style="font-size:11px;color:#6E80A0;">{sub}</span>
+        </span>
+      </a>
+      <a class="nav-item" href="{root}login-{loginrole}.html">{logout_icon}<span>Logout</span></a>
+    </div>
+  </aside>'''.format(items='\n      '.join(lis), name=name, sub=sub, initials=initials, root=root,
+                      loginrole='patient' if role=='patient' else ('doctor' if role=='doctor' else 'admin'),
+                      logout_icon=icon('logout'))
+
+def topbar(title, subtitle=''):
+    sub_html = '<p class="text-soft text-sm mb-0" style="margin-top:2px;">{}</p>'.format(subtitle) if subtitle else ''
+    return '''<div class="topbar">
+      <div class="flex items-center gap-12">
+        <button class="hamburger" data-sidebar-toggle>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div><h2 style="margin:0;">{title}</h2>{sub}</div>
+      </div>
+      <div class="flex items-center gap-12">
+        <select class="lang-select" data-lang-select>
+          <option value="en">EN</option><option value="hi">हिं</option><option value="mr">मरा</option>
+        </select>
+        <button class="toggle-pill" data-theme-toggle>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <span class="t-label">Light</span>
+        </button>
+        <button class="btn btn-ghost btn-sm" style="position:relative;">
+          {bell}
+        </button>
+      </div>
+    </div>'''.format(title=title, sub=sub_html, bell=icon('notifications'))
+
+def page(role, active, title, subtitle, content, extra_head='', extra_script=''):
+    return '''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title} — HDIMS</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+{extra_head}
+</head>
+<body>
+<div class="app-shell">
+  {sidebar}
+  <div class="main">
+    {topbar}
+    <div class="content fade-in-page">
+      {content}
+    </div>
+  </div>
+</div>
+<div id="toast-stack"></div>
+<script src="../assets/js/app.js"></script>
+{extra_script}
+</body>
+</html>
+'''.format(title=title, sidebar=sidebar(role, active), topbar=topbar(title, subtitle),
+           content=content, extra_head=extra_head, extra_script=extra_script)
+
+OUT = os.path.dirname(os.path.abspath(__file__))
+
+def write(role, filename, html):
+    path = os.path.join(OUT, role, filename)
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(html)
+    print('wrote', path)

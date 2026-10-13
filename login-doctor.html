@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doctor &amp; Clinical Portal — HDIMS</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div style="position:fixed;top:18px;right:22px;z-index:99;display:flex;align-items:center;gap:10px;">
+  <select class="lang-select" data-lang-select>
+    <option value="en">EN</option><option value="hi">हिं</option><option value="mr">मरा</option>
+  </select>
+  <button class="toggle-pill" data-theme-toggle>
+    <span class="t-label">Light</span>
+  </button>
+</div>
+<div class="auth-shell">
+  <aside class="auth-side">
+    <div class="brand-mark flex items-center gap-12">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="10" fill="url(#g1)"/><path d="M17 8v18M8 17h18" stroke="white" stroke-width="2.6" stroke-linecap="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#102A43"/><stop offset="1" stop-color="#1D6FE0"/></linearGradient></defs></svg>
+      <div><b>HDIMS</b><span>Health Data Information Management</span></div>
+    </div>
+    <div class="auth-quote">
+      <h2>Access patient records, only when they say yes.</h2>
+      <p>Manage your clinical schedule, request patient record access with consent, and conduct consultations securely.</p>
+      <div class="auth-illustration" style="margin-top:26px;">
+        <div class="card">
+          <div class="mini-row"><span class="text-sm" style="color:#B9C6DA">Today's appointments</span><span class="text-sm" style="color:#fff;font-weight:600;">6</span></div>
+          <div class="mini-row"><span class="text-sm" style="color:#B9C6DA">Consent requests pending</span><span class="text-sm" style="color:#fff;font-weight:600;">2</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="auth-foot">Clinician &amp; healthcare provider authentication gateway.</p>
+  </aside>
+
+  <main class="auth-main">
+    <div class="auth-card fade-in-page">
+      <div class="auth-head">
+        <h2>Clinician Portal</h2>
+        <p>Sign in with your verified medical credentials.</p>
+      </div>
+
+      <form id="docLoginForm">
+        <div class="field">
+          <label>Professional Email Address</label>
+          <input class="input" type="email" id="docEmail" placeholder="dr.rahul@hdims.in" required autocomplete="username">
+        </div>
+
+        <div class="field">
+          <label>Medical Council Reg ID / Access Key</label>
+          <input class="input" type="text" id="docRegId" placeholder="e.g. MCI-2024-88421 or Key" required autocomplete="off">
+          <div class="field-hint">Council Registration ID (e.g. MCI-2024-88421) or Authorization Key.</div>
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <div class="input-wrap">
+            <input class="input has-icon" type="password" id="docPw" placeholder="Enter your password" required autocomplete="current-password">
+            <button type="button" class="icon-btn-in-field" onclick="togglePw()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center" style="margin-bottom:18px;">
+          <label class="flex items-center gap-8 text-sm text-soft"><input type="checkbox" checked> Remember credentials</label>
+          <a href="#" class="text-sm" onclick="HDIMS.toast('Password assistance instructions sent to email', 'info');return false;">Forgot password?</a>
+        </div>
+
+        <div style="background:var(--bg-subtle);border:1px solid var(--border);border-radius:8px;padding:8px 12px;margin-bottom:18px;display:flex;align-items:center;justify-content:space-between;">
+          <span class="text-xs text-soft">Demo Doctor: <b style="color:var(--text);">dr.rahul@hdims.in</b></span>
+          <button type="button" class="btn btn-ghost btn-sm" id="autofillDocDemoBtn" style="font-size:11px;padding:2px 8px;">Fill Demo</button>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit" id="submitBtn">
+          <span class="spinner"></span>
+          <span class="btn-label">Access Clinical Portal</span>
+        </button>
+      </form>
+
+      <div class="divider">or</div>
+      <a href="login-patient.html" class="btn btn-secondary btn-block">I'm a Patient</a>
+      <p class="auth-foot-link">New clinician? <a href="register-doctor.html">Register your practice</a></p>
+    </div>
+  </main>
+</div>
+
+<div id="toast-stack"></div>
+<script src="assets/js/app.js"></script>
+<script>
+  function togglePw(){
+    const f = document.getElementById('docPw');
+    if(f) f.type = f.type === 'password' ? 'text' : 'password';
+  }
+
+  // Pre-fill doctor demo on button click
+  document.getElementById('autofillDocDemoBtn').addEventListener('click', function(){
+    document.getElementById('docEmail').value = 'dr.rahul@hdims.in';
+    document.getElementById('docRegId').value = 'MCI-2024-88421';
+    document.getElementById('docPw').value = 'Doctor@123';
+    HDIMS.toast('Demo Doctor credentials filled', 'info');
+  });
+
+  document.getElementById('docLoginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.classList.add('loading');
+    btn.disabled = true;
+
+    const email = document.getElementById('docEmail').value.trim();
+    const regIdOrKey = document.getElementById('docRegId').value.trim();
+    const password = document.getElementById('docPw').value;
+
+    setTimeout(() => {
+      const result = HDIMS.auth.loginStaffOrDoctor({ email, regIdOrKey, password });
+
+      if(!result.success){
+        btn.classList.remove('loading');
+        btn.disabled = false;
+        HDIMS.toast(result.error || 'Authentication failed. Please verify your details.', 'danger');
+        return;
+      }
+
+      if(result.role === 'admin'){
+        HDIMS.toast('Administrator Verified. Accessing National Control Center...', 'success');
+        setTimeout(() => {
+          window.location.href = 'admin/dashboard.html';
+        }, 650);
+      } else {
+        HDIMS.toast('Welcome, ' + result.user.name + '!', 'success');
+        setTimeout(() => {
+          window.location.href = 'doctor/dashboard.html';
+        }, 650);
+      }
+    }, 600);
+  });
+</script>
+</body>
+</html>

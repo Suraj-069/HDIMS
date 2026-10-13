@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doctor &amp; Practice Registration — HDIMS</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .step-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--primary-subtle);
+    color: var(--primary);
+    margin-bottom: 12px;
+  }
+  .grid-form-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 640px) {
+    .grid-form-2 {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
+</style>
+</head>
+<body>
+<div style="position:fixed;top:18px;right:22px;z-index:99;display:flex;align-items:center;gap:10px;">
+  <select class="lang-select" data-lang-select>
+    <option value="en">EN</option><option value="hi">हिं</option><option value="mr">मरा</option>
+  </select>
+  <button class="toggle-pill" data-theme-toggle>
+    <span class="t-label">Light</span>
+  </button>
+</div>
+
+<div class="auth-shell">
+  <aside class="auth-side">
+    <div class="brand-mark flex items-center gap-12">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="10" fill="url(#g1)"/><path d="M17 8v18M8 17h18" stroke="white" stroke-width="2.6" stroke-linecap="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#102A43"/><stop offset="1" stop-color="#1D6FE0"/></linearGradient></defs></svg>
+      <div><b>HDIMS</b><span>Health Data Information Management</span></div>
+    </div>
+    <div class="auth-quote">
+      <h2>Join India's verified digital health practitioner network.</h2>
+      <p>Register with your state council credentials to conduct verified digital consultations, review EHR records, and issue tamper-proof e-prescriptions.</p>
+      <div class="auth-illustration" style="margin-top:24px;">
+        <div class="card" style="padding:16px;">
+          <div class="flex items-center gap-12 mb-8">
+            <div style="width:36px;height:36px;border-radius:10px;background:rgba(22,119,255,0.2);display:flex;align-items:center;justify-content:center;color:#60a5fa;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <b style="color:#fff;font-size:13px;display:block;">National Registry Verified</b>
+              <span class="text-xs" style="color:#94a3b8;">Council License &amp; KYC Validation</span>
+            </div>
+          </div>
+          <div class="mini-row"><span class="text-sm" style="color:#B9C6DA">Average verification time</span><span class="text-sm" style="color:#fff;">Instant (Demo)</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="auth-foot">Medical council license numbers are verified against national registries.</p>
+  </aside>
+
+  <main class="auth-main" style="max-width:580px;">
+    <div class="auth-card fade-in-page" style="padding:32px 34px;">
+      
+      <div id="stepForm">
+        <div class="auth-head" style="margin-bottom:20px;">
+          <span class="step-pill">Clinician Onboarding</span>
+          <h2>Register Your Practice</h2>
+          <p>Create your verified HDIMS practitioner account.</p>
+        </div>
+
+        <form id="docRegForm">
+          <!-- Step 1: Personal & Contact Details -->
+          <div class="grid-form-2">
+            <div class="field">
+              <label>Doctor Full Name</label>
+              <input class="input" id="docName" placeholder="Dr. Priya Nair" required>
+            </div>
+            <div class="field">
+              <label>Professional Email</label>
+              <input class="input" type="email" id="docEmail" placeholder="dr.priya@clinic.org" required>
+            </div>
+          </div>
+
+          <div class="grid-form-2">
+            <div class="field">
+              <label>Direct Mobile Number</label>
+              <input class="input" type="tel" id="docPhone" placeholder="+91 98200 12345" required>
+            </div>
+            <div class="field">
+              <label>Highest Degree</label>
+              <select class="input" id="docDegree">
+                <option value="MBBS">MBBS</option>
+                <option value="MBBS, MD">MBBS, MD</option>
+                <option value="MBBS, MS">MBBS, MS</option>
+                <option value="DM / MCh">DM / MCh</option>
+                <option value="DNB">DNB</option>
+                <option value="BDS, MDS">BDS, MDS</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Step 2: Medical Council & Specialization -->
+          <div class="grid-form-2">
+            <div class="field">
+              <label>State Medical Council</label>
+              <select class="input" id="docCouncil" required>
+                <option value="Maharashtra Medical Council">Maharashtra Medical Council</option>
+                <option value="Delhi Medical Council">Delhi Medical Council</option>
+                <option value="Karnataka Medical Council">Karnataka Medical Council</option>
+                <option value="Tamil Nadu Medical Council">Tamil Nadu Medical Council</option>
+                <option value="National Medical Commission (NMC)">National Medical Commission (NMC)</option>
+                <option value="Gujarat Medical Council">Gujarat Medical Council</option>
+                <option value="West Bengal Medical Council">West Bengal Medical Council</option>
+                <option value="Other State Council">Other State Council</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Medical Council Reg No.</label>
+              <input class="input" id="docRegId" placeholder="e.g. MMC-2022-88124" required>
+            </div>
+          </div>
+
+          <div class="grid-form-2">
+            <div class="field">
+              <label>Primary Specialization</label>
+              <select class="input" id="docSpec" required>
+                <option value="General Physician">General Physician</option>
+                <option value="Cardiologist">Cardiologist</option>
+                <option value="Orthopedic Surgeon">Orthopedic Surgeon</option>
+                <option value="Pediatrician">Pediatrician</option>
+                <option value="Neurologist">Neurologist</option>
+                <option value="Dermatologist">Dermatologist</option>
+                <option value="Gynecologist">Gynecologist</option>
+                <option value="Oncologist">Oncologist</option>
+                <option value="Psychiatrist">Psychiatrist</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Consultation Fee (₹)</label>
+              <input class="input" id="docFee" placeholder="600" value="600" required>
+            </div>
+          </div>
+
+          <div class="grid-form-2">
+            <div class="field">
+              <label>Hospital / Clinic Name</label>
+              <input class="input" id="docHospital" placeholder="City Care Hospital" required>
+            </div>
+            <div class="field">
+              <label>Practice City</label>
+              <input class="input" id="docCity" placeholder="Pune / Mumbai" required>
+            </div>
+          </div>
+
+          <!-- Step 3: Security & Verification -->
+          <div class="grid-form-2">
+            <div class="field">
+              <label>Password</label>
+              <input class="input" type="password" id="docPassword" placeholder="Create password" required>
+            </div>
+            <div class="field">
+              <label>Confirm Password</label>
+              <input class="input" type="password" id="docConfirmPw" placeholder="Confirm password" required>
+            </div>
+          </div>
+
+          <!-- Certificate Document Upload -->
+          <div class="field" style="margin-top:4px;">
+            <label>Registration Certificate (PDF or JPG)</label>
+            <div style="border:2px dashed var(--border);border-radius:10px;padding:16px;text-align:center;background:var(--bg-subtle);cursor:pointer;" id="certDropzone">
+              <input type="file" id="certFile" accept=".pdf,.jpg,.jpeg,.png" style="display:none;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" style="margin:0 auto 6px;display:block;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span id="certFileName" class="text-sm" style="font-weight:600;display:block;">Upload Council Certificate</span>
+              <span class="text-xs text-soft">PDF, JPG up to 5MB (Simulated)</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-block" type="submit" id="docSubmitBtn" style="margin-top:16px;">
+            <span class="spinner"></span>
+            <span class="btn-label">Submit Registration &amp; Activate</span>
+          </button>
+        </form>
+
+        <p class="auth-foot-link" style="margin-top:16px;">Already have an account? <a href="login-doctor.html">Clinician Login</a></p>
+      </div>
+
+      <!-- Success Screen -->
+      <div id="stepDone" style="display:none; text-align:center;">
+        <div style="width:68px;height:68px;border-radius:50%;background:#fef3c7;color:#d97706;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h2 id="doneDocName" style="margin-bottom:8px;">Registration Submitted</h2>
+        <p id="doneDocDesc" class="text-soft text-sm" style="margin:0 auto 20px;max-width:420px;line-height:1.5;">
+          Your medical credentials have been submitted for verification. An HDIMS Administrator must approve your State Council registration before full clinical activation.
+        </p>
+
+        <div style="background:var(--bg-subtle);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:left;margin-bottom:20px;">
+          <div class="flex justify-between items-center mb-8">
+            <span class="text-xs text-soft">Applicant Name:</span>
+            <b id="sumName" style="color:var(--text);font-size:13px;">Dr. Priya Nair</b>
+          </div>
+          <div class="flex justify-between items-center mb-8">
+            <span class="text-xs text-soft">Council Reg ID:</span>
+            <b id="sumRegId" style="color:var(--primary);font-size:13px;letter-spacing:0.02em;">MMC-2022-88124</b>
+          </div>
+          <div class="flex justify-between items-center mb-8">
+            <span class="text-xs text-soft">Specialization:</span>
+            <span id="sumSpec" class="text-sm">Cardiologist</span>
+          </div>
+          <div class="flex justify-between items-center mb-8">
+            <span class="text-xs text-soft">Status:</span>
+            <span class="badge badge-pending">Verification Pending Review</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-xs text-soft">Login Email:</span>
+            <span id="sumEmail" class="text-sm">dr.priya@clinic.org</span>
+          </div>
+        </div>
+
+        <a href="login-doctor.html" class="btn btn-secondary btn-block" style="margin-bottom:12px;">Back to Clinician Portal</a>
+        <a href="admin/verify.html" class="btn btn-primary btn-block" style="font-size:13px;background:rgba(22,119,255,0.1);color:var(--primary);border:1px solid var(--primary-subtle);">Demo: Review &amp; Approve in Admin Portal &rarr;</a>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div id="toast-stack"></div>
+<script src="assets/js/app.js"></script>
+<script>
+  // Certificate upload simulate
+  const certDropzone = document.getElementById('certDropzone');
+  const certFile = document.getElementById('certFile');
+  const certFileName = document.getElementById('certFileName');
+
+  certDropzone.addEventListener('click', () => certFile.click());
+  certFile.addEventListener('change', () => {
+    if(certFile.files && certFile.files[0]){
+      certFileName.textContent = '✓ ' + certFile.files[0].name;
+      certFileName.style.color = 'var(--success)';
+      certDropzone.style.borderColor = 'var(--success)';
+      HDIMS.toast('Certificate attached: ' + certFile.files[0].name, 'success');
+    }
+  });
+
+  document.getElementById('docRegForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const pw = document.getElementById('docPassword').value;
+    const confirmPw = document.getElementById('docConfirmPw').value;
+
+    if(pw !== confirmPw){
+      HDIMS.toast('Passwords do not match. Please verify.', 'danger');
+      return;
+    }
+
+    const btn = document.getElementById('docSubmitBtn');
+    btn.classList.add('loading');
+    btn.disabled = true;
+
+    const docData = {
+      name: document.getElementById('docName').value.trim(),
+      email: document.getElementById('docEmail').value.trim(),
+      phone: document.getElementById('docPhone').value.trim(),
+      degree: document.getElementById('docDegree').value,
+      council: document.getElementById('docCouncil').value,
+      regId: document.getElementById('docRegId').value.trim().toUpperCase(),
+      spec: document.getElementById('docSpec').value,
+      fee: document.getElementById('docFee').value.trim(),
+      hospital: document.getElementById('docHospital').value.trim(),
+      city: document.getElementById('docCity').value.trim(),
+      password: pw
+    };
+
+    setTimeout(() => {
+      const savedDoc = HDIMS.auth.registerDoctor(docData);
+      
+      document.getElementById('stepForm').style.display = 'none';
+      const stepDone = document.getElementById('stepDone');
+      stepDone.style.display = 'block';
+      stepDone.classList.add('fade-in');
+
+      document.getElementById('doneDocName').textContent = 'Application Queued for Verification';
+      document.getElementById('sumName').textContent = savedDoc.name;
+      document.getElementById('sumRegId').textContent = savedDoc.regId;
+      document.getElementById('sumSpec').textContent = savedDoc.spec + ' (' + savedDoc.degree + ')';
+      document.getElementById('sumEmail').textContent = savedDoc.email;
+
+      HDIMS.toast('Doctor registration queued for Admin verification!', 'info');
+    }, 700);
+  });
+</script>
+</body>
+</html>

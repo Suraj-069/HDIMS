@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medical Records — HDIMS</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="../index.html" class="brand" style="text-decoration:none;">
+      <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="10" fill="url(#g1)"/><path d="M17 8v18M8 17h18" stroke="white" stroke-width="2.6" stroke-linecap="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#0B1220"/><stop offset="1" stop-color="#1677FF"/></linearGradient></defs></svg>
+      <div class="brand-text"><b>HDIMS</b><span>Health Data Mgmt.</span></div>
+    </a>
+    <nav class="nav-group">
+      <a class="nav-item" href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Dashboard</span></a>
+      <a class="nav-item" href="family.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="8" r="2.4"/><path d="M2 21v-1a6 6 0 0112 0v1"/><path d="M14.5 21v-1a4.5 4.5 0 016 0"/></svg><span>My Family</span></a>
+      <a class="nav-item active" href="records.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg><span>Medical Records</span></a>
+      <a class="nav-item" href="doctors.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span>Doctors</span></a>
+      <a class="nav-item" href="appointments.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg><span>Appointments</span></a>
+      <a class="nav-item" href="access.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><span>Shared Access</span></a>
+      <a class="nav-item" href="prescriptions.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 5H8z"/><path d="M8 8v9a3 3 0 003 3h2a3 3 0 003-3V8"/><path d="M9 14h6"/></svg><span>Prescriptions</span></a>
+      <a class="nav-item" href="ai-health.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.2L20 9l-5.6 1.8L12 16l-2.4-5.2L4 9l5.6-1.8z"/><path d="M19 15l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9z"/></svg><span>AI Health</span></a>
+      <a class="nav-item" href="notifications.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg><span>Notifications</span></a>
+      <a class="nav-item" href="settings.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg><span>Settings</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="nav-item" href="settings.html" style="padding:10px 12px;background:rgba(255,255,255,0.04);border-radius:12px;margin-bottom:8px;">
+        <span class="avatar" style="width:34px;height:34px;font-size:12px;border-radius:10px;background:var(--primary);color:#fff;">AS</span>
+        <span style="display:flex;flex-direction:column;line-height:1.25;">
+          <span style="color:#fff;font-size:13.5px;font-weight:600;">Amit Sharma</span>
+          <span style="font-size:11px;color:#94A3B8;">Patient · PAT-2026-000123</span>
+        </span>
+      </a>
+      <a class="nav-item" href="../login-patient.html" style="color:#ef4444;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><span>Sign Out</span></a>
+    </div>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="flex items-center gap-12">
+        <button class="hamburger" data-sidebar-toggle>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div>
+          <h2 style="margin:0;font-size:1.25rem;">Medical Records Vault</h2>
+          <p class="text-soft text-sm mb-0" style="margin-top:2px;">Centralized, searchable, encrypted health repository</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-12">
+        <select class="lang-select" data-lang-select>
+          <option value="en">EN</option><option value="hi">हिं</option><option value="mr">मरा</option>
+        </select>
+        <button class="toggle-pill" data-theme-toggle>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <span class="t-label">Light</span>
+        </button>
+        <a href="notifications.html" class="btn btn-ghost btn-sm" style="position:relative;width:38px;height:38px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:10px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="content fade-in-page">
+      
+      <div class="section-head" style="margin-bottom:24px;">
+        <div>
+          <h1 style="font-size:1.85rem;letter-spacing:-0.03em;margin:0 0 4px;">Medical Records</h1>
+          <p style="margin:0;color:var(--text-soft);font-size:14px;">Every diagnostic report, digital prescription and clinical scan — securely encrypted and available anywhere.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openUploadModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Upload Medical Report
+        </button>
+      </div>
+
+      <!-- Quick Category Filter Pills -->
+      <div class="flex gap-8 mb-16" style="flex-wrap:wrap;">
+        <button class="btn btn-sm btn-primary filter-pill active" onclick="filterCategory('all', this)">All Documents (14)</button>
+        <button class="btn btn-sm btn-ghost filter-pill" onclick="filterCategory('report', this)">Lab &amp; Pathology (6)</button>
+        <button class="btn btn-sm btn-ghost filter-pill" onclick="filterCategory('rx', this)">Prescriptions (4)</button>
+        <button class="btn btn-sm btn-ghost filter-pill" onclick="filterCategory('scan', this)">Scans &amp; Imaging (3)</button>
+        <button class="btn btn-sm btn-ghost filter-pill" onclick="filterCategory('discharge', this)">Discharge Notes (1)</button>
+      </div>
+
+      <!-- Search & Filters Toolbar -->
+      <div class="card" style="padding:16px 20px;margin-bottom:20px;">
+        <div class="flex gap-12" style="flex-wrap:wrap;align-items:center;">
+          <div style="position:relative;flex:1;min-width:240px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--text-muted);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input class="input" id="recordSearchInput" style="padding-left:36px;" placeholder="Search records by name, test or condition..." oninput="handleSearch()">
+          </div>
+          <select class="input" id="familyFilter" style="max-width:200px;" onchange="handleSearch()">
+            <option value="">All Family Members</option>
+            <option value="Self">Amit Sharma (Self)</option>
+            <option value="Mother">Sunita Sharma (Mother)</option>
+            <option value="Father">Rajesh Sharma (Father)</option>
+            <option value="Child">Aarav Sharma (Son)</option>
+          </select>
+          <select class="input" id="dateFilter" style="max-width:170px;" onchange="handleSearch()">
+            <option value="">All Dates</option>
+            <option value="30">Last 30 Days</option>
+            <option value="90">Last 3 Months</option>
+            <option value="365">This Year (2026)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Desktop Modern Table View -->
+      <div class="card table-wrap" style="padding:0;overflow-x:auto;margin-bottom:28px;">
+        <table class="table records-table" id="recordsTable">
+          <thead>
+            <tr>
+              <th style="min-width:240px;">Document</th>
+              <th style="min-width:130px;">Patient</th>
+              <th style="min-width:120px;">Date</th>
+              <th style="min-width:180px;">Health Condition / Doctor</th>
+              <th style="min-width:180px;">Clinical Notes</th>
+              <th style="min-width:100px;text-align:right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="recordsTbody">
+            <tr data-cat="report" data-patient="Self" data-name="blood test complete cbc">
+              <td>
+                <div class="doc-item">
+                  <div class="doc-badge pdf">PDF</div>
+                  <div class="doc-meta">
+                    <div class="doc-name">Complete Blood Count (CBC).pdf</div>
+                    <div class="doc-sub">Diagnostic Lab Report · 1.4 MB · Apollo Diagnostics</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge badge-primary" style="font-size:11px;">Amit Sharma (Self)</span></td>
+              <td class="text-sm">25 Sep 2026</td>
+              <td>
+                <div class="text-sm font-semibold">Routine Annual Checkup</div>
+                <div class="text-soft text-xs">Dr. Rahul Sharma</div>
+              </td>
+              <td class="text-soft text-sm">Hemoglobin: 14.2 g/dL · Fasting glucose within normal limit</td>
+              <td style="text-align:right;">
+                <div class="flex gap-6 justify-end">
+                  <button class="btn btn-ghost btn-sm" title="View Document" onclick="previewDoc('Complete Blood Count (CBC).pdf', 'PDF', '25 Sep 2026', 'Hemoglobin 14.2 g/dL, RBC 4.8 million/mcL, Platelets 240,000/mcL. Overall normal values.')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  </button>
+                  <button class="btn btn-ghost btn-sm" title="Download" onclick="downloadDoc('Complete Blood Count (CBC).pdf')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  </button>
+                  <button class="btn btn-ghost btn-sm" title="Delete" style="color:var(--danger);" onclick="deleteDoc(this, 'Complete Blood Count (CBC).pdf')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <tr data-cat="scan" data-patient="Self" data-name="chest x-ray pa view radiography">
+              <td>
+                <div class="doc-item">
+                  <div class="doc-badge img">IMG</div>
+                  <div class="doc-meta">
+                    <div class="doc-name">Chest X-Ray (PA View).jpg</div>
+                    <div class="doc-sub">High Resolution Radiograph · 4.8 MB · Apollo Imaging</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge badge-primary" style="font-size:11px;">Amit Sharma (Self)</span></td>
+              <td class="text-sm">18 Sep 2026</td>
+              <td>
+                <div class="text-sm font-semibold">Seasonal Cough &amp; Fever</div>
+                <div class="text-soft text-xs">Dr. A. Verma</div>
+              </td>
+              <td class="text-soft text-sm">Clear lung fields. No pleural effusion or cardiomegaly.</td>
+              <td style="text-align:right;">
+                <div class="flex gap-6 justify-end">
+                  <button class="btn btn-ghost btn-sm" title="View Document" onclick="previewDoc('Chest X-Ray (PA View).jpg', 'Image', '18 Sep 2026', 'Normal cardiac silhouette and clear pulmonary parenchyma.')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  </button>
+                  <button class="btn btn-ghost btn-sm" title="Download" onclick="downloadDoc('Chest X-Ray (PA View).jpg')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  </button>
+                  <button class="btn btn-ghost btn-sm" title="Delete" style="color:var(--danger);" onclick="deleteDoc(this, 'Chest X-Ray (PA View).jpg')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <tr data-cat="rx" data-patient="Mother" data-name="cardiology prescription dr rahul sharma">
+              <td>
+                <div class="doc-item">
+                  <div class="doc-badge rx">RX</div>
+                  <div class="doc-meta">
+                    <div class="doc-name">Cardiology Prescription - Dr. Rahul.pdf</div>
+                    <div class="doc-sub">Digital Rx · 850 KB · 3 Active Medications</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge badge-neutral" style="font-size:11px;">Sunita Sharma (Mother)</span></td>
+              <td class="text-sm">22 Sep 2026</td>
+              <td>
+                <div class="text-sm font-semibold">Hypertension Management</div>
+                <div class="text-soft text-xs">Dr. Rahul Sharma</div>
+              </td>
+              <td class="text-soft text-sm">Telmisartan 40mg (OD), Amlodipine 5mg (OD) with breakfast</td>
+              <td style="text-align:right;">
+                <div class="flex gap-6 justify-end">
+                  <button class="btn btn-ghost btn-sm" title="View Document" onclick="previewDoc('Cardiology Prescription - Dr. Rahul.pdf', 'Prescription', '22 Sep 2026', 'Medications: Telmisartan 40mg once daily, Amlodipine 5mg once daily.')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  </button>
+                  <button class="btn btn-ghost btn-sm" title="Download" onclick="downloadDoc('Cardiology Prescription - Dr. Rahul.pdf')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  </button>
+                  <button class="btn btn-ghost btn-sm" title="Delete" style="color:var(--danger);" onclick="deleteDoc(this, 'Cardiology Prescription - Dr. Rahul.pdf')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <tr data-cat="scan" data-patient="Mother" data-name="mri knee joint musculoskeletal report">
+              <td>
+                <div class="doc-item">
+                  <div class="doc-badge pdf">PDF</div>
+                  <div class="doc-meta">
+                    <div class="doc-name">MRI Right Knee Joint Report.pdf</div>
+                    <div class="doc-sub">Diagnostic Scan · 6.2 MB · Fortis Hospital</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge badge-neutral" style="font-size:11px;">Sunita Sharma (Mother)</span></td>
+              <td class="text-sm">19 Jun 2026</td>
+              <td>
+                <div class="text-sm font-semibold">Chronic Knee Osteoarthritis</div>
+                <div class="text-soft text-xs">Dr. Arvind Menon</div>
+              </td>
+              <td class="text-soft text-sm">Grade 2 medial meniscus degeneration; physical therapy advised</td>
+              <td style="text-align:right;">
+                <div class="flex gap-6 justify-end">
+                  <button class="btn btn-ghost btn-sm" title="View Document" onclick="previewDoc('MRI Right Knee Joint Report.pdf', 'PDF', '19 Jun 2026', 'Impression: Grade 2 medial meniscal tear with mild effusion.')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  </button>
+                  <button class="btn btn-ghost btn-sm" title="Download" onclick="downloadDoc('MRI Right Knee Joint Report.pdf')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  </button>
+                  <button class="btn btn-ghost btn-sm" title="Delete" style="color:var(--danger);" onclick="deleteDoc(this, 'MRI Right Knee Joint Report.pdf')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <tr data-cat="discharge" data-patient="Father" data-name="day care cataract surgery discharge summary">
+              <td>
+                <div class="doc-item">
+                  <div class="doc-badge pdf">PDF</div>
+                  <div class="doc-meta">
+                    <div class="doc-name">Cataract Surgery Discharge Summary.pdf</div>
+                    <div class="doc-sub">Hospital Clinical Summary · 2.1 MB · Eye7 Hospital</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="badge badge-neutral" style="font-size:11px;">Rajesh Sharma (Father)</span></td>
+              <td class="text-sm">11 May 2026</td>
+              <td>
+                <div class="text-sm font-semibold">Phacoemulsification with IOL</div>
+                <div class="text-soft text-xs">Dr. S. Kapoor</div>
+              </td>
+              <td class="text-soft text-sm">Uneventful left eye surgery. Post-op drops prescribed for 4 weeks.</td>
+              <td style="text-align:right;">
+                <div class="flex gap-6 justify-end">
+                  <button class="btn btn-ghost btn-sm" title="View Document" onclick="previewDoc('Cataract Surgery Discharge Summary.pdf', 'Discharge Note', '11 May 2026', 'Left eye cataract surgery with foldable hydrophobic acrylic IOL implantation.')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  </button>
+                  <button class="btn btn-ghost btn-sm" title="Download" onclick="downloadDoc('Cataract Surgery Discharge Summary.pdf')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  </button>
+                  <button class="btn btn-ghost btn-sm" title="Delete" style="color:var(--danger);" onclick="deleteDoc(this, 'Cataract Surgery Discharge Summary.pdf')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mobile Clean Cards View (<640px) -->
+      <div class="record-cards" style="margin-bottom:28px;">
+        <div class="card" style="padding:16px;">
+          <div class="flex justify-between items-start mb-10">
+            <div class="doc-item">
+              <div class="doc-badge pdf">PDF</div>
+              <div class="doc-meta">
+                <div class="doc-name">Complete Blood Count (CBC)</div>
+                <div class="doc-sub">Diagnostic Lab Report · 1.4 MB</div>
+              </div>
+            </div>
+            <span class="badge badge-primary" style="font-size:10.5px;">Self</span>
+          </div>
+          <div class="text-xs text-soft mb-8">25 Sep 2026 · Dr. Rahul Sharma · Apollo Diagnostics</div>
+          <div class="flex justify-between items-center pt-10" style="border-top:1px solid var(--border);">
+            <span class="text-xs text-soft">Hemoglobin: 14.2 g/dL · Fasting normal</span>
+            <button class="btn btn-ghost btn-sm" onclick="previewDoc('Complete Blood Count (CBC).pdf', 'PDF', '25 Sep 2026', 'Hemoglobin 14.2 g/dL, RBC 4.8 million/mcL, Platelets 240,000/mcL. Overall normal values.')" style="color:var(--primary);font-size:12px;padding:4px 8px;">View &rarr;</button>
+          </div>
+        </div>
+
+        <div class="card" style="padding:16px;">
+          <div class="flex justify-between items-start mb-10">
+            <div class="doc-item">
+              <div class="doc-badge img">IMG</div>
+              <div class="doc-meta">
+                <div class="doc-name">Chest X-Ray (PA View)</div>
+                <div class="doc-sub">High Resolution · 4.8 MB</div>
+              </div>
+            </div>
+            <span class="badge badge-primary" style="font-size:10.5px;">Self</span>
+          </div>
+          <div class="text-xs text-soft mb-8">18 Sep 2026 · Dr. A. Verma · Apollo Imaging</div>
+          <div class="flex justify-between items-center pt-10" style="border-top:1px solid var(--border);">
+            <span class="text-xs text-soft">Clear lung fields. No abnormality.</span>
+            <button class="btn btn-ghost btn-sm" onclick="previewDoc('Chest X-Ray (PA View).jpg', 'Image', '18 Sep 2026', 'Normal cardiac silhouette and clear pulmonary parenchyma.')" style="color:var(--primary);font-size:12px;padding:4px 8px;">View &rarr;</button>
+          </div>
+        </div>
+
+        <div class="card" style="padding:16px;">
+          <div class="flex justify-between items-start mb-10">
+            <div class="doc-item">
+              <div class="doc-badge rx">RX</div>
+              <div class="doc-meta">
+                <div class="doc-name">Cardiology Prescription</div>
+                <div class="doc-sub">Digital Rx · 850 KB · 3 Meds</div>
+              </div>
+            </div>
+            <span class="badge badge-neutral" style="font-size:10.5px;">Mother</span>
+          </div>
+          <div class="text-xs text-soft mb-8">22 Sep 2026 · Dr. Rahul Sharma</div>
+          <div class="flex justify-between items-center pt-10" style="border-top:1px solid var(--border);">
+            <span class="text-xs text-soft">Telmisartan 40mg, Amlodipine 5mg</span>
+            <button class="btn btn-ghost btn-sm" onclick="previewDoc('Cardiology Prescription - Dr. Rahul.pdf', 'Prescription', '22 Sep 2026', 'Medications: Telmisartan 40mg once daily, Amlodipine 5mg once daily.')" style="color:var(--primary);font-size:12px;padding:4px 8px;">View &rarr;</button>
+          </div>
+        </div>
+
+        <div class="card" style="padding:16px;">
+          <div class="flex justify-between items-start mb-10">
+            <div class="doc-item">
+              <div class="doc-badge pdf">PDF</div>
+              <div class="doc-meta">
+                <div class="doc-name">MRI Right Knee Joint</div>
+                <div class="doc-sub">Diagnostic Scan · 6.2 MB</div>
+              </div>
+            </div>
+            <span class="badge badge-neutral" style="font-size:10.5px;">Mother</span>
+          </div>
+          <div class="text-xs text-soft mb-8">19 Jun 2026 · Dr. Arvind Menon · Fortis Hospital</div>
+          <div class="flex justify-between items-center pt-10" style="border-top:1px solid var(--border);">
+            <span class="text-xs text-soft">Grade 2 medial meniscus degeneration</span>
+            <button class="btn btn-ghost btn-sm" onclick="previewDoc('MRI Right Knee Joint Report.pdf', 'PDF', '19 Jun 2026', 'Impression: Grade 2 medial meniscal tear with mild effusion.')" style="color:var(--primary);font-size:12px;padding:4px 8px;">View &rarr;</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!-- Upload Medical Report Modal with Drag & Drop, Live Progress, Preview -->
+<div class="modal-overlay" id="uploadModal">
+  <div class="modal" style="max-width:540px;padding:26px;">
+    <div class="flex justify-between items-center mb-14">
+      <h3 style="margin:0;font-size:1.3rem;">Upload Medical Report</h3>
+      <button class="btn btn-ghost btn-sm" onclick="closeUploadModal()" style="padding:4px;">✕</button>
+    </div>
+    
+    <div class="field" style="margin-bottom:12px;">
+      <label style="font-weight:600;margin-bottom:6px;display:block;">Select Patient / Family Member</label>
+      <select class="input" id="uploadFamilyMember">
+        <option selected>Amit Sharma (Self)</option>
+        <option>Sunita Sharma (Mother)</option>
+        <option>Rajesh Sharma (Father)</option>
+        <option>Aarav Sharma (Son)</option>
+      </select>
+    </div>
+
+    <div class="grid-2" style="gap:12px;margin-bottom:14px;">
+      <div class="field">
+        <label style="font-weight:600;margin-bottom:6px;display:block;">Health Issue / Condition</label>
+        <input class="input" id="uploadCondition" placeholder="e.g. Annual Blood Checkup">
+      </div>
+      <div class="field">
+        <label style="font-weight:600;margin-bottom:6px;display:block;">Document Category</label>
+        <select class="input" id="uploadCategory">
+          <option value="report">Lab / Blood Report</option>
+          <option value="rx">Prescription</option>
+          <option value="scan">Scan / Imaging (X-Ray, MRI)</option>
+          <option value="discharge">Discharge Summary</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Drag & Drop Zone -->
+    <div class="dropzone" id="recordsDropzone" onclick="document.getElementById('hiddenFileInput').click()" style="border:2px dashed var(--border);border-radius:14px;padding:32px 20px;text-align:center;background:var(--bg-subtle);cursor:pointer;transition:all .2s ease;">
+      <input type="file" id="hiddenFileInput" style="display:none;" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileSelected(event)">
+      <div style="width:48px;height:48px;border-radius:12px;background:var(--primary-subtle);color:var(--primary);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      </div>
+      <p style="margin:0 0 4px;font-weight:600;color:var(--text);font-size:15px;">Drag &amp; Drop your medical file here</p>
+      <p class="text-sm text-soft" style="margin:0;">or <span style="color:var(--primary);font-weight:600;">Browse Files</span> from your device</p>
+      <div style="font-size:11.5px;color:var(--text-muted);margin-top:8px;">Supported formats: PDF, JPG, PNG (Max 25 MB)</div>
+    </div>
+
+    <!-- Selected File Preview & Progress Box -->
+    <div id="filePreviewBox" style="display:none;margin-top:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;">
+      <div class="flex justify-between items-center mb-8">
+        <div class="flex items-center gap-16">
+          <div id="previewIcon" style="width:36px;height:36px;border-radius:10px;background:#fee2e2;color:#dc2626;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11.5px;margin-right:4px;flex-shrink:0;">PDF</div>
+          <div>
+            <div id="previewFileName" style="font-weight:600;font-size:13.5px;color:var(--text);">Report.pdf</div>
+            <div id="previewFileSize" class="text-soft text-xs">1.8 MB</div>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="clearSelectedFile()" style="padding:4px;color:var(--danger);" title="Remove">✕</button>
+      </div>
+      <div id="uploadProgressContainer">
+        <div class="flex justify-between text-xs text-soft mb-4">
+          <span id="progressStatusText">Uploading &amp; Encrypting...</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div style="width:100%;height:6px;background:var(--border);border-radius:3px;overflow:hidden;">
+          <div id="uploadProgressBar" style="width:0%;height:100%;background:var(--primary);transition:width 0.2s ease;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-12" style="margin-top:22px;">
+      <button class="btn btn-secondary btn-block" onclick="closeUploadModal()">Cancel</button>
+      <button class="btn btn-primary btn-block" id="saveRecordBtn" onclick="saveUploadedRecord()">
+        Save &amp; Encrypt Record
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Interactive Diagnostic Report & Clinical Viewer Modal -->
+<div class="modal-overlay" id="docPreviewModal">
+  <div class="modal" id="docPrintContainer" style="max-width:760px;padding:26px;max-height:92vh;display:flex;flex-direction:column;">
+    <div class="flex justify-between items-center mb-12 pb-12 border-b" style="flex-shrink:0;">
+      <div class="flex items-center gap-16">
+        <div id="docViewerBadgeIcon" style="width:40px;height:40px;border-radius:10px;background:var(--primary-subtle);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12.5px;margin-right:4px;flex-shrink:0;">PDF</div>
+        <div>
+          <h3 style="margin:0;font-size:1.15rem;" id="docModalFilename">Document Preview</h3>
+          <div class="text-soft text-xs" style="margin-top:2px;">
+            <span class="badge badge-active" style="padding:2px 8px;font-size:10px;">SHA-256 Encrypted</span>
+            <span style="margin-left:6px;" id="docModalMeta">25 Sep 2026 · Diagnostic Lab</span>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-sm no-print" onclick="document.getElementById('docPreviewModal').classList.remove('open')">✕</button>
+    </div>
+
+    <!-- Dynamic Document Body Container -->
+    <div id="docPreviewDynamicBody" style="overflow-y:auto;padding-right:4px;flex:1;">
+      <!-- Populated dynamically by previewDoc() -->
+    </div>
+
+    <!-- Modal Footer Actions -->
+    <div class="flex gap-12 mt-16 pt-12 border-t no-print" style="flex-shrink:0;">
+      <button class="btn btn-secondary btn-block" onclick="document.getElementById('docPreviewModal').classList.remove('open')">Close</button>
+      <button class="btn btn-ghost btn-block" onclick="printDocReport()" style="display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--border);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print Report
+      </button>
+      <button class="btn btn-primary btn-block" onclick="downloadCurrentDoc()" style="display:flex;align-items:center;justify-content:center;gap:6px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-stack"></div>
+<script src="../assets/js/app.js"></script>
+
+<script>
+let selectedFile = null;
+
+function openUploadModal() {
+  document.getElementById('uploadModal').classList.add('open');
+}
+
+function closeUploadModal() {
+  document.getElementById('uploadModal').classList.remove('open');
+  clearSelectedFile();
+}
+
+function handleFileSelected(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  selectedFile = file;
+
+  const previewBox = document.getElementById('filePreviewBox');
+  const previewName = document.getElementById('previewFileName');
+  const previewSize = document.getElementById('previewFileSize');
+  const previewIcon = document.getElementById('previewIcon');
+  const bar = document.getElementById('uploadProgressBar');
+  const pct = document.getElementById('progressPercent');
+  const status = document.getElementById('progressStatusText');
+
+  previewBox.style.display = 'block';
+  previewName.textContent = file.name;
+  previewSize.textContent = (file.size / (1024 * 1024)).toFixed(2) + ' MB';
+
+  const ext = file.name.split('.').pop().toUpperCase();
+  previewIcon.textContent = ext.slice(0, 3);
+  if (['JPG', 'JPEG', 'PNG'].includes(ext)) {
+    previewIcon.style.background = '#fef3c7';
+    previewIcon.style.color = '#b45309';
+  } else {
+    previewIcon.style.background = '#fee2e2';
+    previewIcon.style.color = '#dc2626';
+  }
+
+  // Simulate smooth upload progress
+  bar.style.width = '0%';
+  pct.textContent = '0%';
+  status.textContent = 'Uploading & Encrypting...';
+  
+  let currentPct = 0;
+  const interval = setInterval(() => {
+    currentPct += 25;
+    if (currentPct >= 100) {
+      currentPct = 100;
+      clearInterval(interval);
+      status.textContent = '✓ Ready to save';
+    }
+    bar.style.width = currentPct + '%';
+    pct.textContent = currentPct + '%';
+  }, 100);
+}
+
+function clearSelectedFile() {
+  selectedFile = null;
+  document.getElementById('hiddenFileInput').value = '';
+  document.getElementById('filePreviewBox').style.display = 'none';
+}
+
+async function saveUploadedRecord() {
+  const saveBtn = document.getElementById('saveRecordBtn');
+  const member = document.getElementById('uploadFamilyMember').value;
+  const condition = document.getElementById('uploadCondition').value.trim() || 'Diagnostic Checkup';
+  const category = document.getElementById('uploadCategory').value;
+  const fileToSave = selectedFile;
+  const filename = fileToSave ? fileToSave.name : ('Medical_Report_' + Date.now() + '.pdf');
+  const ext = filename.split('.').pop().toUpperCase();
+  const fileSize = fileToSave ? (fileToSave.size / (1024 * 1024)).toFixed(2) + ' MB' : '1.2 MB';
+
+  if (saveBtn) {
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Encrypting & Saving...';
+  }
+
+  // 1. Immediately cache in memory
+  if (fileToSave) {
+    window.userUploadedFiles = window.userUploadedFiles || {};
+    window.userUploadedFiles[filename] = fileToSave;
+  }
+
+  // 2. Read as dataURL if possible
+  let dataUrl = null;
+  if (fileToSave) {
+    try {
+      dataUrl = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (evt) => resolve(evt.target.result);
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(fileToSave);
+      });
+    } catch(e){}
+  }
+
+  // 3. Save to records and IndexedDB vault
+  if (window.HDIMS && HDIMS.records) {
+    await HDIMS.records.add({
+      name: filename,
+      category: category,
+      type: ext,
+      patient: member,
+      patientKey: member.includes('Self') ? 'Self' : member.includes('Mother') ? 'Mother' : member.includes('Father') ? 'Father' : 'Child',
+      condition: condition,
+      fileSize: fileSize,
+      doctor: 'Self Uploaded',
+      source: 'Patient Health Locker',
+      notes: 'Verified electronic document encrypted with AES-256.',
+      summary: `Patient uploaded ${condition} record securely archived.`
+    }, dataUrl, fileToSave);
+  }
+
+  if (saveBtn) {
+    saveBtn.disabled = false;
+    saveBtn.textContent = 'Save & Encrypt Record';
+  }
+
+  closeUploadModal();
+  renderRecords();
+  HDIMS.toast(`✓ Report "${filename}" encrypted & saved to vault`, 'success');
+}
+
+let currentDocFilename = 'Complete Blood Count (CBC).pdf';
+
+function printDocReport() {
+  window.print();
+}
+
+function downloadCurrentDoc() {
+  if (window.HDIMS && HDIMS.downloadDoc) {
+    HDIMS.downloadDoc(currentDocFilename);
+  } else if (window.downloadDoc) {
+    window.downloadDoc(currentDocFilename);
+  }
+}
+
+function downloadDoc(filename) {
+  if (window.HDIMS && HDIMS.downloadDoc) {
+    HDIMS.downloadDoc(filename);
+  } else if (window.downloadDoc) {
+    window.downloadDoc(filename);
+  }
+}
+
+function previewDoc(filename, type, date, summary) {
+  currentDocFilename = filename;
+  const modal = document.getElementById('docPreviewModal');
+  const filenameEl = document.getElementById('docModalFilename');
+  const metaEl = document.getElementById('docModalMeta');
+  const badgeIcon = document.getElementById('docViewerBadgeIcon');
+  const body = document.getElementById('docPreviewDynamicBody');
+
+  filenameEl.textContent = filename;
+  metaEl.textContent = `${type} · ${date}`;
+
+  const isCBC = filename.toLowerCase().includes('cbc') || filename.toLowerCase().includes('blood');
+  const isXRay = filename.toLowerCase().includes('x-ray') || filename.toLowerCase().includes('radiograph');
+  const isMRI = filename.toLowerCase().includes('mri') || filename.toLowerCase().includes('knee');
+  const isDischarge = filename.toLowerCase().includes('discharge') || filename.toLowerCase().includes('cataract') || filename.toLowerCase().includes('surgery');
+  const isRx = filename.toLowerCase().includes('prescription') || filename.toLowerCase().includes('rx');
+
+  if (isXRay) {
+    badgeIcon.textContent = 'IMG';
+    badgeIcon.style.background = '#fef3c7';
+    badgeIcon.style.color = '#b45309';
+  } else if (isRx) {
+    badgeIcon.textContent = 'RX';
+    badgeIcon.style.background = '#e0f2fe';
+    badgeIcon.style.color = '#0284c7';
+  } else {
+    badgeIcon.textContent = 'PDF';
+    badgeIcon.style.background = 'var(--primary-subtle)';
+    badgeIcon.style.color = 'var(--primary)';
+  }
+
+  // 1. Diagnostic Lab Pathology View (CBC / Blood Test)
+  if (isCBC) {
+    body.innerHTML = `
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:12px;">
+        <!-- Lab Header -->
+        <div class="flex justify-between items-start pb-14 border-b mb-14">
+          <div>
+            <div style="font-size:16px;font-weight:800;color:var(--primary);letter-spacing:-0.02em;">APOLLO DIAGNOSTICS &amp; PATHLABS</div>
+            <div class="text-xs text-soft">National Accreditation Board for Testing and Calibration Laboratories (NABL Reg: MC-2490)</div>
+            <div class="text-xs text-soft">CAP Accredited Reference Laboratory · ISO 15189:2022 Certified</div>
+          </div>
+          <div style="text-align:right;">
+            <span class="badge badge-success" style="font-size:11px;padding:3px 8px;">VERIFIED REPORT</span>
+            <div class="text-xs text-soft" style="margin-top:4px;">Sample ID: <b>APL-2026-98214</b></div>
+          </div>
+        </div>
+
+        <!-- Patient Demographics Strip -->
+        <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:10px;background:var(--bg-subtle);padding:10px 14px;border-radius:8px;font-size:12px;margin-bottom:18px;">
+          <div><span class="text-soft">Patient:</span> <b style="display:block;color:var(--text);">Amit Sharma</b></div>
+          <div><span class="text-soft">Age / Gender:</span> <b style="display:block;color:var(--text);">32 Yrs / Male</b></div>
+          <div><span class="text-soft">Ref. Physician:</span> <b style="display:block;color:var(--text);">Dr. Rahul Sharma</b></div>
+          <div><span class="text-soft">Reported:</span> <b style="display:block;color:var(--text);">${date} 11:30 AM</b></div>
+        </div>
+
+        <!-- Pathology Parameters Table -->
+        <table class="table" style="font-size:13px;margin-bottom:16px;">
+          <thead>
+            <tr style="background:var(--bg-subtle);">
+              <th>Investigation Parameter</th>
+              <th>Observed Value</th>
+              <th>Reference Interval</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Hemoglobin (Hb)</b></td>
+              <td style="font-weight:700;color:var(--text);">14.2 g/dL</td>
+              <td class="text-soft">13.0 – 17.0 g/dL</td>
+              <td><span class="badge badge-success" style="font-size:11px;padding:2px 8px;">Normal</span></td>
+            </tr>
+            <tr>
+              <td><b>Total Leucocyte Count (WBC)</b></td>
+              <td style="font-weight:700;color:var(--text);">7,400 /cu.mm</td>
+              <td class="text-soft">4,000 – 11,000 /cu.mm</td>
+              <td><span class="badge badge-success" style="font-size:11px;padding:2px 8px;">Normal</span></td>
+            </tr>
+            <tr>
+              <td><b>Red Blood Cells (RBC)</b></td>
+              <td style="font-weight:700;color:var(--text);">4.85 mil/cu.mm</td>
+              <td class="text-soft">4.50 – 5.50 mil/cu.mm</td>
+              <td><span class="badge badge-success" style="font-size:11px;padding:2px 8px;">Normal</span></td>
+            </tr>
+            <tr>
+              <td><b>Packed Cell Volume (PCV)</b></td>
+              <td style="font-weight:700;color:var(--text);">42.5 %</td>
+              <td class="text-soft">40.0 – 50.0 %</td>
+              <td><span class="badge badge-success" style="font-size:11px;padding:2px 8px;">Normal</span></td>
+            </tr>
+            <tr>
+              <td><b>Platelet Count</b></td>
+              <td style="font-weight:700;color:var(--text);">240,000 /cu.mm</td>
+              <td class="text-soft">150,000 – 450,000 /cu.mm</td>
+              <td><span class="badge badge-success" style="font-size:11px;padding:2px 8px;">Normal</span></td>
+            </tr>
+            <tr>
+              <td><b>Fasting Blood Glucose</b></td>
+              <td style="font-weight:700;color:var(--text);">94 mg/dL</td>
+              <td class="text-soft">70 – 99 mg/dL</td>
+              <td><span class="badge badge-success" style="font-size:11px;padding:2px 8px;">Optimal</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Interpretation & Pathologist Signoff -->
+        <div style="background:var(--bg-subtle);border-left:3px solid var(--primary);padding:10px 14px;border-radius:6px;font-size:12.5px;margin-bottom:16px;">
+          <b>Pathologist Remark:</b> Peripheral blood smear examination shows normocytic normochromic red cells with adequate platelets. No immature or atypical leucocytes noted.
+        </div>
+
+        <div class="flex justify-between items-center pt-10 border-t" style="font-size:11.5px;color:var(--text-soft);">
+          <div>
+            <div><b>Dr. Sunita Deshmukh, MD (Pathology)</b></div>
+            <div>Consultant Pathologist · Reg No. MCI-2015-77821</div>
+          </div>
+          <div class="flex items-center gap-6">
+            <span class="badge badge-neutral" style="font-family:monospace;font-size:11px;">DIGITAL SHA256 VERIFIED</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  // 2. Radiology / X-Ray Medical Image View
+  else if (isXRay) {
+    body.innerHTML = `
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:12px;">
+        <div class="flex justify-between items-start pb-12 border-b mb-14">
+          <div>
+            <div style="font-size:16px;font-weight:800;color:var(--primary);">APOLLO ADVANCED IMAGING CENTRE</div>
+            <div class="text-xs text-soft">Digital Radiography (DR) Suite · High Resolution PA Chest View</div>
+          </div>
+          <span class="badge badge-confirmed" style="font-size:11px;">DICOM Level 3</span>
+        </div>
+
+        <!-- High-Contrast Medical Radiograph Viewport Simulation -->
+        <div id="radiographViewport" style="background:#070C16;border-radius:10px;padding:24px;text-align:center;margin-bottom:16px;position:relative;border:1px solid #1E2C44;">
+          <div style="position:absolute;top:10px;left:14px;font-family:monospace;font-size:11px;color:#94a3b8;text-align:left;">
+            <div>PAT: AMIT SHARMA (M/32)</div>
+            <div>VIEW: CHEST POSTEROANTERIOR</div>
+            <div>kVp: 115 · mAs: 3.2 · SID: 180cm</div>
+          </div>
+          <div style="position:absolute;top:10px;right:14px;font-family:monospace;font-size:14px;font-weight:700;color:#f59e0b;">
+            R
+          </div>
+
+          <!-- Realistic Medical Radiograph SVG Illustration -->
+          <svg width="240" height="200" viewBox="0 0 240 200" fill="none" style="margin:20px auto 10px;filter:drop-shadow(0 0 10px rgba(255,255,255,0.1));">
+            <!-- Spine Column -->
+            <rect x="116" y="20" width="8" height="150" rx="3" fill="#cbd5e1" opacity="0.35"/>
+            <!-- Rib Cages Right & Left -->
+            <path d="M120 40 Q70 50 55 90 Q75 95 120 70" stroke="#94a3b8" stroke-width="2.5" fill="none" opacity="0.4"/>
+            <path d="M120 40 Q170 50 185 90 Q165 95 120 70" stroke="#94a3b8" stroke-width="2.5" fill="none" opacity="0.4"/>
+            <path d="M120 65 Q60 80 48 120 Q70 125 120 95" stroke="#94a3b8" stroke-width="2.5" fill="none" opacity="0.4"/>
+            <path d="M120 65 Q180 80 192 120 Q170 125 120 95" stroke="#94a3b8" stroke-width="2.5" fill="none" opacity="0.4"/>
+            <path d="M120 90 Q50 110 45 150 Q70 155 120 120" stroke="#94a3b8" stroke-width="2.5" fill="none" opacity="0.4"/>
+            <path d="M120 90 Q190 110 195 150 Q170 155 120 120" stroke="#94a3b8" stroke-width="2.5" fill="none" opacity="0.4"/>
+            <!-- Lung Clear Fields -->
+            <ellipse cx="80" cy="100" rx="30" ry="45" fill="#030712" opacity="0.95"/>
+            <ellipse cx="160" cy="100" rx="30" ry="45" fill="#030712" opacity="0.95"/>
+            <!-- Cardiac Silhouette (Normal CTR) -->
+            <path d="M110 85 C100 110 105 140 135 140 C145 140 150 120 140 100 C130 85 120 85 110 85 Z" fill="#e2e8f0" opacity="0.45"/>
+            <!-- Diaphragm Domes -->
+            <path d="M40 160 Q85 140 120 160" stroke="#cbd5e1" stroke-width="3" fill="none" opacity="0.5"/>
+            <path d="M120 160 Q155 145 200 160" stroke="#cbd5e1" stroke-width="3" fill="none" opacity="0.5"/>
+          </svg>
+          <div style="font-size:11px;color:#94a3b8;">Clean Pulmonary Parenchyma · Bilateral Costophrenic Angles Clear</div>
+        </div>
+
+        <!-- Radiologist Diagnostic Impression -->
+        <div style="font-size:13px;line-height:1.55;color:var(--text);">
+          <b style="color:var(--primary);display:block;margin-bottom:4px;">Radiological Findings:</b>
+          <ul style="margin:0 0 12px 18px;color:var(--text-soft);font-size:12.5px;">
+            <li>Trachea is centrally located. Bony thorax and soft tissues are unremarkable.</li>
+            <li>Both lung fields are clear. No evidence of consolidation, cavitation, or pleural effusion.</li>
+            <li>The cardiac silhouette is within normal size limits (Cardio-Thoracic Ratio &lt; 50%).</li>
+            <li>Both diaphragmatic domes and costophrenic recesses are normal and sharp.</li>
+          </ul>
+          <div style="background:var(--bg-subtle);padding:10px 12px;border-radius:8px;font-size:12.5px;">
+            <b>IMPRESSION:</b> Normal Digital Radiograph of Chest (PA View). No active pleuropulmonary pathology.
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-12 border-t mt-14" style="font-size:11.5px;color:var(--text-soft);">
+          <div>
+            <b>Dr. A. Verma, DMRD, DNB (Radiodiagnosis)</b>
+            <div>Senior Consultant Radiologist</div>
+          </div>
+          <span class="badge badge-success" style="font-size:11px;">Signed &amp; Approved</span>
+        </div>
+      </div>
+    `;
+  }
+  // 3. Clinical Discharge Summary View
+  else if (isDischarge) {
+    body.innerHTML = `
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:12px;">
+        <div class="flex justify-between items-start pb-12 border-b mb-14">
+          <div>
+            <div style="font-size:16px;font-weight:800;color:var(--primary);">EYE7 SUPER SPECIALITY HOSPITAL</div>
+            <div class="text-xs text-soft">Department of Ophthalmic Microsurgery · Clinical Discharge Summary</div>
+          </div>
+          <span class="badge badge-completed" style="font-size:11px;">Discharged</span>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:12px;background:var(--bg-subtle);padding:10px 14px;border-radius:8px;margin-bottom:14px;">
+          <div><span class="text-soft">Patient:</span> <b>Rajesh Sharma (Father) · 68 Yrs / M</b></div>
+          <div><span class="text-soft">Admission / Discharge:</span> <b>11 May 2026 (Day Care)</b></div>
+          <div><span class="text-soft">Primary Diagnosis:</span> <b>Senile Immature Cataract (Left Eye)</b></div>
+          <div><span class="text-soft">Chief Surgeon:</span> <b>Dr. S. Kapoor, MS Ophthalmology</b></div>
+        </div>
+
+        <div style="font-size:13px;line-height:1.55;color:var(--text);margin-bottom:14px;">
+          <b>Operative Procedure:</b>
+          <p style="font-size:12.5px;color:var(--text-soft);margin:4px 0 10px;">
+            Phacoemulsification with Foldable Hydrophobic Acrylic Posterior Chamber Intraocular Lens (IOL) Implantation in Left Eye under Topical &amp; Intracameral Anesthesia.
+          </p>
+          <b>Post-Operative Instructions &amp; Medications:</b>
+          <ul style="font-size:12.5px;color:var(--text-soft);margin:4px 0 12px 18px;">
+            <li>Moxifloxacin Eye Drops 0.5% — 1 drop 4 times daily for 2 weeks.</li>
+            <li>Prednisolone Acetate Eye Drops 1% — 1 drop 4 times daily, tapering over 4 weeks.</li>
+            <li>Wear protective eye shield while sleeping. Avoid splashing tap water into the eye.</li>
+          </ul>
+          <div style="background:var(--bg-subtle);padding:8px 12px;border-radius:6px;font-size:12px;">
+            <b>Follow-up Schedule:</b> 18 May 2026 (Week 1 Review) at Room 202, Eye OPD.
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center pt-10 border-t" style="font-size:11.5px;color:var(--text-soft);">
+          <div><b>Dr. S. Kapoor</b> · Senior Ophthalmic Surgeon</div>
+          <span class="badge badge-neutral" style="font-size:11px;">Official Medical Record</span>
+        </div>
+      </div>
+    `;
+  }
+  // 4. Default / General Document View (Original Uploaded Files)
+  else {
+    const isImageFile = filename.match(/\.(png|jpg|jpeg|gif|webp)$/i);
+    const isPdfFile = filename.match(/\.pdf$/i);
+
+    body.innerHTML = `
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:12px;">
+        <div class="flex justify-between items-center pb-12 border-b mb-14">
+          <div style="font-size:15px;font-weight:700;color:var(--text);">${escapeHtml(filename)}</div>
+          <span class="badge badge-active" style="font-size:11px;">${type}</span>
+        </div>
+        <div id="userDocLiveViewer" style="min-height:140px;display:flex;align-items:center;justify-content:center;background:var(--bg-subtle);border-radius:10px;margin-bottom:14px;padding:12px;border:1px solid var(--border);">
+          <span class="text-soft text-sm">Loading document preview...</span>
+        </div>
+        <div style="background:var(--bg-subtle);padding:14px;border-radius:10px;margin-bottom:14px;">
+          <label style="font-weight:600;font-size:12px;color:var(--text-soft);text-transform:uppercase;display:block;margin-bottom:4px;">Document Summary</label>
+          <p style="margin:0;font-size:13.5px;color:var(--text);line-height:1.5;">${escapeHtml(summary || 'Patient health locker document verified & archived.')}</p>
+        </div>
+        <div style="font-size:12px;color:var(--text-soft);margin-bottom:14px;">
+          <div><b>Recorded Date:</b> ${date}</div>
+          <div style="margin-top:2px;"><b>Storage Security:</b> AES-256 GCM encrypted in patient private health vault.</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="downloadCurrentDoc()" style="display:flex;align-items:center;gap:6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Original Document
+        </button>
+      </div>
+    `;
+
+    const renderPreview = (blobOrUrl) => {
+      const container = document.getElementById('userDocLiveViewer');
+      if (!container) return;
+      if (blobOrUrl) {
+        if (isImageFile) {
+          container.innerHTML = `<img src="${blobOrUrl}" alt="${escapeHtml(filename)}" style="max-width:100%;max-height:450px;border-radius:6px;object-fit:contain;" />`;
+        } else if (isPdfFile) {
+          container.innerHTML = `<iframe src="${blobOrUrl}" style="width:100%;height:460px;border:none;border-radius:6px;background:#fff;" title="Document Preview"></iframe>`;
+        } else {
+          container.innerHTML = `<div style="text-align:center;padding:24px;"><div style="font-size:14px;font-weight:600;color:var(--text);">${escapeHtml(filename)}</div><div class="text-xs text-soft" style="margin-top:4px;">Document securely archived in vault. Click below to download.</div></div>`;
+        }
+      } else {
+        container.innerHTML = `<div style="text-align:center;padding:24px;"><div style="font-size:14px;font-weight:600;color:var(--text);">${escapeHtml(filename)}</div><div class="text-xs text-soft" style="margin-top:4px;">Document securely archived in vault. Click below to download.</div></div>`;
+      }
+    };
+
+    if (window.userUploadedFiles && window.userUploadedFiles[filename]) {
+      try {
+        const liveBlob = window.userUploadedFiles[filename];
+        const blobUrl = URL.createObjectURL(liveBlob);
+        renderPreview(blobUrl);
+      } catch(e) {
+        renderPreview(null);
+      }
+    } else if (window.HDIMS && HDIMS.records && HDIMS.records.getVaultItem) {
+      HDIMS.records.getVaultItem(filename).then(item => {
+        if (item) {
+          let b = item.blob;
+          if (!b && item.arrayBuffer) {
+            b = new Blob([item.arrayBuffer], { type: item.mimeType || 'application/pdf' });
+          }
+          if (!b && item.dataUrl && item.dataUrl.startsWith('data:')) {
+            b = (window.HDIMS && HDIMS.records && HDIMS.records.dataUrlToBlob) ? HDIMS.records.dataUrlToBlob(item.dataUrl) : null;
+          }
+          if (b) {
+            const url = URL.createObjectURL(b);
+            renderPreview(url);
+            return;
+          }
+        }
+        renderPreview(null);
+      }).catch(() => renderPreview(null));
+    } else {
+      renderPreview(null);
+    }
+  }
+
+  modal.classList.add('open');
+}
+
+function escapeHtml(str) {
+  return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function handleDownloadRecord(id) {
+  const records = (window.HDIMS && HDIMS.records) ? HDIMS.records.get() : [];
+  const rec = records.find(r => r.id === id);
+  if (rec && rec.name) {
+    downloadDoc(rec.name);
+  }
+}
+
+function handlePreviewRecord(id) {
+  const records = (window.HDIMS && HDIMS.records) ? HDIMS.records.get() : [];
+  const rec = records.find(r => r.id === id);
+  if (rec) {
+    const ext = (rec.name.split('.').pop() || 'PDF').toUpperCase();
+    const isImg = ['JPG', 'JPEG', 'PNG'].includes(ext) || rec.type === 'IMG';
+    const isRx = rec.category === 'rx' || rec.type === 'RX';
+    const badgeText = isImg ? 'IMG' : isRx ? 'RX' : 'PDF';
+    previewDoc(rec.name, badgeText, rec.date || 'Today', rec.summary || rec.notes || '');
+  }
+}
+
+function handleDeleteRecord(id) {
+  if (confirm('Are you sure you want to remove this record from your health vault?')) {
+    if (window.HDIMS && HDIMS.records) {
+      HDIMS.records.delete(id);
+    }
+    renderRecords();
+    HDIMS.toast('Record removed from health vault', 'error');
+  }
+}
+
+let activeFilterCategory = 'all';
+
+function deleteDoc(btn, idOrFilename) {
+  handleDeleteRecord(idOrFilename);
+}
+
+function filterCategory(cat, btn) {
+  activeFilterCategory = cat;
+  document.querySelectorAll('.filter-pill').forEach(b => {
+    b.className = 'btn btn-sm btn-ghost filter-pill';
+  });
+  if (btn) btn.className = 'btn btn-sm btn-primary filter-pill active';
+  applyFilters();
+}
+
+function handleSearch() {
+  applyFilters();
+}
+
+function applyFilters() {
+  const query = (document.getElementById('recordSearchInput').value || '').toLowerCase().trim();
+  const fam = document.getElementById('familyFilter').value;
+  const rows = document.querySelectorAll('#recordsTbody tr');
+
+  rows.forEach(r => {
+    const rCat = r.getAttribute('data-cat');
+    const rPatient = r.getAttribute('data-patient');
+    const rName = r.getAttribute('data-name') || '';
+
+    const catMatch = activeFilterCategory === 'all' || rCat === activeFilterCategory;
+    const famMatch = !fam || rPatient === fam;
+    const textMatch = !query || rName.includes(query) || r.textContent.toLowerCase().includes(query);
+
+    if (catMatch && famMatch && textMatch) {
+      r.style.display = '';
+    } else {
+      r.style.display = 'none';
+    }
+  });
+}
+
+function renderRecords() {
+  const records = (window.HDIMS && HDIMS.records) ? HDIMS.records.get() : [];
+  const tbody = document.getElementById('recordsTbody');
+  const cards = document.querySelector('.record-cards');
+
+  // Update Category Counts
+  const total = records.length;
+  const reports = records.filter(r => r.category === 'report').length;
+  const rxs = records.filter(r => r.category === 'rx').length;
+  const scans = records.filter(r => r.category === 'scan').length;
+  const discharges = records.filter(r => r.category === 'discharge').length;
+
+  const pills = document.querySelectorAll('.filter-pill');
+  if (pills[0]) pills[0].textContent = `All Documents (${total})`;
+  if (pills[1]) pills[1].textContent = `Lab & Pathology (${reports})`;
+  if (pills[2]) pills[2].textContent = `Prescriptions (${rxs})`;
+  if (pills[3]) pills[3].textContent = `Scans & Imaging (${scans})`;
+  if (pills[4]) pills[4].textContent = `Discharge Notes (${discharges})`;
+
+  if (!records || records.length === 0) {
+    if (tbody) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align:center;padding:36px;color:var(--text-soft);">
+            No medical records found in your vault. Click "Upload Medical Report" to add your first document.
+          </td>
+        </tr>
+      `;
+    }
+    return;
+  }
+
+  if (tbody) {
+    tbody.innerHTML = records.map(r => {
+      const ext = (r.name.split('.').pop() || 'PDF').toUpperCase();
+      const isImg = ['JPG', 'JPEG', 'PNG'].includes(ext) || r.type === 'IMG';
+      const isRx = r.category === 'rx' || r.type === 'RX';
+      const badgeClass = isImg ? 'img' : isRx ? 'rx' : 'pdf';
+      const badgeText = isImg ? 'IMG' : isRx ? 'RX' : 'PDF';
+      const patientKey = r.patientKey || (r.patient && r.patient.includes('Self') ? 'Self' : r.patient && r.patient.includes('Mother') ? 'Mother' : r.patient && r.patient.includes('Father') ? 'Father' : 'Child');
+      const badgeStyle = patientKey === 'Self' ? 'badge-primary' : 'badge-neutral';
+      const escapedName = escapeHtml(r.name);
+      const searchKey = escapeHtml((r.name + ' ' + (r.condition || '') + ' ' + (r.doctor || '')).toLowerCase());
+
+      return `
+        <tr data-id="${r.id}" data-cat="${r.category || 'report'}" data-patient="${patientKey}" data-name="${searchKey}">
+          <td>
+            <div class="doc-item">
+              <div class="doc-badge ${badgeClass}">${badgeText}</div>
+              <div class="doc-meta">
+                <div class="doc-name">${escapedName}</div>
+                <div class="doc-sub">${escapeHtml(r.type || ext)} · ${escapeHtml(r.fileSize || '1.2 MB')} · ${escapeHtml(r.source || 'Apollo Health Vault')}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="badge ${badgeStyle}" style="font-size:11px;">${escapeHtml(r.patient || 'Amit Sharma (Self)')}</span></td>
+          <td class="text-sm">${escapeHtml(r.date || 'Today')}</td>
+          <td>
+            <div class="text-sm font-semibold">${escapeHtml(r.condition || 'Diagnostic Checkup')}</div>
+            <div class="text-soft text-xs">${escapeHtml(r.doctor || 'Attending Physician')}</div>
+          </td>
+          <td class="text-soft text-sm">${escapeHtml(r.notes || 'Verified clinical document')}</td>
+          <td style="text-align:right;">
+            <div class="flex gap-6 justify-end">
+              <button class="btn btn-ghost btn-sm" title="View Document" onclick="handlePreviewRecord('${r.id}')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+              <button class="btn btn-ghost btn-sm" title="Download" onclick="handleDownloadRecord('${r.id}')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+              <button class="btn btn-ghost btn-sm" title="Delete" style="color:var(--danger);" onclick="handleDeleteRecord('${r.id}')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  if (cards) {
+    cards.innerHTML = records.map(r => {
+      const ext = (r.name.split('.').pop() || 'PDF').toUpperCase();
+      const isImg = ['JPG', 'JPEG', 'PNG'].includes(ext) || r.type === 'IMG';
+      const isRx = r.category === 'rx' || r.type === 'RX';
+      const badgeClass = isImg ? 'img' : isRx ? 'rx' : 'pdf';
+      const badgeText = isImg ? 'IMG' : isRx ? 'RX' : 'PDF';
+      const patientKey = r.patientKey || 'Self';
+      const escapedName = escapeHtml(r.name);
+
+      return `
+        <div class="card" style="padding:16px;">
+          <div class="flex justify-between items-start mb-10">
+            <div class="doc-item">
+              <div class="doc-badge ${badgeClass}">${badgeText}</div>
+              <div class="doc-meta">
+                <div class="doc-name">${escapedName}</div>
+                <div class="doc-sub">${escapeHtml(r.type || ext)} · ${escapeHtml(r.fileSize || '1.2 MB')}</div>
+              </div>
+            </div>
+            <span class="badge ${patientKey === 'Self' ? 'badge-primary' : 'badge-neutral'}" style="font-size:10.5px;">${patientKey}</span>
+          </div>
+          <div class="text-xs text-soft mb-8">${escapeHtml(r.date)} · ${escapeHtml(r.doctor || 'Physician')} · ${escapeHtml(r.source || 'Vault')}</div>
+          <div class="flex justify-between items-center pt-10" style="border-top:1px solid var(--border);">
+            <span class="text-xs text-soft" style="max-width:65%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(r.notes || '')}</span>
+            <div class="flex gap-4">
+              <button class="btn btn-ghost btn-sm" onclick="handleDownloadRecord('${r.id}')" title="Download" style="padding:4px 8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+              <button class="btn btn-ghost btn-sm" onclick="handlePreviewRecord('${r.id}')" style="color:var(--primary);font-size:12px;padding:4px 8px;">View &rarr;</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  applyFilters();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderRecords();
+});
+</script>
+</body>
+</html>

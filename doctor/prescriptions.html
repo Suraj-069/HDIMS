@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-Prescriptions — HDIMS</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .med-row {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1fr 1fr 40px;
+    gap: 10px;
+    align-items: center;
+    background: var(--bg-subtle);
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  @media (max-width: 768px) {
+    .med-row {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+  }
+  .quick-chip {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    color: var(--text-soft);
+    transition: all 0.15s ease;
+  }
+  .quick-chip:hover {
+    background: var(--primary-subtle);
+    color: var(--primary);
+    border-color: var(--primary);
+  }
+
+  /* Printable Rx Sheet Styling */
+  @media print {
+    body * { visibility: hidden; }
+    #rxLetterheadModal, #rxLetterheadModal * { visibility: visible; }
+    #rxLetterheadModal { position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; background: #fff !important; }
+    .no-print { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="../index.html" class="brand" style="text-decoration:none;">
+      <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="10" fill="url(#g1)"/><path d="M17 8v18M8 17h18" stroke="white" stroke-width="2.6" stroke-linecap="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#102A43"/><stop offset="1" stop-color="#1D6FE0"/></linearGradient></defs></svg>
+      <div class="brand-text"><b>HDIMS</b><span>Health Data Mgmt.</span></div>
+    </a>
+    <nav class="nav-group">
+      <a class="nav-item" href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Dashboard</span></a>
+      <a class="nav-item" href="patients.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M17 9l1.5 1.5L21.5 7"/></svg><span>My Patients</span></a>
+      <a class="nav-item" href="access.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><span>Access Requests</span></a>
+      <a class="nav-item" href="appointments.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg><span>Appointments</span></a>
+      <a class="nav-item active" href="prescriptions.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 5H8z"/><path d="M8 8v9a3 3 0 003 3h2a3 3 0 003-3V8"/><path d="M9 14h6"/></svg><span>Prescriptions</span></a>
+      <a class="nav-item" href="notifications.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg><span>Notifications</span></a>
+      <a class="nav-item" href="settings.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg><span>Settings</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="nav-item" href="settings.html">
+        <span class="avatar" style="width:28px;height:28px;font-size:11px;border-radius:8px;">DR</span>
+        <span style="display:flex;flex-direction:column;line-height:1.25;">
+          <span style="color:#fff;font-size:13px;font-weight:600;">Dr. Rahul Sharma</span>
+          <span style="font-size:11px;color:#6E80A0;">General Physician · DOC-2024-0091</span>
+        </span>
+      </a>
+      <a class="nav-item" href="../login-doctor.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><span>Logout</span></a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="flex items-center gap-12">
+        <button class="hamburger" data-sidebar-toggle>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div>
+          <h2 style="margin:0;">Clinical E-Prescribing</h2>
+          <p class="text-soft text-sm mb-0" style="margin-top:2px;">Digital Drug Dispensing &amp; Patient Regimen</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-12">
+        <select class="lang-select" data-lang-select>
+          <option value="en">EN</option><option value="hi">हिं</option><option value="mr">मरा</option>
+        </select>
+        <button class="toggle-pill" data-theme-toggle>
+          <span class="t-label">Light</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="content fade-in-page">
+      <div class="section-head" style="margin-bottom:24px;">
+        <div>
+          <h1 style="font-size:1.85rem;margin:0 0 4px;">Prescription Pad</h1>
+          <p style="margin:0;color:var(--text-soft);font-size:14px;">Issue tamper-proof, digitally signed e-prescriptions with structured dosage and instructions.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openRxBuilder()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          Write New Prescription
+        </button>
+      </div>
+
+      <!-- Quick Metrics Bar -->
+      <div class="stat-grid" style="margin-bottom:24px;">
+        <div class="card stat-card">
+          <div class="stat-icon" style="background:var(--primary-subtle);color:var(--primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6l1 5H8z"/><path d="M8 8v9a3 3 0 003 3h2a3 3 0 003-3V8"/><path d="M9 14h6"/></svg>
+          </div>
+          <div>
+            <div class="stat-value" id="statTotalRx">2</div>
+            <div class="stat-label">Total Prescriptions Issued</div>
+          </div>
+        </div>
+
+        <div class="card stat-card">
+          <div class="stat-icon" style="background:#dcfce7;color:#16a34a;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div>
+            <div class="stat-value" id="statActiveRx" style="color:#16a34a;">2</div>
+            <div class="stat-label">Active Medication Courses</div>
+          </div>
+        </div>
+
+        <div class="card stat-card">
+          <div class="stat-icon" style="background:#e0f2fe;color:#0284c7;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="4"/><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/></svg>
+          </div>
+          <div>
+            <div class="stat-value" id="statPatientsTreated">2</div>
+            <div class="stat-label">Patients Under Active Treatment</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Issued Prescriptions Table -->
+      <div class="card table-wrap" style="padding:0;overflow-x:auto;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="min-width:140px;">Rx Number</th>
+              <th style="min-width:200px;">Patient Details</th>
+              <th style="min-width:220px;">Diagnosis &amp; Core Drugs</th>
+              <th style="min-width:120px;">Date Issued</th>
+              <th style="min-width:110px;">Status</th>
+              <th style="min-width:140px;text-align:right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="rxTableBody">
+            <!-- Dynamically populated from HDIMS.rx.get() -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal 1: Interactive E-Prescription Builder Pad -->
+<div class="modal-overlay" id="rxBuilderModal">
+  <div class="modal" style="max-width:720px;padding:26px;max-height:90vh;overflow-y:auto;">
+    <div class="flex justify-between items-center mb-16 pb-12" style="border-bottom:1px solid var(--border);">
+      <div class="flex items-center gap-16">
+        <div style="width:38px;height:38px;border-radius:10px;background:var(--primary-subtle);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;margin-right:4px;flex-shrink:0;">Rx</div>
+        <div>
+          <h3 style="margin:0;font-size:1.25rem;">E-Prescription Pad</h3>
+          <span class="text-xs text-soft" id="builderDocHeading">Dr. Rahul Sharma · Medical Council Registered</span>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="closeRxBuilder()" style="padding:4px;">✕</button>
+    </div>
+
+    <form id="rxForm">
+      <!-- 1. Patient Selector -->
+      <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:14px;margin-bottom:14px;">
+        <div class="field">
+          <label>Select Authorized Patient</label>
+          <select class="input" id="rxPatientSelect" required>
+            <option value="Amit Sharma|PAT-2026-000123|32|Male">Amit Sharma (PAT-2026-000123 · 32 Yrs · Male)</option>
+            <option value="Sunita Sharma|PAT-2026-000125|58|Female">Sunita Sharma (PAT-2026-000125 · 58 Yrs · Female)</option>
+            <option value="Rajesh Sharma|PAT-2026-000126|62|Male">Rajesh Sharma (PAT-2026-000126 · 62 Yrs · Male)</option>
+            <option value="Priya Patil|PAT-2026-000142|29|Female">Priya Patil (PAT-2026-000142 · 29 Yrs · Female)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Consultation Date</label>
+          <input class="input" id="rxDate" type="date" required>
+        </div>
+      </div>
+
+      <!-- 2. Diagnosis -->
+      <div class="field" style="margin-bottom:16px;">
+        <label>Clinical Diagnosis / Condition</label>
+        <input class="input" id="rxDiagnosis" placeholder="e.g. Acute Bronchitis &amp; Low Grade Fever" required>
+        <div class="flex gap-6 mt-6" style="flex-wrap:wrap;">
+          <span class="quick-chip" onclick="setDiagnosis('Upper Respiratory Tract Infection')">Upper RTI</span>
+          <span class="quick-chip" onclick="setDiagnosis('Hypertension (Stage 1)')">Hypertension</span>
+          <span class="quick-chip" onclick="setDiagnosis('Type-2 Diabetes Follow-up')">Type-2 Diabetes</span>
+          <span class="quick-chip" onclick="setDiagnosis('Acute Gastritis / Dyspepsia')">Gastritis</span>
+          <span class="quick-chip" onclick="setDiagnosis('Allergic Rhinitis &amp; Sinusitis')">Allergic Rhinitis</span>
+        </div>
+      </div>
+
+      <!-- 3. Medicine Grid -->
+      <div style="margin-bottom:16px;">
+        <div class="flex justify-between items-center mb-8">
+          <label style="margin:0;font-weight:600;font-size:13.5px;">Prescribed Medications (Rx)</label>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="addMedicineRow()" style="font-size:11.5px;padding:3px 10px;">
+            + Add Another Medicine
+          </button>
+        </div>
+
+        <div id="medRowsContainer">
+          <!-- Medication rows dynamically added here -->
+        </div>
+      </div>
+
+      <!-- 4. Lifestyle & Dietary Advice -->
+      <div class="field" style="margin-bottom:14px;">
+        <label>Clinical Instructions &amp; Dietary Advice</label>
+        <textarea class="input" id="rxAdvice" rows="2" placeholder="e.g. Drink warm fluids, salt restriction (<4g/day), avoid cold drinks and strenuous exercise."></textarea>
+      </div>
+
+      <!-- 5. Follow-up -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+        <div class="field">
+          <label>Next Follow-up Review</label>
+          <select class="input" id="rxFollowUp">
+            <option value="After 3 Days">After 3 Days</option>
+            <option value="After 5 Days">After 5 Days</option>
+            <option value="After 7 Days (1 Week)" selected>After 7 Days (1 Week)</option>
+            <option value="After 14 Days (2 Weeks)">After 14 Days (2 Weeks)</option>
+            <option value="After 1 Month">After 1 Month</option>
+            <option value="SOS (Only if symptoms worsen)">SOS (Only if symptoms worsen)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Dispensing Mode</label>
+          <select class="input" id="rxDispense">
+            <option value="Hospital &amp; Retail Pharmacy Allowed">Any Verified Pharmacy</option>
+            <option value="In-Clinic Dispensing">In-Clinic Dispensing</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex gap-12" style="border-top:1px solid var(--border);padding-top:16px;">
+        <button type="button" class="btn btn-secondary btn-block" onclick="closeRxBuilder()">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-block">Preview &amp; Issue E-Prescription &rarr;</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal 2: Official Printable E-Prescription Letterhead Preview -->
+<div class="modal-overlay" id="rxLetterheadModal">
+  <div class="modal" style="max-width:740px;padding:0;background:#ffffff;color:#172033;overflow:hidden;border-radius:14px;">
+    
+    <!-- Letterhead Document Canvas -->
+    <div id="printSheet" style="padding:32px 36px;font-family:'Inter',sans-serif;">
+      <!-- Hospital & Doctor Header -->
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #0B1220;padding-bottom:18px;margin-bottom:18px;">
+        <div>
+          <h2 style="margin:0 0 2px;color:#0B1220;font-size:1.45rem;" id="printDocName">Dr. Rahul Sharma</h2>
+          <div style="font-size:12.5px;color:#475569;font-weight:500;" id="printDocDegree">MBBS, MD (General Medicine)</div>
+          <div style="font-size:12px;color:#1677FF;font-weight:600;margin-top:2px;" id="printDocReg">Council Reg No: MCI-2024-88421</div>
+          <div style="font-size:11.5px;color:#64748B;" id="printDocHosp">City Care Superspeciality Hospital · Mumbai</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:#eaf4ff;color:#1677FF;padding:4px 10px;border-radius:6px;font-weight:700;font-size:12px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            OFFICIAL DIGITAL RX
+          </div>
+          <div style="font-family:monospace;font-size:12px;font-weight:600;color:#0B1220;margin-top:6px;" id="printRxId">RX-2026-00912</div>
+          <div style="font-size:11.5px;color:#64748B;" id="printDate">Date: 26 Sep 2026</div>
+        </div>
+      </div>
+
+      <!-- Patient Information Banner -->
+      <div style="background:#F6F9FC;border-radius:10px;padding:12px 16px;margin-bottom:18px;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:10px;font-size:12.5px;border:1px solid #E2E8F0;">
+        <div><span style="color:#64748B;display:block;font-size:11px;">Patient Name:</span><b style="color:#0B1220;" id="printPatientName">Amit Sharma</b></div>
+        <div><span style="color:#64748B;display:block;font-size:11px;">Age / Gender:</span><span id="printPatientAge">32 Yrs / Male</span></div>
+        <div><span style="color:#64748B;display:block;font-size:11px;">Patient ID:</span><span style="font-family:monospace;font-weight:600;" id="printPatientId">PAT-2026-000123</span></div>
+        <div><span style="color:#64748B;display:block;font-size:11px;">Diagnosis:</span><b style="color:#1677FF;" id="printDiagnosis">Upper RTI</b></div>
+      </div>
+
+      <!-- Rx Symbol & Medication Table -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:1.6rem;font-weight:900;color:#1677FF;font-family:'Times New Roman',serif;margin-bottom:8px;">℞</div>
+        <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
+          <thead>
+            <tr style="border-bottom:1.5px solid #CBD5E1;text-align:left;color:#475569;font-size:11.5px;">
+              <th style="padding:6px 0;width:40%;">Medicine &amp; Strength</th>
+              <th style="padding:6px 0;width:25%;">Dosage Pattern</th>
+              <th style="padding:6px 0;width:20%;">Instructions</th>
+              <th style="padding:6px 0;width:15%;text-align:right;">Duration</th>
+            </tr>
+          </thead>
+          <tbody id="printMedTableBody">
+            <!-- Injected dynamically -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Clinical Advice -->
+      <div style="border-top:1px dashed #CBD5E1;padding-top:12px;margin-bottom:18px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;color:#64748B;letter-spacing:0.04em;margin-bottom:4px;">Advice &amp; Clinical Notes:</div>
+        <p style="margin:0;font-size:12.5px;color:#1e293b;line-height:1.4;" id="printAdvice">Drink warm water, take rest, steam inhalation twice a day.</p>
+      </div>
+
+      <!-- Follow-up & Doctor Digital Signature -->
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #E2E8F0;padding-top:14px;">
+        <div>
+          <span style="font-size:11px;color:#64748B;display:block;">Review &amp; Follow-up:</span>
+          <b style="font-size:13px;color:#0B1220;" id="printFollowUp">After 7 Days</b>
+          <div style="font-size:10.5px;color:#94A3B8;margin-top:2px;">Generated via HDIMS Digital EHR Network</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="display:inline-block;border:1px solid #1677FF;border-radius:8px;padding:6px 12px;background:#f0f7ff;text-align:center;">
+            <div style="font-size:10px;color:#1677FF;font-weight:700;letter-spacing:0.04em;">DIGITALLY SIGNED</div>
+            <div style="font-size:13px;font-weight:700;color:#0B1220;margin:2px 0;" id="printSignatureDoc">Dr. Rahul Sharma</div>
+            <div style="font-size:9.5px;color:#64748B;">National Practitioner Registry Verified</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Toolbar (Hidden in Print) -->
+    <div class="no-print" style="background:#F8FAFC;border-top:1px solid #E2E8F0;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;">
+      <button class="btn btn-secondary btn-sm" onclick="closeLetterheadModal()">Close</button>
+      <div class="flex gap-10">
+        <button class="btn btn-secondary btn-sm" onclick="window.print()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print / Save PDF
+        </button>
+        <button class="btn btn-primary btn-sm" id="confirmIssueBtn" onclick="confirmAndDispatchRx()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Issue to Patient Health Locker
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="toast-stack"></div>
+<script src="../assets/js/app.js"></script>
+
+<!-- Prescription Engine Script -->
+<script>
+  let pendingRxToSave = null;
+
+  // Datalist for fast drug autocomplete
+  const drugSuggestions = [
+    'Amoxicillin 500mg', 'Azithromycin 500mg', 'Paracetamol 650mg', 'Pantoprazole 40mg',
+    'Telmisartan 40mg', 'Metformin 500mg', 'Cetirizine 10mg', 'Montelukast 10mg',
+    'Atorvastatin 10mg', 'Amlodipine 5mg', 'Ibuprofen 400mg', 'Cough Syrup (Ascoril LS)'
+  ];
+
+  function renderTable(){
+    const list = HDIMS.rx.get();
+    const tbody = document.getElementById('rxTableBody');
+    if(!tbody) return;
+    tbody.innerHTML = '';
+
+    document.getElementById('statTotalRx').textContent = list.length;
+    document.getElementById('statActiveRx').textContent = list.filter(r => r.status === 'Active').length;
+    
+    // Unique patients
+    const patientSet = new Set(list.map(r => r.patientId));
+    document.getElementById('statPatientsTreated').textContent = patientSet.size;
+
+    list.forEach(rx => {
+      const tr = document.createElement('tr');
+      const medSummary = rx.medicines && rx.medicines.length 
+        ? (rx.medicines[0].name + (rx.medicines.length > 1 ? ` (+${rx.medicines.length - 1} more)` : '')) 
+        : 'Medications specified';
+
+      tr.innerHTML = `
+        <td><b style="font-family:monospace;color:var(--primary);font-size:13px;">${rx.id}</b></td>
+        <td>
+          <div style="font-weight:600;font-size:13.5px;color:var(--text);">${rx.patientName}</div>
+          <div class="text-soft text-xs">${rx.patientId} · ${rx.patientAge || '30'}y ${rx.patientGender || ''}</div>
+        </td>
+        <td>
+          <div style="font-weight:600;font-size:13px;color:var(--text);">${rx.diagnosis || 'Clinical Consultation'}</div>
+          <div class="text-soft text-xs">${medSummary}</div>
+        </td>
+        <td class="text-sm">${rx.date}</td>
+        <td><span class="badge badge-active">${rx.status || 'Active'}</span></td>
+        <td style="text-align:right;">
+          <button class="btn btn-secondary btn-sm" onclick="viewLetterhead('${rx.id}')">
+            View Official Rx
+          </button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function addMedicineRow(name='', dosage='1 - 0 - 1', timing='After Food', duration='5 Days'){
+    const container = document.getElementById('medRowsContainer');
+    const row = document.createElement('div');
+    row.className = 'med-row';
+    row.innerHTML = `
+      <input class="input med-name" placeholder="Drug name & strength" value="${name}" list="drugList" required style="font-size:13px;">
+      <select class="input med-dosage" style="font-size:12.5px;">
+        <option value="1 - 0 - 1 (Morning & Night)" ${dosage.includes('1 - 0 - 1')?'selected':''}>1 - 0 - 1 (Twice)</option>
+        <option value="1 - 0 - 0 (Morning Only)" ${dosage.includes('1 - 0 - 0')?'selected':''}>1 - 0 - 0 (Morning)</option>
+        <option value="0 - 0 - 1 (Night Only)" ${dosage.includes('0 - 0 - 1')?'selected':''}>0 - 0 - 1 (Night)</option>
+        <option value="1 - 1 - 1 (Thrice a day)" ${dosage.includes('1 - 1 - 1')?'selected':''}>1 - 1 - 1 (Thrice)</option>
+        <option value="1 SOS (When needed)" ${dosage.includes('SOS')?'selected':''}>1 SOS (As needed)</option>
+      </select>
+      <select class="input med-timing" style="font-size:12.5px;">
+        <option value="After Food" ${timing==='After Food'?'selected':''}>After Food</option>
+        <option value="Before Food" ${timing==='Before Food'?'selected':''}>Before Food</option>
+        <option value="Bedtime" ${timing==='Bedtime'?'selected':''}>At Bedtime</option>
+      </select>
+      <select class="input med-duration" style="font-size:12.5px;">
+        <option value="3 Days" ${duration==='3 Days'?'selected':''}>3 Days</option>
+        <option value="5 Days" ${duration==='5 Days'?'selected':''}>5 Days</option>
+        <option value="7 Days" ${duration==='7 Days'?'selected':''}>7 Days</option>
+        <option value="14 Days" ${duration==='14 Days'?'selected':''}>14 Days</option>
+        <option value="30 Days" ${duration==='30 Days'?'selected':''}>30 Days</option>
+      </select>
+      <button type="button" class="btn btn-ghost btn-sm" style="color:var(--danger);padding:4px;" onclick="this.closest('.med-row').remove()">✕</button>
+    `;
+    container.appendChild(row);
+  }
+
+  function setDiagnosis(diag){
+    document.getElementById('rxDiagnosis').value = diag;
+  }
+
+  function openRxBuilder(){
+    const doc = HDIMS.auth.getCurrentDoctor();
+    if(doc){
+      document.getElementById('builderDocHeading').textContent = `${doc.name} · ${doc.regId} · ${doc.spec}`;
+    }
+
+    // Set today's date
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('rxDate').value = today;
+
+    // Reset rows and add initial 2 default medicines
+    const container = document.getElementById('medRowsContainer');
+    container.innerHTML = '';
+    addMedicineRow('Amoxicillin 500mg', '1 - 0 - 1', 'After Food', '5 Days');
+    addMedicineRow('Paracetamol 650mg', '1 - 0 - 1', 'After Food', '3 Days');
+
+    document.getElementById('rxBuilderModal').classList.add('open');
+  }
+
+  function closeRxBuilder(){
+    document.getElementById('rxBuilderModal').classList.remove('open');
+  }
+
+  function closeLetterheadModal(){
+    document.getElementById('rxLetterheadModal').classList.remove('open');
+  }
+
+  document.getElementById('rxForm').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const patientRaw = document.getElementById('rxPatientSelect').value.split('|');
+    const patientName = patientRaw[0];
+    const patientId = patientRaw[1];
+    const patientAge = patientRaw[2];
+    const patientGender = patientRaw[3];
+
+    const diag = document.getElementById('rxDiagnosis').value.trim();
+    const advice = document.getElementById('rxAdvice').value.trim() || 'Follow prescribed timing. Drink plenty of water and rest.';
+    const followUp = document.getElementById('rxFollowUp').value;
+
+    // Gather medicines
+    const medicines = [];
+    document.querySelectorAll('#medRowsContainer .med-row').forEach(row => {
+      const name = row.querySelector('.med-name').value.trim();
+      const dosage = row.querySelector('.med-dosage').value;
+      const timing = row.querySelector('.med-timing').value;
+      const duration = row.querySelector('.med-duration').value;
+      if(name){
+        medicines.push({ name, dosage, timing, duration });
+      }
+    });
+
+    if(medicines.length === 0){
+      HDIMS.toast('Please add at least one medication to the prescription.', 'danger');
+      return;
+    }
+
+    const doc = HDIMS.auth.getCurrentDoctor();
+
+    pendingRxToSave = {
+      patientName,
+      patientId,
+      patientAge,
+      patientGender,
+      doctorName: doc.name,
+      doctorRegId: doc.regId,
+      doctorSpec: doc.spec,
+      doctorHospital: doc.hospital || 'City Care Hospital',
+      diagnosis: diag,
+      medicines,
+      advice,
+      followUp
+    };
+
+    // Render Preview
+    populatePrintSheet(pendingRxToSave, 'RX-2026-PREVIEW');
+    document.getElementById('confirmIssueBtn').style.display = 'inline-flex';
+
+    closeRxBuilder();
+    document.getElementById('rxLetterheadModal').classList.add('open');
+  });
+
+  function populatePrintSheet(rx, displayId){
+    document.getElementById('printDocName').textContent = rx.doctorName;
+    document.getElementById('printDocDegree').textContent = (rx.doctorSpec || 'Physician') + ' · Registered Clinician';
+    document.getElementById('printDocReg').textContent = 'Council Reg No: ' + (rx.doctorRegId || 'MCI-2024-88421');
+    document.getElementById('printDocHosp').textContent = rx.doctorHospital || 'City Care Superspeciality Hospital';
+    document.getElementById('printRxId').textContent = displayId || rx.id;
+    document.getElementById('printDate').textContent = 'Date: ' + (rx.date || new Date().toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' }));
+
+    document.getElementById('printPatientName').textContent = rx.patientName;
+    document.getElementById('printPatientAge').textContent = `${rx.patientAge || '32'} Yrs / ${rx.patientGender || 'Male'}`;
+    document.getElementById('printPatientId').textContent = rx.patientId;
+    document.getElementById('printDiagnosis').textContent = rx.diagnosis;
+
+    const tbody = document.getElementById('printMedTableBody');
+    tbody.innerHTML = '';
+    (rx.medicines || []).forEach(m => {
+      const tr = document.createElement('tr');
+      tr.style.borderBottom = '1px solid #E2E8F0';
+      tr.innerHTML = `
+        <td style="padding:8px 0;font-weight:600;color:#0F172A;">${m.name}</td>
+        <td style="padding:8px 0;color:#334155;">${m.dosage}</td>
+        <td style="padding:8px 0;color:#64748B;">${m.timing}</td>
+        <td style="padding:8px 0;text-align:right;font-weight:600;color:#0F172A;">${m.duration}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById('printAdvice').textContent = rx.advice || 'Follow medication schedule strictly.';
+    document.getElementById('printFollowUp').textContent = rx.followUp || 'As needed';
+    document.getElementById('printSignatureDoc').textContent = rx.doctorName;
+  }
+
+  function confirmAndDispatchRx(){
+    if(!pendingRxToSave) return;
+    const saved = HDIMS.rx.save(pendingRxToSave);
+    pendingRxToSave = null;
+
+    closeLetterheadModal();
+    renderTable();
+    HDIMS.toast(`Official E-Prescription (${saved.id}) issued & dispatched to patient locker!`, 'success');
+  }
+
+  function viewLetterhead(rxId){
+    const list = HDIMS.rx.get();
+    const found = list.find(r => r.id === rxId);
+    if(!found) return;
+
+    populatePrintSheet(found, found.id);
+    document.getElementById('confirmIssueBtn').style.display = 'none'; // Already issued
+    document.getElementById('rxLetterheadModal').classList.add('open');
+  }
+
+  // Pre-fill from URL params if arrived from Patient Encounter
+  document.addEventListener('DOMContentLoaded', function(){
+    renderTable();
+
+    // Check if patient param passed
+    const params = new URLSearchParams(window.location.search);
+    const pName = params.get('patient');
+    const pId = params.get('id');
+    if(pName && pId){
+      openRxBuilder();
+      const sel = document.getElementById('rxPatientSelect');
+      const opt = Array.from(sel.options).find(o => o.value.includes(pId));
+      if(opt) sel.value = opt.value;
+      HDIMS.toast(`Writing prescription for ${pName}`, 'info');
+    }
+  });
+</script>
+
+<!-- Autocomplete datalist -->
+<datalist id="drugList">
+  <option value="Amoxicillin 500mg">
+  <option value="Azithromycin 500mg">
+  <option value="Paracetamol 650mg">
+  <option value="Pantoprazole 40mg">
+  <option value="Telmisartan 40mg">
+  <option value="Metformin 500mg">
+  <option value="Cetirizine 10mg">
+  <option value="Montelukast 10mg">
+  <option value="Atorvastatin 10mg">
+  <option value="Amlodipine 5mg">
+  <option value="Ibuprofen 400mg">
+</datalist>
+
+</body>
+</html>

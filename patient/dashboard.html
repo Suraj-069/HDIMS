@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — HDIMS</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="../index.html" class="brand" style="text-decoration:none;">
+      <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="10" fill="url(#g1)"/><path d="M17 8v18M8 17h18" stroke="white" stroke-width="2.6" stroke-linecap="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#0B1220"/><stop offset="1" stop-color="#1677FF"/></linearGradient></defs></svg>
+      <div class="brand-text"><b>HDIMS</b><span>Health Data Mgmt.</span></div>
+    </a>
+    <nav class="nav-group">
+      <a class="nav-item active" href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Dashboard</span></a>
+      <a class="nav-item" href="family.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="8" r="2.4"/><path d="M2 21v-1a6 6 0 0112 0v1"/><path d="M14.5 21v-1a4.5 4.5 0 016 0"/></svg><span>My Family</span></a>
+      <a class="nav-item" href="records.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg><span>Medical Records</span></a>
+      <a class="nav-item" href="doctors.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span>Doctors</span></a>
+      <a class="nav-item" href="appointments.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg><span>Appointments</span></a>
+      <a class="nav-item" href="access.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><span>Shared Access</span></a>
+      <a class="nav-item" href="prescriptions.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 5H8z"/><path d="M8 8v9a3 3 0 003 3h2a3 3 0 003-3V8"/><path d="M9 14h6"/></svg><span>Prescriptions</span></a>
+      <a class="nav-item" href="ai-health.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.2L20 9l-5.6 1.8L12 16l-2.4-5.2L4 9l5.6-1.8z"/><path d="M19 15l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9z"/></svg><span>AI Health</span></a>
+      <a class="nav-item" href="notifications.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg><span>Notifications</span></a>
+      <a class="nav-item" href="settings.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg><span>Settings</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="nav-item" href="settings.html" style="padding:10px 12px;background:rgba(255,255,255,0.04);border-radius:12px;margin-bottom:8px;">
+        <span class="avatar" style="width:34px;height:34px;font-size:12px;border-radius:10px;background:var(--primary);color:#fff;">AS</span>
+        <span style="display:flex;flex-direction:column;line-height:1.25;">
+          <span style="color:#fff;font-size:13.5px;font-weight:600;">Amit Sharma</span>
+          <span style="font-size:11px;color:#94A3B8;">Patient · PAT-2026-000123</span>
+        </span>
+      </a>
+      <a class="nav-item" href="../login-patient.html" style="color:#ef4444;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><span>Sign Out</span></a>
+    </div>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="flex items-center gap-12">
+        <button class="hamburger" data-sidebar-toggle>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div>
+          <h2 style="margin:0;font-size:1.25rem;">Patient Portal</h2>
+          <p class="text-soft text-sm mb-0" style="margin-top:2px;">Digital Health & Record Management</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-12">
+        <select class="lang-select" data-lang-select>
+          <option value="en">EN</option><option value="hi">हिं</option><option value="mr">मरा</option>
+        </select>
+        <button class="toggle-pill" data-theme-toggle>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <span class="t-label">Light</span>
+        </button>
+        <a href="notifications.html" class="btn btn-ghost btn-sm" style="position:relative;width:38px;height:38px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:10px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
+          <span style="position:absolute;top:6px;right:6px;width:8px;height:8px;background:var(--primary);border-radius:50%;border:2px solid var(--card);"></span>
+        </a>
+      </div>
+    </div>
+    <div class="content fade-in-page">
+      
+      <!-- Patient Welcome & Header -->
+      <div class="section-head" style="margin-bottom:24px;">
+        <div>
+          <div class="flex items-center gap-8 mb-4">
+            <h1 id="dashGreeting" style="font-size:2rem;letter-spacing:-0.03em;margin:0;">Good morning, Amit</h1>
+            <span class="badge badge-success" style="font-size:11.5px;padding:3px 10px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+              Verified Patient
+            </span>
+          </div>
+          <p style="margin:0;color:var(--text-soft);font-size:14px;">
+            Here's your comprehensive health overview. <span style="color:var(--text-muted);">Patient ID:</span> <b id="dashPatientId" style="color:var(--text);letter-spacing:0.02em;">PAT-2026-000123</b>
+            <button class="copy-btn" id="dashCopyBtn" data-copy="PAT-2026-000123" title="Copy Patient ID" style="margin-left:4px;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </button>
+          </p>
+        </div>
+        <div class="flex items-center gap-12">
+          <a href="appointments.html" class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Book Appointment
+          </a>
+          <a href="records.html" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Upload Record
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="stat-grid" style="margin-bottom:28px;">
+        <div class="card stat-card card-hover">
+          <div class="stat-icon" style="background:var(--primary-subtle);color:var(--primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>
+          </div>
+          <div>
+            <div class="stat-value">14</div>
+            <div class="stat-label">Medical Records</div>
+            <span style="font-size:12px;color:var(--success);font-weight:600;">+2 uploaded this month</span>
+          </div>
+        </div>
+        <div class="card stat-card card-hover">
+          <div class="stat-icon" style="background:#e0f2fe;color:#0284c7;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="8" r="2.4"/><path d="M2 21v-1a6 6 0 0112 0v1"/><path d="M14.5 21v-1a4.5 4.5 0 016 0"/></svg>
+          </div>
+          <div>
+            <div class="stat-value">4</div>
+            <div class="stat-label">Family Members</div>
+            <span style="font-size:12px;color:var(--text-soft);">Self, Spouse, Mother, Child</span>
+          </div>
+        </div>
+        <div class="card stat-card card-hover">
+          <div class="stat-icon" style="background:#fef3c7;color:#d97706;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg>
+          </div>
+          <div>
+            <div class="stat-value">2</div>
+            <div class="stat-label">Upcoming Visits</div>
+            <span style="font-size:12px;color:#d97706;font-weight:600;">Next: Today 10:00 AM</span>
+          </div>
+        </div>
+        <div class="card stat-card card-hover">
+          <div class="stat-icon" style="background:#dcfce7;color:#16a34a;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <div>
+            <div class="stat-value">1</div>
+            <div class="stat-label">Active Doctor Access</div>
+            <span style="font-size:12px;color:var(--success);font-weight:600;">Dr. Rahul Sharma · 47m left</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Two-Column Layout -->
+      <div class="dash-grid-layout">
+        
+        <!-- Left Column: Vitals Chart & Records -->
+        <div style="display:flex;flex-direction:column;gap:24px;">
+          
+          <!-- Health Vitals Tracking Card -->
+          <div class="card" style="padding:24px;">
+            <div class="flex justify-between items-center mb-16" style="flex-wrap:wrap;gap:12px;">
+              <div>
+                <h3 style="margin:0;font-size:1.15rem;">Health Vitals Tracking</h3>
+                <p class="text-soft text-sm mb-0" style="margin-top:2px;">Recent biometric measurements & trends</p>
+              </div>
+              <div class="flex items-center gap-8" style="flex-wrap:wrap;">
+                <button class="btn btn-sm btn-primary" id="vitalsTabBP" onclick="switchVitals('bp')">Blood Pressure</button>
+                <button class="btn btn-sm btn-ghost" id="vitalsTabGlucose" onclick="switchVitals('glucose')">Blood Sugar</button>
+                <button class="btn btn-sm btn-ghost" id="vitalsTabPulse" onclick="switchVitals('pulse')">Heart Rate</button>
+                <button class="btn btn-sm btn-secondary" onclick="openLogVitalsModal()" style="display:flex;align-items:center;gap:6px;border-color:var(--primary);color:var(--primary);">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Log Reading
+                </button>
+              </div>
+            </div>
+
+            <!-- Chart Canvas Container -->
+            <div style="position:relative;height:240px;width:100%;margin-bottom:20px;">
+              <canvas id="healthVitalsChart"></canvas>
+            </div>
+
+            <!-- Vitals Summary Chips -->
+            <div class="vitals-summary-grid">
+              <div style="background:var(--bg-subtle);padding:12px 14px;border-radius:12px;border:1px solid var(--border-subtle);">
+                <div style="font-size:11.5px;color:var(--text-soft);font-weight:600;text-transform:uppercase;">Systolic / Diastolic</div>
+                <div style="font-size:1.25rem;font-weight:700;color:var(--text);margin-top:2px;" id="summaryBPVal">120 / 80 <span style="font-size:12px;font-weight:500;color:var(--text-soft);">mmHg</span></div>
+                <span class="badge badge-success" id="summaryBPBadge" style="font-size:11px;margin-top:4px;padding:2px 8px;">Normal & Optimal</span>
+              </div>
+              <div style="background:var(--bg-subtle);padding:12px 14px;border-radius:12px;border:1px solid var(--border-subtle);">
+                <div style="font-size:11.5px;color:var(--text-soft);font-weight:600;text-transform:uppercase;">Fasting Blood Sugar</div>
+                <div style="font-size:1.25rem;font-weight:700;color:var(--text);margin-top:2px;" id="summarySugarVal">94 <span style="font-size:12px;font-weight:500;color:var(--text-soft);">mg/dL</span></div>
+                <span class="badge badge-success" id="summarySugarBadge" style="font-size:11px;margin-top:4px;padding:2px 8px;">Normal Range</span>
+              </div>
+              <div style="background:var(--bg-subtle);padding:12px 14px;border-radius:12px;border:1px solid var(--border-subtle);">
+                <div style="font-size:11.5px;color:var(--text-soft);font-weight:600;text-transform:uppercase;">Resting Heart Rate</div>
+                <div style="font-size:1.25rem;font-weight:700;color:var(--text);margin-top:2px;" id="summaryPulseVal">72 <span style="font-size:12px;font-weight:500;color:var(--text-soft);">BPM</span></div>
+                <span class="badge badge-success" id="summaryPulseBadge" style="font-size:11px;margin-top:4px;padding:2px 8px;">Good Rhythm</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Medical Records Mini Table -->
+          <div class="card" style="padding:24px;">
+            <div class="flex justify-between items-center mb-16">
+              <div>
+                <h3 style="margin:0;font-size:1.15rem;">Recent Health Records</h3>
+                <p class="text-soft text-sm mb-0" style="margin-top:2px;">Latest diagnostic reports, prescriptions & discharge summaries</p>
+              </div>
+              <a href="records.html" class="btn btn-ghost btn-sm" style="font-size:13px;color:var(--primary);">
+                View All Records &rarr;
+              </a>
+            </div>
+
+            <!-- Desktop & Tablet Table View -->
+            <div class="table-responsive">
+              <table class="table dash-records-table">
+                <thead>
+                  <tr>
+                    <th style="min-width:280px;">Document</th>
+                    <th style="min-width:120px;">Patient</th>
+                    <th style="min-width:120px;">Date</th>
+                    <th style="min-width:150px;">Doctor</th>
+                    <th style="text-align:right;min-width:70px;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="dashRecentRecordsTbody">
+                  <tr>
+                    <td>
+                      <div class="doc-item">
+                        <div class="doc-badge pdf">PDF</div>
+                        <div class="doc-meta">
+                          <div class="doc-name">Complete Blood Count (CBC)</div>
+                          <div class="doc-sub">Diagnostic Lab Report · 1.4 MB</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-neutral" style="font-size:11px;">Self (Amit)</span></td>
+                    <td class="text-sm">25 Sep 2026</td>
+                    <td class="text-sm">Dr. Rahul Sharma</td>
+                    <td style="text-align:right;">
+                      <a href="records.html" class="btn btn-ghost btn-sm" title="View Report" style="padding:6px 10px;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="doc-item">
+                        <div class="doc-badge rx">RX</div>
+                        <div class="doc-meta">
+                          <div class="doc-name">Cardiology Prescription</div>
+                          <div class="doc-sub">Dr. Neha Kulkarni · 3 Medicines</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-neutral" style="font-size:11px;">Mother (Sunita)</span></td>
+                    <td class="text-sm">22 Sep 2026</td>
+                    <td class="text-sm">Dr. Neha Kulkarni</td>
+                    <td style="text-align:right;">
+                      <a href="prescriptions.html" class="btn btn-ghost btn-sm" title="View Prescription" style="padding:6px 10px;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="doc-item">
+                        <div class="doc-badge img">IMG</div>
+                        <div class="doc-meta">
+                          <div class="doc-name">Chest X-Ray (PA View)</div>
+                          <div class="doc-sub">Apollo Imaging Center · 4.8 MB</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-neutral" style="font-size:11px;">Self (Amit)</span></td>
+                    <td class="text-sm">18 Sep 2026</td>
+                    <td class="text-sm">Dr. A. Verma</td>
+                    <td style="text-align:right;">
+                      <a href="records.html" class="btn btn-ghost btn-sm" title="View Image" style="padding:6px 10px;">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Mobile Fallback Cards (<640px) -->
+            <div class="record-cards dash-record-cards" id="dashRecentCards">
+              <div class="card" style="padding:14px;background:var(--bg-subtle);border-radius:12px;">
+                <div class="flex justify-between items-start mb-8">
+                  <div class="doc-item">
+                    <div class="doc-badge pdf">PDF</div>
+                    <div class="doc-meta">
+                      <div class="doc-name">Complete Blood Count (CBC)</div>
+                      <div class="doc-sub">Diagnostic Lab · 1.4 MB</div>
+                    </div>
+                  </div>
+                  <span class="badge badge-neutral" style="font-size:10.5px;">Self</span>
+                </div>
+                <div class="flex justify-between items-center pt-8" style="border-top:1px solid var(--border);font-size:12px;">
+                  <span class="text-soft">25 Sep 2026 · Dr. Rahul Sharma</span>
+                  <a href="records.html" class="btn btn-ghost btn-sm" style="font-size:12px;color:var(--primary);padding:4px 8px;">View &rarr;</a>
+                </div>
+              </div>
+
+              <div class="card" style="padding:14px;background:var(--bg-subtle);border-radius:12px;">
+                <div class="flex justify-between items-start mb-8">
+                  <div class="doc-item">
+                    <div class="doc-badge rx">RX</div>
+                    <div class="doc-meta">
+                      <div class="doc-name">Cardiology Prescription</div>
+                      <div class="doc-sub">Dr. Neha Kulkarni · 3 Meds</div>
+                    </div>
+                  </div>
+                  <span class="badge badge-neutral" style="font-size:10.5px;">Mother</span>
+                </div>
+                <div class="flex justify-between items-center pt-8" style="border-top:1px solid var(--border);font-size:12px;">
+                  <span class="text-soft">22 Sep 2026 · Dr. Neha Kulkarni</span>
+                  <a href="prescriptions.html" class="btn btn-ghost btn-sm" style="font-size:12px;color:var(--primary);padding:4px 8px;">View &rarr;</a>
+                </div>
+              </div>
+
+              <div class="card" style="padding:14px;background:var(--bg-subtle);border-radius:12px;">
+                <div class="flex justify-between items-start mb-8">
+                  <div class="doc-item">
+                    <div class="doc-badge img">IMG</div>
+                    <div class="doc-meta">
+                      <div class="doc-name">Chest X-Ray (PA View)</div>
+                      <div class="doc-sub">Apollo Imaging · 4.8 MB</div>
+                    </div>
+                  </div>
+                  <span class="badge badge-neutral" style="font-size:10.5px;">Self</span>
+                </div>
+                <div class="flex justify-between items-center pt-8" style="border-top:1px solid var(--border);font-size:12px;">
+                  <span class="text-soft">18 Sep 2026 · Dr. A. Verma</span>
+                  <a href="records.html" class="btn btn-ghost btn-sm" style="font-size:12px;color:var(--primary);padding:4px 8px;">View &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Consultation, Doctor Access, & Activity -->
+        <div style="display:flex;flex-direction:column;gap:24px;">
+          
+          <!-- Upcoming Appointment Showcase Card -->
+          <div class="card" style="padding:22px;border-left:4px solid var(--primary);position:relative;">
+            <div class="flex justify-between items-center mb-12">
+              <span class="badge badge-primary" style="font-size:11px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Today · 10:00 AM
+              </span>
+              <span class="badge badge-confirmed" style="font-size:11px;">Confirmed</span>
+            </div>
+            <div class="flex items-center gap-16 mb-12">
+              <span class="avatar" style="width:46px;height:46px;font-size:15px;background:#e0f2fe;color:#0369a1;border-radius:12px;font-weight:700;margin-right:6px;flex-shrink:0;">RS</span>
+              <div>
+                <h4 style="margin:0;font-size:15.5px;color:var(--text);">Dr. Rahul Sharma</h4>
+                <div class="text-soft text-xs" style="margin-top:2px;">Senior Cardiologist · Apollo Hospital</div>
+              </div>
+            </div>
+            <div style="background:var(--bg-subtle);padding:10px 12px;border-radius:10px;margin-bottom:14px;font-size:12.5px;color:var(--text-soft);">
+              <div class="flex items-center gap-6 mb-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Consultation OPD, 3rd Floor, Room 304</span>
+              </div>
+              <div class="flex items-center gap-6">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span>+91 98200 12345 · Hospital Desk</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-10">
+              <a href="appointments.html" class="btn btn-secondary btn-sm" style="flex:1;justify-content:center;">Reschedule</a>
+              <a href="access.html" class="btn btn-primary btn-sm" style="flex:1;justify-content:center;">Grant Access</a>
+            </div>
+          </div>
+
+          <!-- Active Doctor Access Real-time Banner -->
+          <div class="card" style="padding:22px;background:linear-gradient(135deg, rgba(22, 119, 255, 0.05), rgba(16, 185, 129, 0.05));border:1px solid rgba(22, 119, 255, 0.15);">
+            <div class="flex justify-between items-center mb-10">
+              <div class="flex items-center gap-8">
+                <span style="position:relative;display:flex;height:9px;width:9px;">
+                  <span style="position:absolute;display:inline-flex;height:100%;width:100%;border-radius:50%;background:#10b981;opacity:0.75;animation:ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;"></span>
+                  <span style="position:relative;display:inline-flex;border-radius:50%;height:9px;width:9px;background:#10b981;"></span>
+                </span>
+                <h4 style="margin:0;font-size:14.5px;color:var(--text);">Active Doctor Access</h4>
+              </div>
+              <span class="badge badge-active" style="font-size:11px;">Active Session</span>
+            </div>
+            <p style="font-size:13px;color:var(--text-soft);margin-bottom:12px;">
+              <b>Dr. Rahul Sharma</b> currently has authorized temporary view access to your medical records.
+            </p>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:14px;">
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-soft">Time remaining:</span>
+                <span style="font-family:monospace;font-weight:700;color:var(--primary);font-size:14px;" data-countdown="2852">00:47:32</span>
+              </div>
+              <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
+                <span class="badge badge-neutral" style="font-size:10.5px;">Blood Reports</span>
+                <span class="badge badge-neutral" style="font-size:10.5px;">Prescriptions</span>
+                <span class="badge badge-neutral" style="font-size:10.5px;">Read-Only</span>
+              </div>
+            </div>
+            <a href="access.html" class="btn btn-outline btn-sm" style="width:100%;justify-content:center;color:var(--danger);border-color:rgba(239,68,68,0.3);">
+              Manage / Revoke Access
+            </a>
+          </div>
+
+          <!-- Recent Activity Timeline -->
+          <div class="card" style="padding:22px;">
+            <h4 style="margin:0 0 16px;font-size:15px;color:var(--text);">Recent Medical Activity</h4>
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="text-xs text-soft" style="font-weight:600;">Today, 9:02 AM</span>
+                <p style="margin:2px 0 0;color:var(--text);font-size:13px;">Dr. Rahul Sharma accessed recent Blood Test Report</p>
+              </div>
+              <div class="timeline-item">
+                <span class="text-xs text-soft" style="font-weight:600;">Yesterday, 4:15 PM</span>
+                <p style="margin:2px 0 0;color:var(--text);font-size:13px;">CBC Blood Test Report uploaded for <b>Amit Sharma</b></p>
+              </div>
+              <div class="timeline-item">
+                <span class="text-xs text-soft" style="font-weight:600;">22 Sep 2026</span>
+                <p style="margin:2px 0 0;color:var(--text);font-size:13px;">Prescription renewed by Dr. Neha Kulkarni</p>
+              </div>
+              <div class="timeline-item">
+                <span class="text-xs text-soft" style="font-weight:600;">18 Sep 2026</span>
+                <p style="margin:2px 0 0;color:var(--text);font-size:13px;">Chest X-Ray image added to Medical Records</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Log Vitals Modal -->
+<div class="modal-overlay" id="logVitalsModal">
+  <div class="modal" style="max-width:500px;padding:26px;">
+    <div class="flex justify-between items-center mb-16 pb-12 border-b">
+      <div class="flex items-center gap-16">
+        <div style="width:38px;height:38px;border-radius:10px;background:var(--primary-subtle);color:var(--primary);display:flex;align-items:center;justify-content:center;margin-right:4px;flex-shrink:0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div>
+          <h3 style="margin:0;font-size:1.15rem;">Record Health Vitals</h3>
+          <p class="text-soft text-xs mb-0" style="margin-top:2px;">Logged readings sync to your personal electronic health record</p>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="closeLogVitalsModal()">✕</button>
+    </div>
+
+    <!-- Vital Type Selector -->
+    <div style="display:flex;background:var(--bg-subtle);padding:4px;border-radius:10px;margin-bottom:18px;border:1px solid var(--border-subtle);">
+      <button type="button" class="btn btn-sm btn-block" id="modalTabBP" onclick="switchModalVital('bp')" style="background:var(--surface);box-shadow:var(--shadow-xs);font-weight:600;color:var(--primary);">
+        Blood Pressure
+      </button>
+      <button type="button" class="btn btn-sm btn-block" id="modalTabSugar" onclick="switchModalVital('glucose')" style="background:transparent;box-shadow:none;font-weight:500;color:var(--text-soft);">
+        Blood Sugar
+      </button>
+      <button type="button" class="btn btn-sm btn-block" id="modalTabPulse" onclick="switchModalVital('pulse')" style="background:transparent;box-shadow:none;font-weight:500;color:var(--text-soft);">
+        Heart Rate
+      </button>
+    </div>
+
+    <form id="logVitalsForm" onsubmit="handleLogVitalSubmit(event)">
+      <!-- Blood Pressure Inputs -->
+      <div id="vitalsInputBP">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;" class="mb-14">
+          <div class="form-group">
+            <label class="form-label" style="font-size:12.5px;font-weight:600;">Systolic (mmHg) *</label>
+            <input type="number" id="inputSystolic" class="form-control" placeholder="e.g. 120" min="70" max="240" required value="120" oninput="evaluateBP()">
+          </div>
+          <div class="form-group">
+            <label class="form-label" style="font-size:12.5px;font-weight:600;">Diastolic (mmHg) *</label>
+            <input type="number" id="inputDiastolic" class="form-control" placeholder="e.g. 80" min="40" max="140" required value="80" oninput="evaluateBP()">
+          </div>
+        </div>
+        <div id="bpFeedback" style="padding:10px 12px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:8px;font-size:12.5px;color:var(--success-dark);margin-bottom:14px;">
+          ✓ <b>Normal &amp; Optimal:</b> Within standard clinical baseline (&lt; 120/80 mmHg).
+        </div>
+      </div>
+
+      <!-- Blood Sugar Inputs -->
+      <div id="vitalsInputSugar" style="display:none;">
+        <div class="form-group mb-14">
+          <label class="form-label" style="font-size:12.5px;font-weight:600;">Fasting Blood Sugar (mg/dL) *</label>
+          <input type="number" id="inputSugar" class="form-control" placeholder="e.g. 94" min="40" max="400" value="94" oninput="evaluateSugar()">
+        </div>
+        <div id="sugarFeedback" style="padding:10px 12px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:8px;font-size:12.5px;color:var(--success-dark);margin-bottom:14px;">
+          ✓ <b>Normal Range:</b> 70 – 99 mg/dL (Fasting standard).
+        </div>
+      </div>
+
+      <!-- Heart Rate Inputs -->
+      <div id="vitalsInputPulse" style="display:none;">
+        <div class="form-group mb-14">
+          <label class="form-label" style="font-size:12.5px;font-weight:600;">Resting Heart Rate (BPM) *</label>
+          <input type="number" id="inputPulse" class="form-control" placeholder="e.g. 72" min="40" max="200" value="72" oninput="evaluatePulse()">
+        </div>
+        <div id="pulseFeedback" style="padding:10px 12px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:8px;font-size:12.5px;color:var(--success-dark);margin-bottom:14px;">
+          ✓ <b>Good Rhythm:</b> 60 – 100 BPM resting pulse rate.
+        </div>
+      </div>
+
+      <div class="form-group mb-16">
+        <label class="form-label" style="font-size:12px;color:var(--text-soft);">Optional Clinical Notes</label>
+        <input type="text" id="vitalsNotes" class="form-control" placeholder="e.g. Morning reading taken before breakfast" style="font-size:13px;">
+      </div>
+
+      <div class="flex gap-12 pt-8 border-t">
+        <button type="button" class="btn btn-secondary btn-block" onclick="closeLogVitalsModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-block">Save Vitals Reading</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="toast-stack"></div>
+<script src="../assets/js/app.js"></script>
+
+<script>
+// Health Vitals Interactive Chart using Chart.js & HDIMS.vitals
+let vitalsChart = null;
+let currentActiveVital = 'bp';
+let modalActiveVital = 'bp';
+
+function getVitalsData() {
+  if (window.HDIMS && HDIMS.vitals) {
+    return HDIMS.vitals.get();
+  }
+  return {
+    bp: { labels: ['19 Sep', '20 Sep', '21 Sep', '22 Sep', '23 Sep', '24 Sep', '25 Sep'], systolic: [122, 120, 118, 124, 121, 119, 120], diastolic: [82, 80, 78, 83, 81, 79, 80] },
+    glucose: { labels: ['19 Sep', '20 Sep', '21 Sep', '22 Sep', '23 Sep', '24 Sep', '25 Sep'], values: [96, 92, 98, 95, 91, 93, 94] },
+    pulse: { labels: ['19 Sep', '20 Sep', '21 Sep', '22 Sep', '23 Sep', '24 Sep', '25 Sep'], values: [74, 71, 75, 72, 70, 73, 72] }
+  };
+}
+
+function buildChartDataset(type) {
+  const data = getVitalsData();
+  if (type === 'bp') {
+    return {
+      labels: data.bp.labels,
+      datasets: [
+        {
+          label: 'Systolic (mmHg)',
+          data: data.bp.systolic,
+          borderColor: '#1677FF',
+          backgroundColor: 'rgba(22, 119, 255, 0.1)',
+          tension: 0.35,
+          fill: true,
+          pointBackgroundColor: '#1677FF',
+          pointRadius: 4
+        },
+        {
+          label: 'Diastolic (mmHg)',
+          data: data.bp.diastolic,
+          borderColor: '#0284c7',
+          backgroundColor: 'transparent',
+          borderDash: [5, 5],
+          tension: 0.35,
+          pointBackgroundColor: '#0284c7',
+          pointRadius: 4
+        }
+      ]
+    };
+  } else if (type === 'glucose') {
+    return {
+      labels: data.glucose.labels,
+      datasets: [
+        {
+          label: 'Fasting Blood Sugar (mg/dL)',
+          data: data.glucose.values,
+          borderColor: '#10b981',
+          backgroundColor: 'rgba(16, 185, 129, 0.1)',
+          tension: 0.35,
+          fill: true,
+          pointBackgroundColor: '#10b981',
+          pointRadius: 4
+        }
+      ]
+    };
+  } else if (type === 'pulse') {
+    return {
+      labels: data.pulse.labels,
+      datasets: [
+        {
+          label: 'Resting Heart Rate (BPM)',
+          data: data.pulse.values,
+          borderColor: '#f59e0b',
+          backgroundColor: 'rgba(245, 158, 11, 0.1)',
+          tension: 0.35,
+          fill: true,
+          pointBackgroundColor: '#f59e0b',
+          pointRadius: 4
+        }
+      ]
+    };
+  }
+}
+
+function initVitalsChart() {
+  const canvas = document.getElementById('healthVitalsChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const gridColor = isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.05)';
+  const textColor = isDark ? '#94A3B8' : '#64748B';
+
+  vitalsChart = new Chart(ctx, {
+    type: 'line',
+    data: buildChartDataset('bp'),
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top',
+          align: 'end',
+          labels: {
+            boxWidth: 12,
+            boxHeight: 12,
+            usePointStyle: true,
+            color: textColor,
+            font: { family: 'Plus Jakarta Sans, sans-serif', size: 12 }
+          }
+        },
+        tooltip: {
+          backgroundColor: '#0B1220',
+          titleFont: { family: 'Plus Jakarta Sans, sans-serif', size: 12 },
+          bodyFont: { family: 'Plus Jakarta Sans, sans-serif', size: 12 },
+          padding: 10,
+          cornerRadius: 8
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: textColor, font: { family: 'Plus Jakarta Sans, sans-serif', size: 11 } }
+        },
+        y: {
+          grid: { color: gridColor },
+          ticks: { color: textColor, font: { family: 'Plus Jakarta Sans, sans-serif', size: 11 } }
+        }
+      }
+    }
+  });
+
+  refreshVitalsSummaryCards();
+}
+
+function refreshVitalsSummaryCards() {
+  const data = getVitalsData();
+  
+  // BP
+  if (data.bp && data.bp.last) {
+    const elVal = document.getElementById('summaryBPVal');
+    const elBadge = document.getElementById('summaryBPBadge');
+    if (elVal) elVal.innerHTML = `${data.bp.last.systolic} / ${data.bp.last.diastolic} <span style="font-size:12px;font-weight:500;color:var(--text-soft);">mmHg</span>`;
+    if (elBadge) {
+      elBadge.textContent = data.bp.last.status;
+      elBadge.className = data.bp.last.status.includes('High') ? 'badge badge-danger' : (data.bp.last.status.includes('Pre') ? 'badge badge-warning' : 'badge badge-success');
+    }
+  }
+
+  // Sugar
+  if (data.glucose && data.glucose.last) {
+    const elVal = document.getElementById('summarySugarVal');
+    const elBadge = document.getElementById('summarySugarBadge');
+    if (elVal) elVal.innerHTML = `${data.glucose.last.value} <span style="font-size:12px;font-weight:500;color:var(--text-soft);">mg/dL</span>`;
+    if (elBadge) {
+      elBadge.textContent = data.glucose.last.status;
+      elBadge.className = data.glucose.last.status.includes('Diabetic') ? 'badge badge-danger' : (data.glucose.last.status.includes('Impaired') ? 'badge badge-warning' : 'badge badge-success');
+    }
+  }
+
+  // Pulse
+  if (data.pulse && data.pulse.last) {
+    const elVal = document.getElementById('summaryPulseVal');
+    const elBadge = document.getElementById('summaryPulseBadge');
+    if (elVal) elVal.innerHTML = `${data.pulse.last.value} <span style="font-size:12px;font-weight:500;color:var(--text-soft);">BPM</span>`;
+    if (elBadge) {
+      elBadge.textContent = data.pulse.last.status;
+      elBadge.className = data.pulse.last.status.includes('High') ? 'badge badge-warning' : 'badge badge-success';
+    }
+  }
+}
+
+function switchVitals(type) {
+  currentActiveVital = type;
+  ['bp', 'glucose', 'pulse'].forEach(t => {
+    const btn = document.getElementById('vitalsTab' + t.charAt(0).toUpperCase() + t.slice(1));
+    if (btn) {
+      btn.className = (t === type) ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-ghost';
+    }
+  });
+
+  if (vitalsChart) {
+    vitalsChart.data = buildChartDataset(type);
+    vitalsChart.update();
+  }
+}
+
+/* --- Modal Functions --- */
+function openLogVitalsModal() {
+  document.getElementById('logVitalsModal').classList.add('open');
+}
+
+function closeLogVitalsModal() {
+  document.getElementById('logVitalsModal').classList.remove('open');
+}
+
+function switchModalVital(type) {
+  modalActiveVital = type;
+  const tabBP = document.getElementById('modalTabBP');
+  const tabSugar = document.getElementById('modalTabSugar');
+  const tabPulse = document.getElementById('modalTabPulse');
+
+  const divBP = document.getElementById('vitalsInputBP');
+  const divSugar = document.getElementById('vitalsInputSugar');
+  const divPulse = document.getElementById('vitalsInputPulse');
+
+  [tabBP, tabSugar, tabPulse].forEach(t => {
+    t.style.background = 'transparent';
+    t.style.boxShadow = 'none';
+    t.style.color = 'var(--text-soft)';
+    t.style.fontWeight = '500';
+  });
+
+  const activeTab = type === 'bp' ? tabBP : (type === 'glucose' ? tabSugar : tabPulse);
+  activeTab.style.background = 'var(--surface)';
+  activeTab.style.boxShadow = 'var(--shadow-xs)';
+  activeTab.style.color = 'var(--primary)';
+  activeTab.style.fontWeight = '600';
+
+  divBP.style.display = type === 'bp' ? 'block' : 'none';
+  divSugar.style.display = type === 'glucose' ? 'block' : 'none';
+  divPulse.style.display = type === 'pulse' ? 'block' : 'none';
+}
+
+function evaluateBP() {
+  const sys = Number(document.getElementById('inputSystolic').value) || 0;
+  const dia = Number(document.getElementById('inputDiastolic').value) || 0;
+  const fb = document.getElementById('bpFeedback');
+  if (sys >= 140 || dia >= 90) {
+    fb.style.background = 'rgba(239, 68, 68, 0.08)';
+    fb.style.borderColor = 'rgba(239, 68, 68, 0.25)';
+    fb.style.color = 'var(--danger)';
+    fb.innerHTML = '⚠️ <b>Stage 1/2 Hypertension:</b> Reading is elevated. Consider consulting Dr. Rahul.';
+  } else if (sys >= 130 || dia >= 85) {
+    fb.style.background = 'rgba(245, 158, 11, 0.08)';
+    fb.style.borderColor = 'rgba(245, 158, 11, 0.25)';
+    fb.style.color = 'var(--warning-dark)';
+    fb.innerHTML = 'ℹ️ <b>Pre-hypertension:</b> Slightly above optimal. Maintain low salt intake.';
+  } else {
+    fb.style.background = 'rgba(16, 185, 129, 0.08)';
+    fb.style.borderColor = 'rgba(16, 185, 129, 0.2)';
+    fb.style.color = 'var(--success-dark)';
+    fb.innerHTML = '✓ <b>Normal & Optimal:</b> Within standard clinical baseline (&lt; 120/80 mmHg).';
+  }
+}
+
+function evaluateSugar() {
+  const sugar = Number(document.getElementById('inputSugar').value) || 0;
+  const fb = document.getElementById('sugarFeedback');
+  if (sugar >= 126) {
+    fb.style.background = 'rgba(239, 68, 68, 0.08)';
+    fb.style.borderColor = 'rgba(239, 68, 68, 0.25)';
+    fb.style.color = 'var(--danger)';
+    fb.innerHTML = '⚠️ <b>Elevated Fasting Glucose (&ge;126 mg/dL):</b> Above normal target. Share with physician.';
+  } else if (sugar >= 100) {
+    fb.style.background = 'rgba(245, 158, 11, 0.08)';
+    fb.style.borderColor = 'rgba(245, 158, 11, 0.25)';
+    fb.style.color = 'var(--warning-dark)';
+    fb.innerHTML = 'ℹ️ <b>Impaired Fasting Glucose:</b> 100 – 125 mg/dL. Monitor lifestyle and carbohydrate intake.';
+  } else {
+    fb.style.background = 'rgba(16, 185, 129, 0.08)';
+    fb.style.borderColor = 'rgba(16, 185, 129, 0.2)';
+    fb.style.color = 'var(--success-dark)';
+    fb.innerHTML = '✓ <b>Normal Range:</b> 70 – 99 mg/dL (Fasting standard).';
+  }
+}
+
+function evaluatePulse() {
+  const pulse = Number(document.getElementById('inputPulse').value) || 0;
+  const fb = document.getElementById('pulseFeedback');
+  if (pulse > 100) {
+    fb.style.background = 'rgba(245, 158, 11, 0.08)';
+    fb.style.borderColor = 'rgba(245, 158, 11, 0.25)';
+    fb.style.color = 'var(--warning-dark)';
+    fb.innerHTML = 'ℹ️ <b>Elevated Pulse (&gt;100 BPM):</b> Mild tachycardia. Ensure rest and hydration.';
+  } else if (pulse < 60) {
+    fb.style.background = 'rgba(245, 158, 11, 0.08)';
+    fb.style.borderColor = 'rgba(245, 158, 11, 0.25)';
+    fb.style.color = 'var(--warning-dark)';
+    fb.innerHTML = 'ℹ️ <b>Low Pulse (&lt;60 BPM):</b> Bradycardia. Typical in athletic adults or during deep rest.';
+  } else {
+    fb.style.background = 'rgba(16, 185, 129, 0.08)';
+    fb.style.borderColor = 'rgba(16, 185, 129, 0.2)';
+    fb.style.color = 'var(--success-dark)';
+    fb.innerHTML = '✓ <b>Good Rhythm:</b> 60 – 100 BPM resting pulse rate.';
+  }
+}
+
+function handleLogVitalSubmit(e) {
+  e.preventDefault();
+  if (!window.HDIMS || !HDIMS.vitals) return;
+
+  if (modalActiveVital === 'bp') {
+    const sys = document.getElementById('inputSystolic').value;
+    const dia = document.getElementById('inputDiastolic').value;
+    HDIMS.vitals.log('bp', { systolic: sys, diastolic: dia });
+    HDIMS.toast(`✓ Blood Pressure ${sys}/${dia} mmHg logged to EHR`, 'success');
+    switchVitals('bp');
+  } else if (modalActiveVital === 'glucose') {
+    const val = document.getElementById('inputSugar').value;
+    HDIMS.vitals.log('glucose', { value: val });
+    HDIMS.toast(`✓ Fasting Blood Sugar ${val} mg/dL logged to EHR`, 'success');
+    switchVitals('glucose');
+  } else if (modalActiveVital === 'pulse') {
+    const val = document.getElementById('inputPulse').value;
+    HDIMS.vitals.log('pulse', { value: val });
+    HDIMS.toast(`✓ Resting Heart Rate ${val} BPM logged to EHR`, 'success');
+    switchVitals('pulse');
+  }
+
+  refreshVitalsSummaryCards();
+  closeLogVitalsModal();
+}
+
+function renderDashboardRecords() {
+  const tbody = document.getElementById('dashRecentRecordsTbody');
+  const cards = document.getElementById('dashRecentCards');
+  if (!window.HDIMS || !HDIMS.records) return;
+
+  const records = HDIMS.records.get();
+  if (!records || records.length === 0) return;
+
+  const topRecords = records.slice(0, 3);
+
+  if (tbody) {
+    tbody.innerHTML = topRecords.map(r => {
+      const ext = (r.name.split('.').pop() || 'PDF').toUpperCase();
+      const isImg = ['JPG', 'JPEG', 'PNG'].includes(ext) || r.type === 'IMG';
+      const isRx = r.category === 'rx' || r.type === 'RX';
+      const badgeClass = isImg ? 'img' : isRx ? 'rx' : 'pdf';
+      const badgeText = isImg ? 'IMG' : isRx ? 'RX' : 'PDF';
+      const patientKey = r.patientKey || (r.patient && r.patient.includes('Self') ? 'Self' : r.patient && r.patient.includes('Mother') ? 'Mother' : r.patient && r.patient.includes('Father') ? 'Father' : 'Child');
+      const escapedName = escapeHtml(r.name);
+
+      return `
+        <tr>
+          <td>
+            <div class="doc-item">
+              <div class="doc-badge ${badgeClass}">${badgeText}</div>
+              <div class="doc-meta">
+                <div class="doc-name">${escapedName}</div>
+                <div class="doc-sub">${escapeHtml(r.type || ext)} · ${escapeHtml(r.fileSize || '1.4 MB')}</div>
+              </div>
+            </div>
+          </td>
+          <td><span class="badge badge-neutral" style="font-size:11px;">${escapeHtml(patientKey)}</span></td>
+          <td class="text-sm">${escapeHtml(r.date || 'Recent')}</td>
+          <td class="text-sm">${escapeHtml(r.doctor || 'Physician')}</td>
+          <td style="text-align:right;">
+            <a href="records.html" class="btn btn-ghost btn-sm" title="View Report" style="padding:6px 10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </a>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  if (cards) {
+    cards.innerHTML = topRecords.map(r => {
+      const ext = (r.name.split('.').pop() || 'PDF').toUpperCase();
+      const isImg = ['JPG', 'JPEG', 'PNG'].includes(ext) || r.type === 'IMG';
+      const isRx = r.category === 'rx' || r.type === 'RX';
+      const badgeClass = isImg ? 'img' : isRx ? 'rx' : 'pdf';
+      const badgeText = isImg ? 'IMG' : isRx ? 'RX' : 'PDF';
+      const patientKey = r.patientKey || 'Self';
+      const escapedName = escapeHtml(r.name);
+
+      return `
+        <div class="card" style="padding:14px;background:var(--bg-subtle);border-radius:12px;">
+          <div class="flex justify-between items-start mb-8">
+            <div class="doc-item">
+              <div class="doc-badge ${badgeClass}">${badgeText}</div>
+              <div class="doc-meta">
+                <div class="doc-name">${escapedName}</div>
+                <div class="doc-sub">${escapeHtml(r.type || ext)} · ${escapeHtml(r.fileSize || '1.4 MB')}</div>
+              </div>
+            </div>
+            <span class="badge badge-neutral" style="font-size:10.5px;">${escapeHtml(patientKey)}</span>
+          </div>
+          <div class="flex justify-between items-center pt-8" style="border-top:1px solid var(--border);font-size:12px;">
+            <span class="text-soft">${escapeHtml(r.date || 'Recent')} · ${escapeHtml(r.doctor || 'Physician')}</span>
+            <a href="records.html" class="btn btn-ghost btn-sm" style="font-size:12px;color:var(--primary);padding:4px 8px;">View &rarr;</a>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+}
+
+function escapeHtml(str) {
+  return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  initVitalsChart();
+  renderDashboardRecords();
+});
+</script>
+
+</body>
+</html>

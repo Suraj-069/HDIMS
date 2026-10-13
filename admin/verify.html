@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doctor Verification — HDIMS</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="../index.html" class="brand" style="text-decoration:none;">
+      <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="10" fill="url(#g1)"/><path d="M17 8v18M8 17h18" stroke="white" stroke-width="2.6" stroke-linecap="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#102A43"/><stop offset="1" stop-color="#1D6FE0"/></linearGradient></defs></svg>
+      <div class="brand-text"><b>HDIMS</b><span>Health Data Mgmt.</span></div>
+    </a>
+    <nav class="nav-group">
+      <a class="nav-item" href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Overview</span></a>
+      <a class="nav-item active" href="verify.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg><span>Doctor Verification</span></a>
+      <a class="nav-item" href="patients.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0113 0"/><path d="M17 9l1.5 1.5L21.5 7"/></svg><span>Patients</span></a>
+      <a class="nav-item" href="access.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><span>Access Sessions</span></a>
+      <a class="nav-item" href="analytics.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg><span>Analytics</span></a>
+      <a class="nav-item" href="settings.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg><span>Settings</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="nav-item" href="settings.html">
+        <span class="avatar" style="width:28px;height:28px;font-size:11px;border-radius:8px;">AC</span>
+        <span style="display:flex;flex-direction:column;line-height:1.25;">
+          <span style="color:#fff;font-size:13px;font-weight:600;">Admin Console</span>
+          <span style="font-size:11px;color:#6E80A0;">Super Admin</span>
+        </span>
+      </a>
+      <a class="nav-item" href="../login-doctor.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><span>Logout</span></a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="flex items-center gap-12">
+        <button class="hamburger" data-sidebar-toggle>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div>
+          <h2 style="margin:0;">Doctor Verification</h2>
+          <p class="text-soft text-sm mb-0" style="margin-top:2px;">Medical Council License &amp; Practitioner Validation</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-12">
+        <select class="lang-select" data-lang-select>
+          <option value="en">EN</option><option value="hi">हिं</option><option value="mr">मरा</option>
+        </select>
+        <button class="toggle-pill" data-theme-toggle>
+          <span class="t-label">Light</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="content fade-in-page">
+      <div class="section-head" style="margin-bottom:20px;">
+        <div>
+          <h1 style="font-size:1.85rem;margin:0 0 4px;">Practitioner Verification Pipeline</h1>
+          <p style="margin:0;color:var(--text-soft);font-size:14px;">Review state council credentials, license validity, and approve or reject clinical practitioner accounts.</p>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Bar -->
+      <div class="stat-grid" style="margin-bottom:24px;">
+        <div class="card stat-card">
+          <div class="stat-icon" style="background:var(--primary-subtle);color:var(--primary);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <div class="stat-value" id="statTotalDocs">4</div>
+            <div class="stat-label">Total Registrations</div>
+          </div>
+        </div>
+
+        <div class="card stat-card">
+          <div class="stat-icon" style="background:#fef3c7;color:#d97706;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="stat-value" id="statPendingDocs" style="color:#d97706;">3</div>
+            <div class="stat-label">Pending Verification</div>
+          </div>
+        </div>
+
+        <div class="card stat-card">
+          <div class="stat-icon" style="background:#dcfce7;color:#16a34a;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div>
+            <div class="stat-value" id="statApprovedDocs" style="color:#16a34a;">1</div>
+            <div class="stat-label">Verified &amp; Active</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="card" style="padding:16px 20px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+        <div class="flex items-center gap-10">
+          <button class="btn btn-sm btn-primary" id="filterAllBtn" onclick="filterDocs('all')">All Registrations</button>
+          <button class="btn btn-sm btn-ghost" id="filterPendingBtn" onclick="filterDocs('pending')">Pending Review</button>
+          <button class="btn btn-sm btn-ghost" id="filterApprovedBtn" onclick="filterDocs('approved')">Approved</button>
+        </div>
+        <div style="font-size:12.5px;color:var(--text-soft);">
+          Click <b>Approve</b> to immediately authorize clinician sign-in.
+        </div>
+      </div>
+
+      <!-- Verification Table -->
+      <div class="card table-wrap" style="padding:0;overflow-x:auto;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="min-width:200px;">Doctor Profile</th>
+              <th style="min-width:160px;">Council Reg No.</th>
+              <th style="min-width:160px;">State Medical Council</th>
+              <th style="min-width:160px;">Specialization</th>
+              <th style="min-width:120px;">Status</th>
+              <th style="min-width:190px;text-align:right;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="docVerifyTableBody">
+            <!-- Dynamically populated from HDIMS.auth.getDoctors() -->
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Doctor Application Details -->
+<div class="modal-overlay" id="docDetailModal">
+  <div class="modal" style="max-width:540px;padding:26px;">
+    <div class="flex justify-between items-center mb-16">
+      <h3 style="margin:0;font-size:1.25rem;" id="modalDocTitle">Practitioner Credentials</h3>
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('docDetailModal').classList.remove('open')" style="padding:4px;">✕</button>
+    </div>
+    
+    <div style="background:var(--bg-subtle);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:20px;">
+      <div class="flex items-center gap-16 mb-16">
+        <div class="avatar" id="modalDocAvatar" style="width:48px;height:48px;font-size:15px;background:var(--primary);color:#fff;border-radius:12px;margin-right:6px;flex-shrink:0;">DR</div>
+        <div>
+          <b style="font-size:16px;color:var(--text);" id="modalDocName">Dr. Name</b>
+          <span style="display:block;font-size:13px;color:var(--text-soft);" id="modalDocSub">Specialization · Degree</span>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
+        <div><span class="text-soft">Council Reg ID:</span> <b style="display:block;color:var(--text);" id="modalDocReg">MMC-XXXX</b></div>
+        <div><span class="text-soft">State Council:</span> <b style="display:block;color:var(--text);" id="modalDocCouncil">Council Name</b></div>
+        <div><span class="text-soft">Hospital / Clinic:</span> <b style="display:block;color:var(--text);" id="modalDocHosp">Hospital</b></div>
+        <div><span class="text-soft">Consultation Fee:</span> <b style="display:block;color:var(--text);" id="modalDocFee">₹600</b></div>
+        <div><span class="text-soft">Official Email:</span> <b style="display:block;color:var(--text);" id="modalDocEmail">email@doc.org</b></div>
+        <div><span class="text-soft">Mobile Number:</span> <b style="display:block;color:var(--text);" id="modalDocPhone">+91 XXXXX</b></div>
+      </div>
+
+      <div style="margin-top:16px;padding-top:14px;border-top:1px dashed var(--border);">
+        <span class="text-xs text-soft" style="display:block;margin-bottom:6px;">Verification Document:</span>
+        <div style="display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 14px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" style="margin-right:4px;flex-shrink:0;"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+          <span style="font-size:12.5px;font-weight:600;flex:1;">Medical_Council_Registration_Certificate.pdf</span>
+          <span class="badge badge-success" style="font-size:11px;">Validated</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex gap-12" id="modalActionButtons">
+      <!-- Injected dynamically -->
+    </div>
+  </div>
+</div>
+
+<div id="toast-stack"></div>
+<script src="../assets/js/app.js"></script>
+<script>
+  let currentFilter = 'all';
+
+  function renderTable(){
+    const docs = HDIMS.auth.getDoctors();
+    const tbody = document.getElementById('docVerifyTableBody');
+    if(!tbody) return;
+    tbody.innerHTML = '';
+
+    // Update stats
+    const total = docs.length;
+    const pending = docs.filter(d => d.status === 'Pending Review' || !d.verified).length;
+    const approved = docs.filter(d => d.status === 'Approved' && d.verified).length;
+
+    document.getElementById('statTotalDocs').textContent = total;
+    document.getElementById('statPendingDocs').textContent = pending;
+    document.getElementById('statApprovedDocs').textContent = approved;
+
+    const filtered = docs.filter(d => {
+      if(currentFilter === 'pending') return d.status === 'Pending Review' || !d.verified;
+      if(currentFilter === 'approved') return d.status === 'Approved' && d.verified;
+      return true;
+    });
+
+    if(filtered.length === 0){
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:32px;color:var(--text-soft);">No doctor records matching filter.</td></tr>';
+      return;
+    }
+
+    filtered.forEach(doc => {
+      const isApproved = doc.status === 'Approved' && doc.verified;
+      const isRejected = doc.status === 'Rejected';
+      const statusBadge = isApproved
+        ? '<span class="badge badge-success">Approved</span>'
+        : (isRejected ? '<span class="badge badge-danger">Rejected</span>' : '<span class="badge badge-pending">Pending Review</span>');
+
+      const initials = doc.name.replace('Dr. ', '').split(' ').map(w => w[0]).join('').slice(0,2) || 'DR';
+
+      const tr = document.createElement('tr');
+      tr.id = 'docRow_' + doc.regId.replace(/[^A-Za-z0-9]/g, '');
+      tr.innerHTML = `
+        <td>
+          <div class="flex items-center gap-14">
+            <span class="avatar" style="width:36px;height:36px;font-size:12px;background:var(--primary-subtle);color:var(--primary);border-radius:10px;margin-right:4px;">${initials}</span>
+            <div>
+              <div style="font-weight:600;color:var(--text);font-size:13.5px;">${doc.name}</div>
+              <div class="text-soft text-xs">${doc.degree || 'MBBS'} · ${doc.hospital || 'Hospital'}</div>
+            </div>
+          </div>
+        </td>
+        <td><b style="font-family:monospace;font-size:13px;color:var(--text);">${doc.regId}</b></td>
+        <td class="text-sm">${doc.council || 'State Medical Council'}</td>
+        <td class="text-sm">${doc.spec || 'General Physician'}</td>
+        <td>${statusBadge}</td>
+        <td style="text-align:right;">
+          <div class="flex gap-6 justify-end">
+            <button class="btn btn-ghost btn-sm" onclick="inspectDoc('${doc.regId}')">View</button>
+            ${!isApproved ? `<button class="btn btn-sm" style="background:rgba(28,154,108,.14);color:var(--success);border:none;font-weight:600;" onclick="approveDoc('${doc.regId}')">Approve</button>` : ''}
+            ${!isRejected ? `<button class="btn btn-ghost btn-sm" style="color:var(--danger);" onclick="rejectDoc('${doc.regId}')">Reject</button>` : ''}
+          </div>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function filterDocs(type){
+    currentFilter = type;
+    document.getElementById('filterAllBtn').className = type === 'all' ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-ghost';
+    document.getElementById('filterPendingBtn').className = type === 'pending' ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-ghost';
+    document.getElementById('filterApprovedBtn').className = type === 'approved' ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-ghost';
+    renderTable();
+  }
+
+  function approveDoc(regId){
+    const res = HDIMS.auth.approveDoctor(regId);
+    if(res.success){
+      HDIMS.toast(res.doctor.name + ' verified and approved successfully!', 'success');
+      renderTable();
+      document.getElementById('docDetailModal').classList.remove('open');
+    }
+  }
+
+  function rejectDoc(regId){
+    const res = HDIMS.auth.rejectDoctor(regId);
+    if(res.success){
+      HDIMS.toast(res.doctor.name + ' registration rejected.', 'danger');
+      renderTable();
+      document.getElementById('docDetailModal').classList.remove('open');
+    }
+  }
+
+  function inspectDoc(regId){
+    const docs = HDIMS.auth.getDoctors();
+    const cleanTarget = regId.trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
+    const doc = docs.find(d => (d.regId || '').toUpperCase().replace(/[^A-Z0-9]/g,'') === cleanTarget);
+    if(!doc) return;
+
+    document.getElementById('modalDocName').textContent = doc.name;
+    document.getElementById('modalDocSub').textContent = (doc.spec || 'Doctor') + ' · ' + (doc.degree || 'MBBS');
+    document.getElementById('modalDocReg').textContent = doc.regId;
+    document.getElementById('modalDocCouncil').textContent = doc.council || 'State Council';
+    document.getElementById('modalDocHosp').textContent = (doc.hospital || 'Private Practice') + (doc.city ? (', ' + doc.city) : '');
+    document.getElementById('modalDocFee').textContent = doc.fee || '₹600';
+    document.getElementById('modalDocEmail').textContent = doc.email || 'N/A';
+    document.getElementById('modalDocPhone').textContent = doc.phone || 'N/A';
+
+    const initials = doc.name.replace('Dr. ', '').split(' ').map(w => w[0]).join('').slice(0,2) || 'DR';
+    document.getElementById('modalDocAvatar').textContent = initials;
+
+    const actionDiv = document.getElementById('modalActionButtons');
+    actionDiv.innerHTML = `
+      <button class="btn btn-secondary btn-block" onclick="document.getElementById('docDetailModal').classList.remove('open')">Close</button>
+      <button class="btn btn-primary btn-block" onclick="approveDoc('${doc.regId}')">Authorize &amp; Approve</button>
+    `;
+
+    document.getElementById('docDetailModal').classList.add('open');
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    renderTable();
+  });
+</script>
+</body>
+</html>

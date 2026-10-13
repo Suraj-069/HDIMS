@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shared Access — HDIMS</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="../index.html" class="brand" style="text-decoration:none;">
+      <svg width="32" height="32" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="10" fill="url(#g1)"/><path d="M17 8v18M8 17h18" stroke="white" stroke-width="2.6" stroke-linecap="round"/><defs><linearGradient id="g1" x1="0" y1="0" x2="34" y2="34"><stop stop-color="#0B1220"/><stop offset="1" stop-color="#1677FF"/></linearGradient></defs></svg>
+      <div class="brand-text"><b>HDIMS</b><span>Health Data Mgmt.</span></div>
+    </a>
+    <nav class="nav-group">
+      <a class="nav-item" href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg><span>Dashboard</span></a>
+      <a class="nav-item" href="family.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="8" r="2.4"/><path d="M2 21v-1a6 6 0 0112 0v1"/><path d="M14.5 21v-1a4.5 4.5 0 016 0"/></svg><span>My Family</span></a>
+      <a class="nav-item" href="records.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg><span>Medical Records</span></a>
+      <a class="nav-item" href="doctors.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span>Doctors</span></a>
+      <a class="nav-item" href="appointments.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg><span>Appointments</span></a>
+      <a class="nav-item active" href="access.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg><span>Shared Access</span></a>
+      <a class="nav-item" href="prescriptions.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 5H8z"/><path d="M8 8v9a3 3 0 003 3h2a3 3 0 003-3V8"/><path d="M9 14h6"/></svg><span>Prescriptions</span></a>
+      <a class="nav-item" href="ai-health.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.2L20 9l-5.6 1.8L12 16l-2.4-5.2L4 9l5.6-1.8z"/><path d="M19 15l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9z"/></svg><span>AI Health</span></a>
+      <a class="nav-item" href="notifications.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg><span>Notifications</span></a>
+      <a class="nav-item" href="settings.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.6-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg><span>Settings</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="nav-item" href="settings.html" style="padding:10px 12px;background:rgba(255,255,255,0.04);border-radius:12px;margin-bottom:8px;">
+        <span class="avatar" style="width:34px;height:34px;font-size:12px;border-radius:10px;background:var(--primary);color:#fff;">AS</span>
+        <span style="display:flex;flex-direction:column;line-height:1.25;">
+          <span style="color:#fff;font-size:13.5px;font-weight:600;">Amit Sharma</span>
+          <span style="font-size:11px;color:#94A3B8;">Patient · PAT-2026-000123</span>
+        </span>
+      </a>
+      <a class="nav-item" href="../login-patient.html" style="color:#ef4444;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg><span>Sign Out</span></a>
+    </div>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div class="flex items-center gap-12">
+        <button class="hamburger" data-sidebar-toggle>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <div><h2 style="margin:0;font-size:1.25rem;">Access Control Center</h2><p class="text-soft text-sm mb-0" style="margin-top:2px;">Zero-Trust Patient Consent Management</p></div>
+      </div>
+      <div class="flex items-center gap-12">
+        <select class="lang-select" data-lang-select>
+          <option value="en">EN</option><option value="hi">हिं</option><option value="mr">मरा</option>
+        </select>
+        <button class="toggle-pill" data-theme-toggle>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <span class="t-label">Light</span>
+        </button>
+        <a href="notifications.html" class="btn btn-ghost btn-sm" style="position:relative;width:38px;height:38px;padding:0;display:flex;align-items:center;justify-content:center;border-radius:10px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="content fade-in-page">
+      
+      <div class="section-head" style="margin-bottom:24px;">
+        <div>
+          <h1 style="font-size:1.85rem;letter-spacing:-0.03em;margin:0 0 4px;">Shared Medical Access</h1>
+          <p style="margin:0;color:var(--text-soft);font-size:14px;">Control exactly who can view your sensitive health records, what categories are visible, and revoke access instantly at any time.</p>
+        </div>
+        <button class="btn btn-primary" onclick="document.getElementById('instantWalkinModal').classList.add('open')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Generate Walk-in OTP
+        </button>
+      </div>
+
+      <!-- Live Active Access Console -->
+      <div class="card" id="activeAccessBanner" style="padding:28px;background:linear-gradient(135deg, #0B1220 0%, #16243d 100%);color:#fff;border-radius:18px;margin-bottom:28px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.1);box-shadow:0 12px 30px rgba(11,18,32,0.25);">
+        <div style="position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle, rgba(22,119,255,0.25) 0%, transparent 70%);border-radius:50%;pointer-events:none;"></div>
+        
+        <div class="flex justify-between items-start" style="flex-wrap:wrap;gap:24px;position:relative;z-index:2;">
+          <div>
+            <div class="flex items-center gap-8 mb-8">
+              <span class="badge" id="activeAccessBadge" style="background:rgba(16, 185, 129, 0.2);color:#34d399;border:1px solid rgba(52, 211, 153, 0.3);font-size:11px;font-weight:700;letter-spacing:0.04em;">
+                <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#10b981;margin-right:6px;"></span>
+                ACTIVE TEMPORARY SESSION
+              </span>
+              <span style="font-size:12px;color:#94a3b8;">End-to-End Encrypted</span>
+            </div>
+            
+            <div class="flex items-center gap-16 mt-8 mb-12">
+              <span class="avatar" style="width:50px;height:50px;font-size:16px;background:linear-gradient(135deg, #1677FF, #0284c7);color:#fff;border-radius:14px;box-shadow:0 4px 12px rgba(22,119,255,0.3);margin-right:6px;flex-shrink:0;">RS</span>
+              <div>
+                <h3 style="color:#fff;margin:0;font-size:1.35rem;letter-spacing:-0.02em;" id="activeDoctorName">Dr. Rahul Sharma</h3>
+                <div style="color:#94A3B8;font-size:13px;margin-top:2px;">Senior Cardiologist · Apollo Hospitals · <span style="font-family:monospace;color:#cbd5e1;">DOC-2024-0091</span></div>
+              </div>
+            </div>
+
+            <div class="flex gap-8" style="flex-wrap:wrap;margin-top:16px;">
+              <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);padding:4px 10px;border-radius:8px;font-size:12px;color:#e2e8f0;">✓ Blood Reports</span>
+              <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);padding:4px 10px;border-radius:8px;font-size:12px;color:#e2e8f0;">✓ Prescriptions</span>
+              <span style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);padding:4px 10px;border-radius:8px;font-size:12px;color:#e2e8f0;">✓ Diagnostic Scans</span>
+              <span style="background:rgba(255,255,255,0.04);border:1px dashed rgba(255,255,255,0.2);padding:4px 10px;border-radius:8px;font-size:12px;color:#94a3b8;">🔒 Personal Notes (Hidden)</span>
+            </div>
+          </div>
+
+          <div style="text-align:right;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:18px 24px;border-radius:14px;min-width:240px;">
+            <div style="font-size:12px;color:#94A3B8;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;" id="accessStatusLabel">Session Auto-Expires In</div>
+            <div class="countdown" id="accessTimer" style="color:#fff;font-family:monospace;font-size:2rem;font-weight:700;letter-spacing:0.05em;">00:47:32</div>
+            <p style="font-size:11.5px;color:#64748B;margin:4px 0 14px;">Access automatically terminates at countdown zero</p>
+            <button class="btn btn-danger btn-sm" id="revokeBtn" style="width:100%;justify-content:center;font-weight:600;" onclick="handleRevoke()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+              Revoke Access Immediately
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending Doctor Access Request -->
+      <div id="pendingSection">
+        <div class="section-head" id="pendingHead" style="margin-bottom:14px;">
+          <div>
+            <h2 style="font-size:1.25rem;margin:0;">Pending Access Requests</h2>
+            <p class="text-soft text-sm mb-0">Healthcare professionals requesting permission to review your health records</p>
+          </div>
+        </div>
+        <div id="pendingRequestsContainer">
+          <!-- Rendered dynamically from HDIMS.consent.getRequests() -->
+        </div>
+      </div>
+
+      <!-- Access History Audit Log -->
+      <div class="section-head" style="margin-bottom:14px;">
+        <div>
+          <h2 style="font-size:1.25rem;margin:0;">Access & Audit Log</h2>
+          <p class="text-soft text-sm mb-0">Complete historical record of medical data access sessions</p>
+        </div>
+      </div>
+
+      <div class="card table-wrap" style="padding:0;overflow-x:auto;">
+        <table class="table access-table">
+          <thead>
+            <tr>
+              <th style="min-width:220px;">Doctor / Professional</th>
+              <th style="min-width:160px;">Permitted Records</th>
+              <th style="min-width:140px;">Granted Duration</th>
+              <th style="min-width:130px;">Initiated Date</th>
+              <th style="min-width:120px;">Status</th>
+              <th style="min-width:110px;text-align:right;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="accessHistoryBody">
+            <tr id="rowDrRahul">
+              <td>
+                <div class="flex items-center gap-14">
+                  <span class="avatar" style="width:34px;height:34px;font-size:11px;background:#e0f2fe;color:#0284c7;border-radius:8px;margin-right:4px;flex-shrink:0;">RS</span>
+                  <div>
+                    <div style="font-weight:600;color:var(--text);font-size:13.5px;">Dr. Rahul Sharma</div>
+                    <div class="text-soft text-xs">Apollo Hospitals · Cardiologist</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-sm">Blood Reports, Prescriptions</td>
+              <td class="text-sm">1 Hour (Active)</td>
+              <td class="text-sm">Today, 09:02 AM</td>
+              <td><span class="badge badge-active" id="badgeDrRahul">Active</span></td>
+              <td style="text-align:right;">
+                <button class="btn btn-ghost btn-sm" style="color:var(--danger);padding:4px 8px;font-size:12px;" onclick="handleRevoke()">Revoke</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="flex items-center gap-14">
+                  <span class="avatar" style="width:34px;height:34px;font-size:11px;background:#f1f5f9;color:#475569;border-radius:8px;margin-right:4px;flex-shrink:0;">AM</span>
+                  <div>
+                    <div style="font-weight:600;color:var(--text);font-size:13.5px;">Dr. Arvind Menon</div>
+                    <div class="text-soft text-xs">Fortis Hospital · Orthopedic</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-sm">Previous Diagnosis, MRI Scans</td>
+              <td class="text-sm">30 Minutes</td>
+              <td class="text-sm">14 Sep 2026</td>
+              <td><span class="badge badge-neutral">Expired</span></td>
+              <td style="text-align:right;">
+                <span class="text-xs text-soft">Closed</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="flex items-center gap-14">
+                  <span class="avatar" style="width:34px;height:34px;font-size:11px;background:#f1f5f9;color:#475569;border-radius:8px;margin-right:4px;flex-shrink:0;">SD</span>
+                  <div>
+                    <div style="font-weight:600;color:var(--text);font-size:13.5px;">Dr. Sangeeta Deshmukh</div>
+                    <div class="text-soft text-xs">Max Healthcare · Dermatology</div>
+                  </div>
+                </div>
+              </td>
+              <td class="text-sm">All Medical Records</td>
+              <td class="text-sm">2 Hours</td>
+              <td class="text-sm">02 Aug 2026</td>
+              <td><span class="badge badge-neutral">Expired</span></td>
+              <td style="text-align:right;">
+                <span class="text-xs text-soft">Closed</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Modal 1: Configure Permissions & Duration -->
+<div class="modal-overlay" id="permModal">
+  <div class="modal" style="max-width:480px;padding:26px;">
+    <div class="flex justify-between items-center mb-16">
+      <h3 style="margin:0;font-size:1.25rem;">Grant Medical Access</h3>
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('permModal').classList.remove('open')" style="padding:4px;">✕</button>
+    </div>
+    <p class="text-sm text-soft" style="margin-bottom:20px;">
+      Specify exactly which record categories <b id="permDocNameDisplay" style="color:var(--text);">Dr. Rahul Sharma</b> may view and choose the access expiration window.
+    </p>
+    
+    <div class="field">
+      <label style="font-weight:600;margin-bottom:10px;display:block;">Record Categories to Authorize</label>
+      <div style="display:flex;flex-direction:column;gap:10px;background:var(--bg-subtle);padding:14px;border-radius:12px;border:1px solid var(--border);">
+        <label class="flex items-center gap-10 text-sm" style="cursor:pointer;">
+          <input type="checkbox" class="perm-category-check" value="Laboratory & Blood Reports" checked style="width:16px;height:16px;accent-color:var(--primary);">
+          <div><b>Laboratory &amp; Blood Reports</b> <div class="text-xs text-soft">CBC, Lipid Profile, Liver Panel</div></div>
+        </label>
+        <label class="flex items-center gap-10 text-sm" style="cursor:pointer;">
+          <input type="checkbox" class="perm-category-check" value="Doctor Prescriptions" checked style="width:16px;height:16px;accent-color:var(--primary);">
+          <div><b>Doctor Prescriptions</b> <div class="text-xs text-soft">Active and archived medicines</div></div>
+        </label>
+        <label class="flex items-center gap-10 text-sm" style="cursor:pointer;">
+          <input type="checkbox" class="perm-category-check" value="Clinical Diagnosis & Summaries" checked style="width:16px;height:16px;accent-color:var(--primary);">
+          <div><b>Clinical Diagnosis &amp; Summaries</b> <div class="text-xs text-soft">Previous hospital visit notes &amp; EHR</div></div>
+        </label>
+        <label class="flex items-center gap-10 text-sm" style="cursor:pointer;">
+          <input type="checkbox" class="perm-category-check" value="Diagnostic Scans & X-Rays" checked style="width:16px;height:16px;accent-color:var(--primary);">
+          <div><b>Diagnostic Imaging &amp; Scans</b> <div class="text-xs text-soft">X-Rays, ECG, CT, Ultrasound</div></div>
+        </label>
+        <label class="flex items-center gap-10 text-sm" style="cursor:pointer;">
+          <input type="checkbox" class="perm-category-check" value="Personal Health Notes" style="width:16px;height:16px;accent-color:var(--primary);">
+          <div><b>Personal Health Notes</b> <div class="text-xs text-soft">Private self-logged notes (Hidden by default)</div></div>
+        </label>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:16px;">
+      <label style="font-weight:600;margin-bottom:8px;display:block;">Auto-Expiry Duration</label>
+      <select class="input" id="permDurationSelect">
+        <option value="30">30 Minutes (Recommended for quick consultation)</option>
+        <option value="60" selected>1 Hour (Standard outpatient visit)</option>
+        <option value="120">2 Hours (Extensive diagnostic review)</option>
+        <option value="1440">24 Hours (In-patient / Day care)</option>
+      </select>
+    </div>
+
+    <div class="flex gap-12" style="margin-top:24px;">
+      <button class="btn btn-secondary btn-block" onclick="document.getElementById('permModal').classList.remove('open')">Cancel</button>
+      <button class="btn btn-primary btn-block" onclick="submitPermModal()">
+        Generate Access OTP &rarr;
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2: 6-Digit OTP Verification Display -->
+<div class="modal-overlay" id="otpModal">
+  <div class="modal" style="max-width:440px;text-align:center;padding:28px;">
+    <div style="width:52px;height:52px;border-radius:50%;background:var(--primary-subtle);color:var(--primary);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <h3 style="margin:0 0 6px;font-size:1.3rem;">Authorize Doctor Access</h3>
+    <p class="text-sm text-soft" id="otpModalSubtitle" style="margin:0 auto 20px;">Provide this single-use 6-digit verification code to the doctor to unlock your records.</p>
+    
+    <div class="otp-row" id="otpDisplayBoxes" style="margin-bottom:12px;justify-content:center;">
+      <input class="otp-box filled" id="otpBox0" value="6" readonly style="font-weight:700;font-size:1.3rem;">
+      <input class="otp-box filled" id="otpBox1" value="3" readonly style="font-weight:700;font-size:1.3rem;">
+      <input class="otp-box filled" id="otpBox2" value="8" readonly style="font-weight:700;font-size:1.3rem;">
+      <input class="otp-box filled" id="otpBox3" value="4" readonly style="font-weight:700;font-size:1.3rem;">
+      <input class="otp-box filled" id="otpBox4" value="2" readonly style="font-weight:700;font-size:1.3rem;">
+      <input class="otp-box filled" id="otpBox5" value="1" readonly style="font-weight:700;font-size:1.3rem;">
+    </div>
+
+    <div style="background:var(--bg-subtle);border-radius:10px;padding:8px 12px;display:inline-flex;align-items:center;gap:6px;margin-bottom:20px;">
+      <span class="text-xs text-soft">Code valid for:</span>
+      <span id="otpModalTimer" style="font-family:monospace;font-weight:700;color:var(--primary);font-size:13px;">09:59</span>
+    </div>
+
+    <div class="flex gap-12">
+      <button class="btn btn-secondary btn-block" onclick="document.getElementById('otpModal').classList.remove('open')">Close</button>
+      <button class="btn btn-primary btn-block" onclick="copyGeneratedOtp()">Copy 6-Digit OTP</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 3: Instant Walk-in OTP Generator (Self-Initiated) -->
+<div class="modal-overlay" id="instantWalkinModal">
+  <div class="modal" style="max-width:440px;text-align:center;padding:28px;">
+    <div style="width:52px;height:52px;border-radius:50%;background:#e0f2fe;color:#0284c7;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <h3 style="margin:0 0 6px;font-size:1.3rem;">Instant Walk-In Access OTP</h3>
+    <p class="text-sm text-soft" style="margin:0 auto 20px;">Share this code at any hospital reception or clinic desk to give the doctor immediate temporary access.</p>
+    
+    <div class="otp-row" style="margin-bottom:12px;justify-content:center;">
+      <input class="otp-box filled" value="9" readonly style="font-weight:700;font-size:1.3rem;">
+      <input class="otp-box filled" value="1" readonly style="font-weight:700;font-size:1.3rem;">
+      <input class="otp-box filled" value="5" readonly style="font-weight:700;font-size:1.3rem;">
+      <input class="otp-box filled" value="8" readonly style="font-weight:700;font-size:1.3rem;">
+      <input class="otp-box filled" value="3" readonly style="font-weight:700;font-size:1.3rem;">
+      <input class="otp-box filled" value="4" readonly style="font-weight:700;font-size:1.3rem;">
+    </div>
+
+    <div style="background:var(--bg-subtle);border-radius:10px;padding:8px 12px;display:inline-flex;align-items:center;gap:6px;margin-bottom:20px;">
+      <span class="text-xs text-soft">Valid for 15 minutes:</span>
+      <span style="font-family:monospace;font-weight:700;color:var(--primary);font-size:13px;">14:59</span>
+    </div>
+
+    <div class="flex gap-12">
+      <button class="btn btn-secondary btn-block" onclick="document.getElementById('instantWalkinModal').classList.remove('open')">Close</button>
+      <button class="btn btn-primary btn-block" onclick="document.getElementById('instantWalkinModal').classList.remove('open');navigator.clipboard && navigator.clipboard.writeText('915834');HDIMS.toast('Walk-in OTP 915834 copied to clipboard', 'success');">Copy OTP</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-stack"></div>
+<script src="../assets/js/app.js"></script>
+<script>
+  let patientCountdownTimer = null;
+  let currentApprovingReqId = null;
+  let currentGeneratedOtp = '638421';
+
+  document.addEventListener("DOMContentLoaded", function(){
+    syncPatientActiveSession();
+    renderPendingRequests();
+    HDIMS.startCountdown(document.getElementById("otpModalTimer"), 599);
+
+    // Sync any break-glass emergency logs from doctor portal
+    try {
+      const breakglassLogs = JSON.parse(localStorage.getItem('hdims_breakglass_logs') || '[]');
+      const tbody = document.getElementById('accessHistoryBody');
+      if (tbody && breakglassLogs.length > 0) {
+        breakglassLogs.forEach(log => {
+          const tr = document.createElement('tr');
+          tr.style.background = 'rgba(239, 68, 68, 0.04)';
+          tr.innerHTML = `
+            <td>
+              <div class="flex items-center gap-14">
+                <span class="avatar" style="width:34px;height:34px;font-size:11px;background:#fee2e2;color:#dc2626;border-radius:8px;margin-right:4px;flex-shrink:0;">ER</span>
+                <div>
+                  <div style="font-weight:600;color:var(--danger);font-size:13.5px;">${escapeHtml(log.doctor)} (ER Trauma)</div>
+                  <div class="text-soft text-xs">${escapeHtml(log.indication)}</div>
+                </div>
+              </div>
+            </td>
+            <td class="text-sm">Emergency Comprehensive EHR</td>
+            <td class="text-sm"><span style="color:var(--danger);font-weight:600;">Break-Glass Override</span></td>
+            <td class="text-sm">${escapeHtml(log.date)} ${escapeHtml(log.time)}</td>
+            <td><span class="badge badge-cancelled" style="background:#fee2e2;color:#dc2626;">Emergency Bypass</span></td>
+            <td style="text-align:right;">
+              <span class="text-xs" style="color:var(--danger);font-weight:600;">Logged with CMO</span>
+            </td>
+          `;
+          tbody.prepend(tr);
+        });
+      }
+    } catch(err){}
+
+    // Live cross-tab sync
+    window.addEventListener('storage', function(e){
+      if (e.key === 'hdims_active_consent_session_v1' || e.key === 'hdims_consent_requests_v1') {
+        syncPatientActiveSession();
+        renderPendingRequests();
+      }
+    });
+  });
+
+  function renderPendingRequests() {
+    const container = document.getElementById('pendingRequestsContainer');
+    if (!container || !window.HDIMS || !HDIMS.consent) return;
+
+    const all = HDIMS.consent.getRequests();
+    const pending = all.filter(r => r.status === 'PENDING' || r.status === 'OTP_GENERATED');
+
+    if (pending.length === 0) {
+      container.innerHTML = `
+        <div class="card" style="padding:22px;margin-bottom:28px;text-align:center;color:var(--text-soft);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin:0 auto 8px;color:var(--primary);opacity:0.6;"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <p style="margin:0;font-size:14px;">No pending doctor access requests at this moment.</p>
+          <span style="font-size:12px;color:var(--text-muted);">When a consulting doctor requests your records, it will appear here for approval.</span>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = pending.map(r => {
+      const initials = (r.doctorName || 'Dr.').split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
+      const isOtpGenerated = r.status === 'OTP_GENERATED' && r.otp;
+
+      return `
+        <div class="card" style="padding:22px;margin-bottom:20px;border-left:4px solid var(--primary);">
+          <div class="flex justify-between items-center" style="flex-wrap:wrap;gap:18px;">
+            <div class="flex items-center gap-16">
+              <span class="avatar" style="width:48px;height:48px;font-size:15px;background:#e0f2fe;color:#0284c7;border-radius:12px;font-weight:700;margin-right:6px;flex-shrink:0;">${initials}</span>
+              <div>
+                <div class="flex items-center gap-8">
+                  <b style="font-size:15px;color:var(--text);">${escapeHtml(r.doctorName)}</b>
+                  ${isOtpGenerated ? `
+                    <span class="badge badge-success" style="font-size:11px;">OTP Ready: ${r.otp}</span>
+                  ` : `
+                    <span class="badge badge-warning" style="font-size:11px;">Pending Your Approval</span>
+                  `}
+                </div>
+                <p class="text-sm" style="margin:4px 0 0;color:var(--text-soft);">
+                  ${escapeHtml(r.doctorSpec || 'Physician')} · Doctor ID: <span style="font-family:monospace;">${escapeHtml(r.doctorId || 'DOC-2024-0091')}</span>
+                </p>
+                <div style="margin-top:6px;font-size:12.5px;color:var(--text-muted);">
+                  Reason: <b>${escapeHtml(r.reason || 'Clinical Consultation')}</b> · Requested: <b>${escapeHtml(r.requestedAt || 'Just Now')}</b>
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-10">
+              <button class="btn btn-secondary btn-sm" onclick="handleDeclineRequest('${r.id}', '${escapeHtml(r.doctorName)}')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Decline
+              </button>
+              ${isOtpGenerated ? `
+                <button class="btn btn-success btn-sm" onclick="showOtpModalFor('${r.id}', '${r.otp}', '${escapeHtml(r.doctorName)}')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  View OTP (${r.otp})
+                </button>
+              ` : `
+                <button class="btn btn-primary btn-sm" onclick="openPermModal('${r.id}', '${escapeHtml(r.doctorName)}')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Configure &amp; Approve
+                </button>
+              `}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function openPermModal(reqId, doctorName) {
+    currentApprovingReqId = reqId;
+    const nameEl = document.getElementById('permDocNameDisplay');
+    if (nameEl) nameEl.textContent = doctorName || 'the Doctor';
+    document.getElementById('permModal').classList.add('open');
+  }
+
+  function submitPermModal() {
+    const checks = document.querySelectorAll('.perm-category-check:checked');
+    const categories = Array.from(checks).map(c => c.value);
+    const durationSelect = document.getElementById('permDurationSelect');
+    const durationMinutes = durationSelect ? parseInt(durationSelect.value, 10) : 60;
+
+    if (window.HDIMS && HDIMS.consent) {
+      const res = HDIMS.consent.generateOtp(currentApprovingReqId, categories, durationMinutes);
+      currentGeneratedOtp = res.otp;
+
+      // Populate otp boxes
+      for (let i = 0; i < 6; i++) {
+        const box = document.getElementById('otpBox' + i);
+        if (box) box.value = res.otp[i] || '';
+      }
+
+      const docName = (res.req && res.req.doctorName) ? res.req.doctorName : 'Doctor';
+      const sub = document.getElementById('otpModalSubtitle');
+      if (sub) sub.textContent = `Provide this single-use 6-digit verification code to ${docName} to initiate access.`;
+
+      document.getElementById('permModal').classList.remove('open');
+      document.getElementById('otpModal').classList.add('open');
+      renderPendingRequests();
+      HDIMS.toast(`✓ 6-Digit OTP generated for ${docName}: ${res.otp}`, 'success');
+    }
+  }
+
+  function showOtpModalFor(reqId, otp, doctorName) {
+    currentGeneratedOtp = otp;
+    for (let i = 0; i < 6; i++) {
+      const box = document.getElementById('otpBox' + i);
+      if (box) box.value = otp[i] || '';
+    }
+    const sub = document.getElementById('otpModalSubtitle');
+    if (sub) sub.textContent = `Provide this single-use 6-digit verification code to ${doctorName} to unlock records.`;
+    document.getElementById('otpModal').classList.add('open');
+  }
+
+  function copyGeneratedOtp() {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(currentGeneratedOtp);
+      HDIMS.toast(`Copied OTP ${currentGeneratedOtp} to clipboard`, 'success');
+    }
+  }
+
+  function handleDeclineRequest(reqId, doctorName) {
+    if (confirm(`Decline access request from ${doctorName}?`)) {
+      if (window.HDIMS && HDIMS.consent) {
+        const all = HDIMS.consent.getRequests();
+        const item = all.find(r => r.id === reqId);
+        if (item) item.status = 'REJECTED';
+        localStorage.setItem('hdims_consent_requests_v1', JSON.stringify(all));
+        renderPendingRequests();
+        HDIMS.toast(`Access request from ${doctorName} declined`, 'error');
+      }
+    }
+  }
+
+  function syncPatientActiveSession() {
+    if (!window.HDIMS || !HDIMS.consent) return;
+    const session = HDIMS.consent.getActiveSession();
+    const badge = document.getElementById('activeAccessBadge');
+    const doctorNameEl = document.getElementById('activeDoctorName');
+    const timerEl = document.getElementById('accessTimer');
+    const statusLabel = document.getElementById('accessStatusLabel');
+    const revokeBtn = document.getElementById('revokeBtn');
+
+    if (patientCountdownTimer) {
+      clearInterval(patientCountdownTimer);
+      patientCountdownTimer = null;
+    }
+
+    if (!session || session.status === 'REVOKED' || session.status === 'EXPIRED') {
+      if (badge) {
+        badge.textContent = session && session.status === 'REVOKED' ? 'REVOKED' : 'NO ACTIVE SESSION';
+        badge.style.background = 'rgba(239, 68, 68, 0.2)';
+        badge.style.color = '#f87171';
+        badge.style.borderColor = 'rgba(248, 113, 113, 0.3)';
+      }
+      if (statusLabel) statusLabel.textContent = 'Session Status';
+      if (timerEl) {
+        timerEl.textContent = 'Terminated';
+        timerEl.style.color = '#f87171';
+      }
+      if (revokeBtn) {
+        revokeBtn.disabled = true;
+        revokeBtn.textContent = 'Session Terminated';
+        revokeBtn.style.opacity = '0.6';
+      }
+      return;
+    }
+
+    // Active
+    if (doctorNameEl) doctorNameEl.textContent = session.doctorName;
+    if (badge) {
+      badge.innerHTML = '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#10b981;margin-right:6px;"></span> ACTIVE TEMPORARY SESSION';
+      badge.style.background = 'rgba(16, 185, 129, 0.2)';
+      badge.style.color = '#34d399';
+      badge.style.borderColor = 'rgba(52, 211, 153, 0.3)';
+    }
+    if (statusLabel) statusLabel.textContent = 'Session Auto-Expires In';
+    if (revokeBtn) {
+      revokeBtn.disabled = false;
+      revokeBtn.textContent = 'Revoke Access Immediately';
+      revokeBtn.style.opacity = '1';
+    }
+
+    const remaining = session.remainingSeconds || 2852;
+    patientCountdownTimer = HDIMS.startCountdown(timerEl, remaining, function(){
+      syncPatientActiveSession();
+    });
+  }
+
+  function handleRevoke(){
+    if (confirm('Are you sure you want to terminate this medical access session immediately? All records will be locked.')) {
+      if (window.HDIMS && HDIMS.consent) {
+        const session = HDIMS.consent.revokeSession('Patient revoked access from portal');
+        syncPatientActiveSession();
+        HDIMS.toast(`✓ Access immediately revoked for ${session ? session.doctorName : 'Doctor'}. Records locked.`, 'success');
+      }
+    }
+  }
+
+  function escapeHtml(str) {
+    return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+</script>
+</body>
+</html>
